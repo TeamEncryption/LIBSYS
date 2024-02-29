@@ -1,16 +1,24 @@
+// +---------- This class is currently holding the HashMap for the login page ----------+
+
+// Hashmap importation
 import java.util.HashMap;
 
 public class Login_Cred {
 
+// HashMap declaration and assignment as to what content it holds
 	static HashMap<String, String> logininfo = new HashMap<String, String>();
 	
+	// Login_Cred constructor
 	Login_Cred() {
 		
-		//Username = NO LARGER than 7 chars
+		// [Suggestion] Username = NO LARGER than 7 chars??
+		// The current login info that will allow access to the system
 		logininfo.put("Admin12", "Admin");
 
 	}
 	
+	// Function to send the Username and Password entered and compare
+	// it to the information specified within the HashMap
 	protected static HashMap getLoginInfo() {
 		
 		return logininfo;
