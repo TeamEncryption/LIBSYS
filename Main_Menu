@@ -1,0 +1,120 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.font.TextAttribute;
+import java.util.Map;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class Main_Menu implements ActionListener {
+		
+	public static String namePlate;
+	
+	JFrame Menu = new JFrame("LIBSYS");
+	
+	JLabel LineLabel = new JLabel();
+	JLabel LIBSYSLabel = new JLabel();
+	JLabel WelcomeLabel = new JLabel();
+	JLabel profilePlaceholder = new JLabel();
+	JLabel username = new JLabel();
+	JLabel LOGOplaceholder = new JLabel();
+	
+	JButton searchButton = new JButton("Search Catalog");
+	JButton clientButton = new JButton("Search Client");
+	JButton managementButton = new JButton("Management");
+	JButton signoutButton = new JButton("Sign Out");
+	
+	public Main_Menu(String userID) {
+		
+		namePlate = userID;
+		
+		// +-------------------- Labels --------------------+
+		LIBSYSLabel.setBounds(500, 0, 700, 100);
+		LIBSYSLabel.setText("LIBSYS System");
+		LIBSYSLabel.setFont(new Font(null, Font.BOLD, 35));
+		
+		LineLabel.setBounds(0, 70, 1280, 3);
+		LineLabel.setOpaque(true);
+		LineLabel.setBackground(Color.blue);
+		
+		WelcomeLabel.setBounds(15, 50, 250, 100);
+		WelcomeLabel.setText("Welcome, " + userID);
+		WelcomeLabel.setFont(new Font(null, Font.PLAIN, 25));
+		
+		profilePlaceholder.setBounds(1185, 85, 50, 50);
+		profilePlaceholder.setOpaque(true);
+		profilePlaceholder.setBackground(Color.LIGHT_GRAY);
+		
+		LOGOplaceholder.setBounds(350, 100, 700, 500);
+		LOGOplaceholder.setText("LOGO");
+		LOGOplaceholder.setFont(new Font(null, Font.PLAIN, 200));
+		
+		username.setBounds(1185, 100, 100, 100);
+		username.setText(userID);
+		
+		// +-------------------- Buttons --------------------+
+		searchButton.setBounds(325, 500, 200, 50);
+		searchButton.addActionListener(this);
+		searchButton.setFocusable(false);
+		searchButton.setFont(new Font(null, Font.PLAIN, 20));
+		
+		clientButton.setBounds(525, 500, 200, 50);
+		clientButton.addActionListener(this);
+		clientButton.setFocusable(false);
+		clientButton.setFont(new Font(null, Font.PLAIN, 20));
+		
+		managementButton.setBounds(725, 500, 200, 50);
+		managementButton.addActionListener(this);
+		managementButton.setFocusable(false);
+		managementButton.setFont(new Font(null, Font.PLAIN, 20));
+		
+		signoutButton.setBounds(1160, 160, 100, 25);
+		signoutButton.addActionListener(this);
+		signoutButton.setFocusable(false);
+		signoutButton.setFont(new Font(null, Font.PLAIN, 10));
+		signoutButton.setForeground(Color.BLUE);
+		signoutButton.setBorder(BorderFactory.createEmptyBorder());
+		signoutButton.setContentAreaFilled(false);
+		
+		// +-------------------- Frame --------------------+
+		Menu.setSize(1280, 720);
+		Menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Menu.add(LIBSYSLabel);
+		Menu.add(LineLabel);
+		Menu.add(WelcomeLabel);
+		Menu.add(searchButton);
+		Menu.add(clientButton);
+		Menu.add(managementButton);
+		Menu.add(profilePlaceholder);
+		Menu.add(username);
+		Menu.add(signoutButton);
+		Menu.add(LOGOplaceholder);
+		Menu.setLayout(null);
+		Menu.setResizable(false);
+		Menu.setVisible(true);
+		
+	}
+		
+	// +-------------------- Action Listener --------------------+
+	public void actionPerformed(ActionEvent e) {
+		
+		if (e.getSource() == signoutButton) {
+			Menu.dispose();
+			new Login_Page(Login_Cred.getLoginInfo());
+		}
+		
+		if (e.getSource() == searchButton) {
+			Menu.dispose();
+			new Material_Search(namePlate);
+		}
+		
+	}
+
+}
