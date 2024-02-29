@@ -1,0 +1,271 @@
+//material-search
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class Material_Search implements ActionListener{
+	
+	public static String namePlate;
+	
+	public static String[] Material = {"", "Books", "Physical Media", "Documents", "Serials", "Articles",};
+	public static String[] BookType = {"", "Fiction", "Non-Fiction"};
+	public static String[] FictionGenres = {"", "Horror", "Thriller", "Fantasy", "Sci-Fi", "Mystery", "Romance", "Humor"};
+	public static String[] NFictionGenres = {"", "Science", "History", "Biographical", "Art", "Music", "Cooking"};
+	public static String[] TypeSearch = {"", "Materials", "ISBN #", "Author"};
+
+	JFrame SearchPage = new JFrame("LIBSYS");
+	
+	JLabel PageHeader = new JLabel();
+	JLabel LineLabel = new JLabel();
+	JLabel LIBSYSLabel = new JLabel();
+	JLabel profilePlaceholder = new JLabel();
+	JLabel username = new JLabel();
+	JLabel SearchLabel = new JLabel();
+	JLabel FilterLabel = new JLabel();
+	JLabel BTLabel = new JLabel();
+	JLabel FGenreLabel = new JLabel();
+	JLabel NonFGenreLabel = new JLabel();
+	JLabel TypeSearchLabel = new JLabel();
+	
+	JTextField SearchField = new JTextField();
+	
+	JComboBox TypeSearchBox = new JComboBox(TypeSearch);
+	JComboBox FilterBox = new JComboBox(Material);
+	JComboBox BTGenreBox = new JComboBox(BookType);
+	JComboBox FGenreBox = new JComboBox(FictionGenres);
+	JComboBox NonFGenreBox = new JComboBox(NFictionGenres);
+	
+	JButton signoutButton = new JButton("Sign Out");
+	JButton SearchButton = new JButton("Search Catalog");
+	JButton BackButton = new JButton("Back");
+	
+	Material_Search(String userID) {
+		
+		namePlate = userID;
+		
+		// +-------------------- Labels --------------------+
+		LIBSYSLabel.setBounds(500, 0, 700, 100);
+		LIBSYSLabel.setText("LIBSYS System");
+		LIBSYSLabel.setFont(new Font(null, Font.BOLD, 35));
+		
+		LineLabel.setBounds(0, 70, 1280, 3);
+		LineLabel.setOpaque(true);
+		LineLabel.setBackground(Color.blue);
+		
+		PageHeader.setBounds(15, 50, 250, 100);
+		PageHeader.setText("Catalog Search");
+		PageHeader.setFont(new Font(null, Font.PLAIN, 25));
+		
+		profilePlaceholder.setBounds(1185, 85, 50, 50);
+		profilePlaceholder.setOpaque(true);
+		profilePlaceholder.setBackground(Color.LIGHT_GRAY);
+		
+		username.setBounds(1185, 100, 100, 100);
+		username.setText(userID);
+		
+		SearchLabel.setBounds(400, 250, 100, 25);
+		SearchLabel.setText("Search:");
+		SearchLabel.setFont(new Font(null, Font.PLAIN, 15));
+		
+		TypeSearchLabel.setBounds(365, 300, 100, 25);
+		TypeSearchLabel.setText("Search Filter:");
+		TypeSearchLabel.setFont(new Font(null, Font.PLAIN, 15));
+		
+		FilterLabel.setBounds(360, 350, 100, 25);
+		FilterLabel.setText("Material Type:");
+		FilterLabel.setFont(new Font(null, Font.PLAIN, 15));
+		FilterLabel.setVisible(false);
+		
+		BTLabel.setBounds(375, 400, 100, 25);
+		BTLabel.setText("Book Type:");
+		BTLabel.setFont(new Font(null, Font.PLAIN, 15));
+		BTLabel.setVisible(false);
+		
+		FGenreLabel.setBounds(405, 450, 100, 25);
+		FGenreLabel.setText("Genre:");
+		FGenreLabel.setFont(new Font(null, Font.PLAIN, 15));
+		FGenreLabel.setVisible(false);
+		
+		NonFGenreLabel.setBounds(405, 450, 100, 25);
+		NonFGenreLabel.setText("Genre:");
+		NonFGenreLabel.setFont(new Font(null, Font.PLAIN, 15));
+		NonFGenreLabel.setVisible(false);
+		
+		// +-------------------- Text Fields --------------------+
+		SearchField.setBounds(475, 250, 250, 25);
+		
+		// +-------------------- Combo Boxes --------------------+
+		TypeSearchBox.setBounds(475, 300, 150, 25);
+		TypeSearchBox.addActionListener(this);
+		
+		FilterBox.setBounds(475, 350, 150, 25);
+		FilterBox.addActionListener(this);
+		FilterBox.setVisible(false);
+		
+		BTGenreBox.setBounds(475, 400, 150, 25);
+		BTGenreBox.addActionListener(this);
+		BTGenreBox.setVisible(false);
+		
+		FGenreBox.setBounds(475, 450, 150, 25);
+		FGenreBox.addActionListener(this);
+		FGenreBox.setVisible(false);
+		
+		NonFGenreBox.setBounds(475, 450, 150, 25);
+		NonFGenreBox.addActionListener(this);
+		NonFGenreBox.setVisible(false);
+		
+		// +-------------------- Buttons --------------------+
+		signoutButton.setBounds(1160, 160, 100, 25);
+		signoutButton.addActionListener(this);
+		signoutButton.setFocusable(false);
+		signoutButton.setFont(new Font(null, Font.PLAIN, 10));
+		signoutButton.setForeground(Color.BLUE);
+		signoutButton.setBorder(BorderFactory.createEmptyBorder());
+		signoutButton.setContentAreaFilled(false);
+		
+		SearchButton.setBounds(750, 250, 175, 25);
+		SearchButton.addActionListener(this);
+		SearchButton.setFocusable(false);
+		
+		BackButton.setBounds(750, 300, 100, 25);
+		BackButton.addActionListener(this);
+		BackButton.setFocusable(false);
+		
+		// +-------------------- Frame --------------------+
+		SearchPage.setSize(1280, 720);
+		
+		SearchPage.add(LIBSYSLabel);
+		SearchPage.add(LineLabel);
+		SearchPage.add(PageHeader);
+		SearchPage.add(profilePlaceholder);
+		SearchPage.add(username);
+		SearchPage.add(signoutButton);
+		SearchPage.add(SearchLabel);
+		SearchPage.add(SearchField);
+		SearchPage.add(TypeSearchLabel);
+		SearchPage.add(TypeSearchBox);
+		SearchPage.add(SearchButton);
+		SearchPage.add(BackButton);
+		SearchPage.add(FilterLabel);
+		SearchPage.add(FilterBox);
+		SearchPage.add(BTGenreBox);
+		SearchPage.add(BTLabel);
+		SearchPage.add(FGenreBox);
+		SearchPage.add(FGenreLabel);
+		SearchPage.add(NonFGenreBox);
+		SearchPage.add(NonFGenreLabel);
+		
+		SearchPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		SearchPage.setLayout(null);
+		
+		SearchPage.setVisible(true);
+		
+	}
+
+	// +-------------------- Action Listener --------------------+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		int Material, BookType, SearchType;
+		int FGenre, NonFGenre; // will be used for the Search function, will read int when searching
+		
+		if (e.getSource() == signoutButton) {
+			SearchPage.dispose();
+			new Login_Page(Login_Cred.getLoginInfo());
+		}
+		
+		if (e.getSource() == BackButton) {
+			SearchPage.dispose();
+			new Main_Menu(namePlate);
+		}
+		
+		if (e.getSource() == TypeSearchBox) {
+			SearchType = TypeSearchBox.getSelectedIndex();
+			
+			if (SearchType == 1) {
+				FilterBox.setVisible(true);
+				FilterLabel.setVisible(true);
+			}
+			
+			else {
+				FilterBox.setVisible(false);
+				FilterLabel.setVisible(false);
+				BTGenreBox.setVisible(false);
+				BTLabel.setVisible(false);
+				FGenreBox.setVisible(false);
+				FGenreLabel.setVisible(false);
+				SearchType = 0;
+				BookType = 0;
+				Material = 0;
+				FilterBox.setSelectedIndex(0);
+				BTGenreBox.setSelectedIndex(0);
+				FGenreBox.setSelectedIndex(0);
+				NonFGenreBox.setSelectedIndex(0);
+			}
+		}
+		
+		if (e.getSource() == FilterBox) {
+			Material = FilterBox.getSelectedIndex();
+			
+			if (Material == 1) {
+				BTGenreBox.setVisible(true);
+				BTLabel.setVisible(true);				
+			}
+			
+			else {
+				BTGenreBox.setVisible(false);
+				BTLabel.setVisible(false);
+				FGenreBox.setVisible(false);
+				FGenreLabel.setVisible(false);
+				BookType = 0;
+				Material = 0;
+				BTGenreBox.setSelectedIndex(0);
+				FGenreBox.setSelectedIndex(0);
+				NonFGenreBox.setSelectedIndex(0);
+			}
+		}
+		
+		
+		if (e.getSource() == BTGenreBox) {
+			BookType = BTGenreBox.getSelectedIndex();
+			
+			if (BookType == 1) {
+				FGenreBox.setVisible(true);
+				FGenreLabel.setVisible(true);
+				NonFGenreBox.setSelectedIndex(0);
+				NonFGenreBox.setVisible(false);
+				NonFGenreLabel.setVisible(false);
+			}
+			
+			else if (BookType == 2) {
+				NonFGenreBox.setVisible(true);
+				NonFGenreLabel.setVisible(true);
+				FGenreBox.setSelectedIndex(0);
+				FGenreBox.setVisible(false);
+				FGenreLabel.setVisible(false);
+			}
+			
+			else {
+				FGenreBox.setVisible(false);
+				FGenreLabel.setVisible(false);
+				BookType = 0;
+				FGenreBox.setSelectedIndex(0);
+				NonFGenreBox.setSelectedIndex(0);
+				NonFGenreBox.setVisible(false);
+				NonFGenreLabel.setVisible(false);
+			}
+		
+		}
+
+	}
+}
