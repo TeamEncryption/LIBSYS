@@ -8,7 +8,6 @@ public class Login_Cred {
 		
 		//Username = NO LARGER than 7 chars
 		logininfo.put("Admin12", "Admin");
-		logininfo.put("Bemis69", "boop");
 
 	}
 	
