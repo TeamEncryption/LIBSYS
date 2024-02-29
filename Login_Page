@@ -1,3 +1,6 @@
+
+// All of the Java JFrame tools for creating the GUI being imported
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -10,20 +13,27 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+// Class header implements ActionListener for button functionality
 public class Login_Page implements ActionListener{
 	
+	// This String will allow for the UserID entered to be sent beyond this window
 	public static String userID;
 	
+	// The main JFrame/window creation
 	JFrame frame = new JFrame("LIBSYS");
 	
+	// Button instances are created and labeled with text
 	JButton loginButton = new JButton("Login");
 	JButton resetButton = new JButton("Reset");
 	JButton exitButton = new JButton("Exit");
 	
+	// Text field for username entry by users
 	JTextField userIDfield = new JTextField();
 	
+	// Password field for password entry by users
 	JPasswordField userPassfield = new JPasswordField();
 	
+	// All of the labels that hold text that communicates with the outside user using the system
 	JLabel userIDlabel = new JLabel("Admin ID:");
 	JLabel userPasslabel = new JLabel("Password:");
 	JLabel messageLabel = new JLabel();
@@ -31,13 +41,15 @@ public class Login_Page implements ActionListener{
 	JLabel LineLabel = new JLabel();
 	JLabel SOLine = new JLabel();
 	
+	// Creation and assignments of the HashMap that holds the user-login information
 	HashMap<String, String> logininfo = new HashMap<String, String>();
 	
+	// HashMap is impoted into this constructor for utilization in case-sensitive login information
 	Login_Page(HashMap<String, String> logininfoOriginal) {
 		
 		logininfo = logininfoOriginal;
 		
-		// +-------------------- Labels --------------------+
+		// +-------------------- Label placement and personalization --------------------+
 		libsys_Header.setBounds(180, 10, 300, 100);
 		libsys_Header.setVisible(true);
 		libsys_Header.setFont(new Font(null, Font.BOLD, 30));
@@ -52,11 +64,11 @@ public class Login_Page implements ActionListener{
 		messageLabel.setBounds(175, 300, 250, 35);
 		messageLabel.setFont(new Font(null, Font.ITALIC, 25));
 		
-		// +-------------------- Text Fields --------------------+
+		// +-------------------- Text Fields placement --------------------+
 		userIDfield.setBounds(200, 150, 200, 25);
 		userPassfield.setBounds(200, 200, 200, 25);
 		
-		// +-------------------- Buttons --------------------+
+		// +-------------------- Button placement and personalization --------------------+
 		loginButton.setBounds(200, 250, 100, 25);
 		loginButton.addActionListener(this);
 		loginButton.setFocusable(false);
@@ -69,7 +81,7 @@ public class Login_Page implements ActionListener{
 		exitButton.addActionListener((event) -> System.exit(0));
 		exitButton.setFocusable(false);
 		
-		// +-------------------- Frame --------------------+
+		// +-------------------- Frame additions, placement, and personalization --------------------+
 		frame.add(loginButton);
 		frame.add(resetButton);
 		frame.add(userIDfield);
@@ -92,6 +104,7 @@ public class Login_Page implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		// Reset button functionality = will clear text fields for user when pressed
 		if (e.getSource() == resetButton) {
 			
 			userIDfield.setText("");
@@ -100,13 +113,17 @@ public class Login_Page implements ActionListener{
 		
 		}
 		
+		// Login button functionality
 		if (e.getSource() == loginButton) {
 			
+			// userID and password are taken from user input fields
 			userID = userIDfield.getText();
 			String password = String.valueOf(userPassfield.getPassword());
 			
+			// If the userID entered by the user matches what is contained in the HashMap
 			if (logininfo.containsKey(userID)) {
 				
+				// If the password entered also matches what is contained in the HashMap
 				if (logininfo.get(userID).equals(password)) {
 					messageLabel.setForeground(Color.green);
 					messageLabel.setText("Login Successful!");
