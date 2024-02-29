@@ -1,0 +1,10 @@
+public class LIBSYS_launch {
+
+	public static void main(String[] args) {
+		
+		new Login_Cred();
+		new Login_Page(Login_Cred.getLoginInfo());
+
+	}
+
+}
