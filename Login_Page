@@ -123,7 +123,7 @@ public class Login_Page implements ActionListener{
 			// If the userID entered by the user matches what is contained in the HashMap
 			if (logininfo.containsKey(userID)) {
 				
-				// If the password entered also matches what is contained in the HashMap
+				// If the password entered also matches what is contained in the HashMap = LOGIN SUCCESSFUL
 				if (logininfo.get(userID).equals(password)) {
 					messageLabel.setForeground(Color.green);
 					messageLabel.setText("Login Successful!");
@@ -132,6 +132,7 @@ public class Login_Page implements ActionListener{
 					
 				}
 				
+				// If the password entered does NOT match the information contained in the HashMap = INVALID CREDENTIALS
 				else {
 					messageLabel.setForeground(Color.red);
 					messageLabel.setText("Invalid Credentials!");
@@ -140,6 +141,7 @@ public class Login_Page implements ActionListener{
 				
 			}
 			
+			// This message is displayed when the Username entered by the user in incorrect from the jump = Username Not Found
 			else {
 				messageLabel.setForeground(Color.red);
 				messageLabel.setText("Username not Found");
