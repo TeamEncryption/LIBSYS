@@ -1,0 +1,135 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class Login_Page implements ActionListener{
+	
+	public static String userID;
+	
+	JFrame frame = new JFrame("LIBSYS");
+	
+	JButton loginButton = new JButton("Login");
+	JButton resetButton = new JButton("Reset");
+	JButton exitButton = new JButton("Exit");
+	
+	JTextField userIDfield = new JTextField();
+	
+	JPasswordField userPassfield = new JPasswordField();
+	
+	JLabel userIDlabel = new JLabel("Admin ID:");
+	JLabel userPasslabel = new JLabel("Password:");
+	JLabel messageLabel = new JLabel();
+	JLabel libsys_Header = new JLabel("LIBSYS System");
+	JLabel LineLabel = new JLabel();
+	JLabel SOLine = new JLabel();
+	
+	HashMap<String, String> logininfo = new HashMap<String, String>();
+	
+	Login_Page(HashMap<String, String> logininfoOriginal) {
+		
+		logininfo = logininfoOriginal;
+		
+		// +-------------------- Labels --------------------+
+		libsys_Header.setBounds(180, 10, 300, 100);
+		libsys_Header.setVisible(true);
+		libsys_Header.setFont(new Font(null, Font.BOLD, 30));
+		
+		LineLabel.setBounds(0, 75, 600, 3);
+		LineLabel.setOpaque(true);
+		LineLabel.setBackground(Color.BLUE);
+		
+		userIDlabel.setBounds(125, 150, 75, 25);
+		userPasslabel.setBounds(125, 200, 75, 25);
+		
+		messageLabel.setBounds(175, 300, 250, 35);
+		messageLabel.setFont(new Font(null, Font.ITALIC, 25));
+		
+		// +-------------------- Text Fields --------------------+
+		userIDfield.setBounds(200, 150, 200, 25);
+		userPassfield.setBounds(200, 200, 200, 25);
+		
+		// +-------------------- Buttons --------------------+
+		loginButton.setBounds(200, 250, 100, 25);
+		loginButton.addActionListener(this);
+		loginButton.setFocusable(false);
+		
+		resetButton.setBounds(300, 250, 100, 25);
+		resetButton.addActionListener(this);
+		resetButton.setFocusable(false);
+		
+		exitButton.setBounds(520, 80, 60, 25);
+		exitButton.addActionListener((event) -> System.exit(0));
+		exitButton.setFocusable(false);
+		
+		// +-------------------- Frame --------------------+
+		frame.add(loginButton);
+		frame.add(resetButton);
+		frame.add(userIDfield);
+		frame.add(userPassfield);
+		frame.add(messageLabel);
+		frame.add(userIDlabel);
+		frame.add(userPasslabel);
+		frame.add(libsys_Header);
+		frame.add(LineLabel);
+		frame.add(exitButton);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(600, 400);
+		frame.setResizable(false);
+		frame.setLayout(null);
+		frame.setVisible(true);
+		
+	}
+
+	// +-------------------- Action Listener --------------------+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		if (e.getSource() == resetButton) {
+			
+			userIDfield.setText("");
+			userPassfield.setText("");
+			messageLabel.setText("");
+		
+		}
+		
+		if (e.getSource() == loginButton) {
+			
+			userID = userIDfield.getText();
+			String password = String.valueOf(userPassfield.getPassword());
+			
+			if (logininfo.containsKey(userID)) {
+				
+				if (logininfo.get(userID).equals(password)) {
+					messageLabel.setForeground(Color.green);
+					messageLabel.setText("Login Successful!");
+					frame.dispose();
+					new Main_Menu(userID);
+					
+				}
+				
+				else {
+					messageLabel.setForeground(Color.red);
+					messageLabel.setText("Invalid Credentials!");
+					
+				}
+				
+			}
+			
+			else {
+				messageLabel.setForeground(Color.red);
+				messageLabel.setText("Username not Found");
+				
+			}
+			
+		}
+		
+	}
+}
