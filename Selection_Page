@@ -1,0 +1,77 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class Selection_Page implements ActionListener {
+	
+	JFrame SelectionFrame = new JFrame("LIBSYS");
+	
+	JButton UserButton = new JButton("User Login");
+	JButton GuestButton = new JButton("Use as Guest");
+	JButton exitButton = new JButton("Exit");
+	
+	JLabel libsys_Header = new JLabel("LIBSYS System");
+	JLabel LineLabel = new JLabel();
+
+	Selection_Page() {
+		
+		libsys_Header.setBounds(180, 10, 300, 100);
+		libsys_Header.setVisible(true);
+		libsys_Header.setFont(new Font(null, Font.BOLD, 30));
+		
+		LineLabel.setBounds(0, 75, 600, 3);
+		LineLabel.setOpaque(true);
+		LineLabel.setBackground(Color.BLUE);
+		
+		UserButton.setBounds(115, 250, 125, 25);
+		UserButton.addActionListener(this);
+		UserButton.setFocusable(false);
+		
+		GuestButton.setBounds(335, 250, 125, 25);
+		GuestButton.addActionListener(this);
+		GuestButton.setFocusable(false);
+		
+		exitButton.setBounds(520, 80, 60, 25);
+		exitButton.addActionListener((event) -> System.exit(0));
+		exitButton.setFocusable(false);
+		
+		SelectionFrame.add(libsys_Header);
+		SelectionFrame.add(LineLabel);
+		SelectionFrame.add(GuestButton);
+		SelectionFrame.add(UserButton);
+		SelectionFrame.add(exitButton);
+		
+		SelectionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		SelectionFrame.setSize(600, 400);
+		SelectionFrame.setResizable(false);
+		SelectionFrame.setLayout(null);
+		SelectionFrame.setVisible(true);
+		
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		if (e.getSource() == UserButton) {
+			
+			new Login_Page(Login_Cred.getLoginInfo());
+			SelectionFrame.dispose();
+			
+		}
+		
+		if (e.getSource() == GuestButton) {
+			
+			String userID = "Guest12";
+			new Material_Search(userID);
+			SelectionFrame.dispose();
+			
+		}
+		
+	}
+
+}
