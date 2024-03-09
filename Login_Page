@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.HashMap;
 
 import javax.swing.JButton;
@@ -14,20 +16,20 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 // Class header implements ActionListener for button functionality
-public class Login_Page implements ActionListener{
+public class Login_Page implements ActionListener, KeyListener{
 	
 	// This String will allow for the UserID entered to be sent beyond this window
 	public static String userID;
 	
 	// The main JFrame/window creation
-	JFrame frame = new JFrame("LIBSYS");
-	
+	JFrame LoginFrame = new JFrame("LIBSYS");
+		
 	// Button instances are created and labeled with text
 	JButton loginButton = new JButton("Login");
 	JButton resetButton = new JButton("Reset");
-	JButton exitButton = new JButton("Exit");
+	JButton BackButton = new JButton("Back");
 	
-	// Text field for username entry by users
+	// Text field for user name entry by users
 	JTextField userIDfield = new JTextField();
 	
 	// Password field for password entry by users
@@ -39,12 +41,11 @@ public class Login_Page implements ActionListener{
 	JLabel messageLabel = new JLabel();
 	JLabel libsys_Header = new JLabel("LIBSYS System");
 	JLabel LineLabel = new JLabel();
-	JLabel SOLine = new JLabel();
 	
 	// Creation and assignments of the HashMap that holds the user-login information
 	HashMap<String, String> logininfo = new HashMap<String, String>();
 	
-	// HashMap is impoted into this constructor for utilization in case-sensitive login information
+	// HashMap is imported into this constructor for utilization in case-sensitive login information
 	Login_Page(HashMap<String, String> logininfoOriginal) {
 		
 		logininfo = logininfoOriginal;
@@ -61,8 +62,8 @@ public class Login_Page implements ActionListener{
 		userIDlabel.setBounds(125, 150, 75, 25);
 		userPasslabel.setBounds(125, 200, 75, 25);
 		
-		messageLabel.setBounds(175, 300, 250, 35);
-		messageLabel.setFont(new Font(null, Font.ITALIC, 25));
+		messageLabel.setBounds(200, 220, 250, 35);
+		messageLabel.setFont(new Font(null, Font.ITALIC, 12));
 		
 		// +-------------------- Text Fields placement --------------------+
 		userIDfield.setBounds(200, 150, 200, 25);
@@ -77,29 +78,32 @@ public class Login_Page implements ActionListener{
 		resetButton.addActionListener(this);
 		resetButton.setFocusable(false);
 		
-		exitButton.setBounds(520, 80, 60, 25);
-		exitButton.addActionListener((event) -> System.exit(0));
-		exitButton.setFocusable(false);
+		BackButton.setBounds(505, 80, 75, 25);
+		BackButton.addActionListener(this);
+		BackButton.setFocusable(false);
 		
-		// +-------------------- Frame additions, placement, and personalization --------------------+
-		frame.add(loginButton);
-		frame.add(resetButton);
-		frame.add(userIDfield);
-		frame.add(userPassfield);
-		frame.add(messageLabel);
-		frame.add(userIDlabel);
-		frame.add(userPasslabel);
-		frame.add(libsys_Header);
-		frame.add(LineLabel);
-		frame.add(exitButton);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(600, 400);
-		frame.setResizable(false);
-		frame.setLayout(null);
-		frame.setVisible(true);
+		// +-------------------- Frame additions --------------------+
+		LoginFrame.add(loginButton);
+		LoginFrame.add(resetButton);
+		LoginFrame.add(userIDfield);
+		LoginFrame.add(userPassfield);
+		LoginFrame.add(messageLabel);
+		LoginFrame.add(userIDlabel);
+		LoginFrame.add(userPasslabel);
+		LoginFrame.add(libsys_Header);
+		LoginFrame.add(LineLabel);
+		LoginFrame.add(BackButton);
+		
+		// +-------------------- Frame placement and personalization --------------------+
+		LoginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		LoginFrame.setSize(600, 400);
+		LoginFrame.setResizable(false);
+		LoginFrame.setLayout(null);
+		LoginFrame.setVisible(true);
+		LoginFrame.getRootPane().setDefaultButton(loginButton);
 		
 	}
-
+	
 	// +-------------------- Action Listener --------------------+
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -125,9 +129,8 @@ public class Login_Page implements ActionListener{
 				
 				// If the password entered also matches what is contained in the HashMap = LOGIN SUCCESSFUL
 				if (logininfo.get(userID).equals(password)) {
-					messageLabel.setForeground(Color.green);
-					messageLabel.setText("Login Successful!");
-					frame.dispose();
+					messageLabel.setText("");
+					LoginFrame.dispose();
 					new Main_Menu(userID);
 					
 				}
@@ -141,7 +144,7 @@ public class Login_Page implements ActionListener{
 				
 			}
 			
-			// This message is displayed when the Username entered by the user in incorrect from the jump = Username Not Found
+			// This message is displayed when the User name entered by the user in incorrect from the jump = User name Not Found
 			else {
 				messageLabel.setForeground(Color.red);
 				messageLabel.setText("Username not Found");
@@ -149,6 +152,32 @@ public class Login_Page implements ActionListener{
 			}
 			
 		}
+		
+		if (e.getSource() == BackButton) {
+			new Selection_Page();
+			LoginFrame.dispose();
+			
+		}
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			loginButton.doClick();
+		}
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }
