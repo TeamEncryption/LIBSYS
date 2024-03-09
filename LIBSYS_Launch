@@ -6,7 +6,7 @@ public class LIBSYS_launch {
 		
 		// Instances of the login page and the login credentials for use when the application begins
 		new Login_Cred();
-		new Login_Page(Login_Cred.getLoginInfo());
+		new Selection_Page();
 
 	}
 
