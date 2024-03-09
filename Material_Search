@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -12,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class Material_Search implements ActionListener{
+public class Material_Search implements ActionListener, KeyListener{
 	
 	public static String namePlate;
 	
@@ -31,7 +33,7 @@ public class Material_Search implements ActionListener{
 	JLabel username = new JLabel();
 	JLabel SearchLabel = new JLabel();
 	JLabel FilterLabel = new JLabel();
-	JLabel BTLabel = new JLabel();
+	JLabel BookTypeLabel = new JLabel();
 	JLabel FGenreLabel = new JLabel();
 	JLabel NonFGenreLabel = new JLabel();
 	JLabel TypeSearchLabel = new JLabel();
@@ -85,10 +87,10 @@ public class Material_Search implements ActionListener{
 		FilterLabel.setFont(new Font(null, Font.PLAIN, 15));
 		FilterLabel.setVisible(false);
 		
-		BTLabel.setBounds(375, 400, 100, 25);
-		BTLabel.setText("Book Type:");
-		BTLabel.setFont(new Font(null, Font.PLAIN, 15));
-		BTLabel.setVisible(false);
+		BookTypeLabel.setBounds(375, 400, 100, 25);
+		BookTypeLabel.setText("Book Type:");
+		BookTypeLabel.setFont(new Font(null, Font.PLAIN, 15));
+		BookTypeLabel.setVisible(false);
 		
 		FGenreLabel.setBounds(405, 450, 100, 25);
 		FGenreLabel.setText("Genre:");
@@ -136,6 +138,10 @@ public class Material_Search implements ActionListener{
 		SearchButton.addActionListener(this);
 		SearchButton.setFocusable(false);
 		
+		if (namePlate.equals("Guest12")) {
+			BackButton.setVisible(false);
+		}
+		
 		BackButton.setBounds(750, 300, 100, 25);
 		BackButton.addActionListener(this);
 		BackButton.setFocusable(false);
@@ -158,17 +164,16 @@ public class Material_Search implements ActionListener{
 		SearchPage.add(FilterLabel);
 		SearchPage.add(FilterBox);
 		SearchPage.add(BTGenreBox);
-		SearchPage.add(BTLabel);
+		SearchPage.add(BookTypeLabel);
 		SearchPage.add(FGenreBox);
 		SearchPage.add(FGenreLabel);
 		SearchPage.add(NonFGenreBox);
 		SearchPage.add(NonFGenreLabel);
 		
 		SearchPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		SearchPage.setLayout(null);
-		
 		SearchPage.setVisible(true);
+		SearchPage.getRootPane().setDefaultButton(SearchButton);
 		
 	}
 
@@ -181,7 +186,7 @@ public class Material_Search implements ActionListener{
 		
 		if (e.getSource() == signoutButton) {
 			SearchPage.dispose();
-			new Login_Page(Login_Cred.getLoginInfo());
+			new Selection_Page();
 		}
 		
 		if (e.getSource() == BackButton) {
@@ -201,7 +206,7 @@ public class Material_Search implements ActionListener{
 				FilterBox.setVisible(false);
 				FilterLabel.setVisible(false);
 				BTGenreBox.setVisible(false);
-				BTLabel.setVisible(false);
+				BookTypeLabel.setVisible(false);
 				FGenreBox.setVisible(false);
 				FGenreLabel.setVisible(false);
 				SearchType = 0;
@@ -219,12 +224,12 @@ public class Material_Search implements ActionListener{
 			
 			if (Material == 1) {
 				BTGenreBox.setVisible(true);
-				BTLabel.setVisible(true);				
+				BookTypeLabel.setVisible(true);				
 			}
 			
 			else {
 				BTGenreBox.setVisible(false);
-				BTLabel.setVisible(false);
+				BookTypeLabel.setVisible(false);
 				FGenreBox.setVisible(false);
 				FGenreLabel.setVisible(false);
 				BookType = 0;
@@ -267,5 +272,23 @@ public class Material_Search implements ActionListener{
 		
 		}
 
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			SearchButton.doClick();
+		}
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		
 	}
 }
