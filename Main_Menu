@@ -1,25 +1,19 @@
 
 // Tools for JFrame are implemented for the Window being created
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.font.TextAttribute;
-import java.util.Map;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 // Action Listener is implemented for button functionality
 public class Main_Menu implements ActionListener {
 		
-	// This is used for retaining the Username information throughout the system
+	// This is used for retaining the User name information throughout the system
 	public static String namePlate;
 	
 	// JFrame creation for the Main Menu window
@@ -39,10 +33,10 @@ public class Main_Menu implements ActionListener {
 	JButton managementButton = new JButton("Management");
 	JButton signoutButton = new JButton("Sign Out");
 	
-	// The userID is sent from the previous page to this page for the signout label (so it looks nice and personalized)
+	// The userID is sent from the previous page to this page for the sign out label (so it looks nice and personalized)
 	public Main_Menu(String userID) {
 		
-		// The previous window's userID variable is sent through to this window for the username label
+		// The previous window's userID variable is sent through to this window for the user name label
 		namePlate = userID;
 		
 		// +-------------------- Labels placement and personalization --------------------+
@@ -115,16 +109,22 @@ public class Main_Menu implements ActionListener {
 	// +-------------------- Action Listener for buttons (WIP)--------------------+
 	public void actionPerformed(ActionEvent e) {
 		
-		// Signout buttons will take you to the login page
+		// Sign out buttons will take you to the login page
 		if (e.getSource() == signoutButton) {
 			Menu.dispose();
-			new Login_Page(Login_Cred.getLoginInfo());
+			new Selection_Page();
 		}
 		
 		// Search catalog button will send users to the main search screen
 		if (e.getSource() == searchButton) {
 			Menu.dispose();
 			new Material_Search(namePlate);
+		}
+		
+		if (e.getSource() == clientButton) {
+			Menu.dispose();
+			new Client_Search(namePlate);
+			
 		}
 		
 	}
