@@ -1,9 +1,12 @@
+
+// +---------- Client Search Page ----------+
+// This page will allow library staff and administrators to search clients, modify information, and perform other functions relating to client information
+
+// Libraries for JAVA Swing
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -11,144 +14,158 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class Client_Search implements ActionListener, KeyListener {
+// Action listener is implemented to allow functionality to buttons
+public class Client_Search implements ActionListener {
 
+	// Global variable to send the user's name to the next window opened
 	public static String namePlate;
 	
-JFrame ClientSearchPage = new JFrame("LIBSYS");
+	// JFrame creation for the main window for Client Search Page
+	JFrame ClientSearchPage = new JFrame("LIBSYS");
 	
-	JLabel PageHeader = new JLabel();
-	JLabel LineLabel = new JLabel();
-	JLabel LIBSYSLabel = new JLabel();
-	JLabel profilePlaceholder = new JLabel();
-	JLabel username = new JLabel();
-	JLabel OrLabel1 = new JLabel();
-	JLabel OrLabel2 = new JLabel();
-	JLabel FirstNameLabel = new JLabel();
-	JLabel LastNameLabel = new JLabel();
-	JLabel EmailLabel = new JLabel();
-	JLabel PhoneNumberLabel = new JLabel();
+	// JLabels used for the Client Search Page
+	JLabel PageFunctionHeader = new JLabel(); // Page function header is declared and assigned
+	JLabel BlueLineLabel = new JLabel(); // Blue line label is declared and assigned
+	JLabel LIBSYSLabel = new JLabel(); // LIBSYS header label is declared and assigned
+	JLabel profilePlaceholder = new JLabel(); // Profile placeholder box is declared and assigned
+	JLabel username = new JLabel(); // username label is declared and assigned
+	JLabel OrLabel1 = new JLabel(); // first 'Or' label is declared and assigned
+	JLabel OrLabel2 = new JLabel(); // second 'Or' label is declared and assigned
+	JLabel FirstNameLabel = new JLabel(); // First name label is declared and assigned
+	JLabel LastNameLabel = new JLabel(); // Last name label is declared and assigned
+	JLabel EmailLabel = new JLabel(); // Email label is declared and assigned
+	JLabel PhoneNumberLabel = new JLabel(); // Phone number label is declared and assigned
 	
-	JTextField SearchFirstNameField = new JTextField();
-	JTextField SearchLastNameField = new JTextField();
-	JTextField SearchEmailField = new JTextField();
-	JTextField SearchPhoneNumberField = new JTextField();
+	// JText Fields used in the Client Search Page
+	JTextField SearchFirstNameField = new JTextField(); // First name text field is declared and assigned
+	JTextField SearchLastNameField = new JTextField(); // Last name text field is declared and assigned
+	JTextField SearchEmailField = new JTextField(); // Email text field is declared and assigned
+	JTextField SearchPhoneNumberField = new JTextField(); // Phone number text field is declared and assigned
 
+	// JButtons used for the Client search page
+	JButton signoutButton = new JButton("Sign Out"); // Sign Out button is declared and assigned
+	JButton SearchButton = new JButton("Search Client"); // Search button is declared and assigned
+	JButton BackButton = new JButton("Back"); // Back button is declared and assigned
 	
-	JButton signoutButton = new JButton("Sign Out");
-	JButton SearchButton = new JButton("Search Client");
-	JButton BackButton = new JButton("Back");
-	
+	// The userID is sent from the previous page to this page for the sign out label (so it looks nice and personalized)
 	Client_Search(String userID) {
 		
+		// The previous window's userID variable is sent through to this window for the username label
 		namePlate = userID;
 		
 		// +-------------------- Labels --------------------+
-				LIBSYSLabel.setBounds(500, 0, 700, 100);
-				LIBSYSLabel.setText("LIBSYS System");
-				LIBSYSLabel.setFont(new Font(null, Font.BOLD, 35));
+				LIBSYSLabel.setBounds(500, 0, 700, 100); // LIBSYS Label is placed and given dimensions
+				LIBSYSLabel.setText("LIBSYS System"); // LIBSYS Label has text assigned to it
+				LIBSYSLabel.setFont(new Font(null, Font.BOLD, 35)); // LIBSYS Label is given a new font size of 35
 				
-				LineLabel.setBounds(0, 70, 1280, 3);
-				LineLabel.setOpaque(true);
-				LineLabel.setBackground(Color.blue);
+				BlueLineLabel.setBounds(0, 70, 1280, 3); // Blue line label is placed and given dimensions
+				BlueLineLabel.setOpaque(true); // Blue line label is made opaque to be made a different color
+				BlueLineLabel.setBackground(Color.blue); // Blue line label is filled with the color blue
 				
-				PageHeader.setBounds(15, 50, 250, 100);
-				PageHeader.setText("Client Search");
-				PageHeader.setFont(new Font(null, Font.PLAIN, 25));
+				PageFunctionHeader.setBounds(15, 50, 250, 100); // Page function header is placed and given dimensions
+				PageFunctionHeader.setText("Client Search"); // Page function header label has text assigned to it
+				PageFunctionHeader.setFont(new Font(null, Font.PLAIN, 25)); // Page function header label is given a new font size of 25
 				
-				profilePlaceholder.setBounds(1185, 85, 50, 50);
-				profilePlaceholder.setOpaque(true);
-				profilePlaceholder.setBackground(Color.LIGHT_GRAY);
+				profilePlaceholder.setBounds(1185, 85, 50, 50); // Profile placeholder box is placed and given dimensions
+				profilePlaceholder.setOpaque(true); // Profile placeholder box is made opaque to be made a different color
+				profilePlaceholder.setBackground(Color.LIGHT_GRAY); // Profile placeholder box is filled with the color light-gray
 				
-				username.setBounds(1185, 100, 100, 100);
-				username.setText(userID);
+				username.setBounds(1185, 100, 100, 100); // username label is placed and given dimensions
+				username.setText(namePlate); // user name label is given text using the value of the 'nameplate' variable
 				
-				FirstNameLabel.setBounds(375, 250, 100, 25);
-				FirstNameLabel.setText("First Name:");
-				FirstNameLabel.setFont(new Font(null, Font.PLAIN, 15));
+				FirstNameLabel.setBounds(375, 250, 100, 25); // First name label is placed and given dimensions
+				FirstNameLabel.setText("First Name:"); // First name label has text assigned to it
+				FirstNameLabel.setFont(new Font(null, Font.PLAIN, 15)); // First name label is given a new font size of 15
 				
-				LastNameLabel.setBounds(375, 300, 100, 25);
-				LastNameLabel.setText("Last Name:");
-				LastNameLabel.setFont(new Font(null, Font.PLAIN, 15));
+				LastNameLabel.setBounds(375, 300, 100, 25); // Last name label is placed and given dimensions
+				LastNameLabel.setText("Last Name:"); // Last name label has text assigned to it
+				LastNameLabel.setFont(new Font(null, Font.PLAIN, 15)); // Last name label is given a new font size of 15
 				
-				EmailLabel.setBounds(408, 370, 100, 25);
-				EmailLabel.setText("Email:");
-				EmailLabel.setFont(new Font(null, Font.PLAIN, 15));
+				EmailLabel.setBounds(408, 370, 100, 25); // Email label is placed and given dimensions
+				EmailLabel.setText("Email:"); // Email label has text assigned to it
+				EmailLabel.setFont(new Font(null, Font.PLAIN, 15)); // Email label is given a new font size of 15
 				
-				PhoneNumberLabel.setBounds(350, 430, 150, 25);
-				PhoneNumberLabel.setText("Phone Number:");
-				PhoneNumberLabel.setFont(new Font(null, Font.PLAIN, 15));
+				PhoneNumberLabel.setBounds(350, 430, 150, 25); // Phone number label is placed and given dimensions
+				PhoneNumberLabel.setText("Phone Number:"); // Phone number label has text assigned to it
+				PhoneNumberLabel.setFont(new Font(null, Font.PLAIN, 15)); // Phone number label is given a new font size of 15
 				
-				OrLabel1.setBounds(475, 335, 25, 25);
-				OrLabel1.setText("Or");
-				OrLabel1.setFont(new Font(null, Font.PLAIN, 15));
+				OrLabel1.setBounds(475, 335, 25, 25); // Or label 1 is placed and given dimensions
+				OrLabel1.setText("Or"); // Or label 1 has text assigned to it
+				OrLabel1.setFont(new Font(null, Font.PLAIN, 15)); // Or label 1 is given a new font size of 15
 				
-				OrLabel2.setBounds(475, 400, 25, 25);
-				OrLabel2.setText("Or");
-				OrLabel2.setFont(new Font(null, Font.PLAIN, 15));
+				OrLabel2.setBounds(475, 400, 25, 25); // or label 2 is placed and given dimensions
+				OrLabel2.setText("Or"); // Or label 2 has text assigned to it
+				OrLabel2.setFont(new Font(null, Font.PLAIN, 15)); // Or label 2 is given a new font size of 15
 				
 				// +-------------------- Search Fields --------------------+
-				SearchFirstNameField.setBounds(475, 250, 250, 25);
-				SearchLastNameField.setBounds(475, 300, 250, 25);
-				SearchEmailField.setBounds(475, 370, 250, 25);
-				SearchPhoneNumberField.setBounds(475, 430, 250, 25);
+				SearchFirstNameField.setBounds(475, 250, 250, 25); // First name text field is placed and given dimensions
+				
+				SearchLastNameField.setBounds(475, 300, 250, 25); // Last name text field is placed and given dimensions
+				
+				SearchEmailField.setBounds(475, 370, 250, 25); // Email text field is placed and given dimensions
+				
+				SearchPhoneNumberField.setBounds(475, 430, 250, 25); // Phone number text field is placed and given dimensions
 				
 				// +-------------------- Buttons --------------------+
-				signoutButton.setBounds(1160, 160, 100, 25);
-				signoutButton.addActionListener(this);
-				signoutButton.setFocusable(false);
-				signoutButton.setFont(new Font(null, Font.PLAIN, 10));
-				signoutButton.setForeground(Color.BLUE);
-				signoutButton.setBorder(BorderFactory.createEmptyBorder());
-				signoutButton.setContentAreaFilled(false);
+				signoutButton.setBounds(1160, 160, 100, 25); // sign out button is placed and given dimensions
+				signoutButton.addActionListener(this); // adds action listener to the Sign Out button to give it functionality
+				signoutButton.setFocusable(false); // disables box outline around button text
+				signoutButton.setFont(new Font(null, Font.PLAIN, 10)); // Sign Out button is given a new font size of 10
+				signoutButton.setForeground(Color.BLUE); // Sign Out Button text is given a blue font color
+				signoutButton.setBorder(BorderFactory.createEmptyBorder()); // The border around the Sign Out button is taken away
+				signoutButton.setContentAreaFilled(false); // the standard blue hue to the Sign Out button is taken away
 				
-				SearchButton.setBounds(750, 250, 175, 25);
-				SearchButton.addActionListener(this);
-				SearchButton.setFocusable(false);
+				SearchButton.setBounds(750, 250, 175, 25); // Search button is placed and given dimensions
+				SearchButton.addActionListener(this); // adds action listener to Search Button to give it functionality
+				SearchButton.setFocusable(false); // disables box outline around button text
 				
-				BackButton.setBounds(750, 300, 100, 25);
-				BackButton.addActionListener(this);
-				BackButton.setFocusable(false);
+				BackButton.setBounds(750, 300, 100, 25); // Back button is placed and given dimensions
+				BackButton.addActionListener(this); // adds action listener to Back button to give it functionality
+				BackButton.setFocusable(false); // disables box outline around button text
 				
-				// +-------------------- Frame --------------------+
+				// +-------------------- Frame additions and functionality --------------------+
+				ClientSearchPage.add(PageFunctionHeader); // Page function header is added to the window
+				ClientSearchPage.add(BlueLineLabel); // Blue line is added to the window
+				ClientSearchPage.add(LIBSYSLabel); // LIBSYS header label is added to the window
+				ClientSearchPage.add(profilePlaceholder); // Profile placeholder box is added to the window
+				ClientSearchPage.add(BackButton); // Back button is added to the window
+				ClientSearchPage.add(SearchButton); // Search button is added to the window
+				ClientSearchPage.add(signoutButton); // Sign Out button is added to the window
+				ClientSearchPage.add(username); // username label is added to the window
+				ClientSearchPage.add(SearchFirstNameField); // First name text field is added to the window
+				ClientSearchPage.add(SearchLastNameField); // Last name text field is added to the window
+				ClientSearchPage.add(SearchEmailField); // Email text field is added to the window
+				ClientSearchPage.add(SearchPhoneNumberField); // Phone number text field is added to the window
+				ClientSearchPage.add(OrLabel1); // Or label 1 is added to the window
+				ClientSearchPage.add(OrLabel2); // Or label 2 is added to the window
+				ClientSearchPage.add(FirstNameLabel); // First name label is added to the window
+				ClientSearchPage.add(LastNameLabel); // Last name label is added to the window
+				ClientSearchPage.add(EmailLabel); // Email label is added to the window
+				ClientSearchPage.add(PhoneNumberLabel); // Phone number label is added to the window
 				
-				ClientSearchPage.setSize(1280, 720);
-				
-				ClientSearchPage.add(PageHeader);
-				ClientSearchPage.add(LineLabel);
-				ClientSearchPage.add(LIBSYSLabel);
-				ClientSearchPage.add(profilePlaceholder);
-				ClientSearchPage.add(BackButton);
-				ClientSearchPage.add(SearchButton);
-				ClientSearchPage.add(signoutButton);
-				ClientSearchPage.add(username);
-				ClientSearchPage.add(SearchFirstNameField);
-				ClientSearchPage.add(SearchLastNameField);
-				ClientSearchPage.add(SearchEmailField);
-				ClientSearchPage.add(SearchPhoneNumberField);
-				ClientSearchPage.add(OrLabel1);
-				ClientSearchPage.add(OrLabel2);
-				ClientSearchPage.add(FirstNameLabel);
-				ClientSearchPage.add(LastNameLabel);
-				ClientSearchPage.add(EmailLabel);
-				ClientSearchPage.add(PhoneNumberLabel);
-				
-				ClientSearchPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				ClientSearchPage.setLayout(null);
-				ClientSearchPage.setVisible(true);
-				ClientSearchPage.getRootPane().setDefaultButton(SearchButton);
+				// +-------------------- Frame dimensions and personalization --------------------+
+				ClientSearchPage.setSize(1280, 720); // dimensions are given to the window
+				ClientSearchPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // application is halted when window is closed
+				ClientSearchPage.setLayout(null); // no layout is specified, everything is placed manually
+				ClientSearchPage.setResizable(false); // disables ability to resize windows
+				ClientSearchPage.setVisible(true); // window is made visible for users to see
+				ClientSearchPage.getRootPane().setDefaultButton(SearchButton); // allows users to press ENTER to search instead of clicking the button
 		
 	}
 
+	// +-------------------- Action Listener --------------------+
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		// This function closes the current window and sends users back to the selection screen
 		if (e.getSource() == signoutButton) {
 			ClientSearchPage.dispose();
 			new Selection_Page();
 			
 		}
 		
+		// This function closes the current window and sends users back to the main menu screen
 		if (e.getSource() == BackButton) {
 			ClientSearchPage.dispose();
 			new Main_Menu(namePlate);
@@ -156,25 +173,7 @@ JFrame ClientSearchPage = new JFrame("LIBSYS");
 		}
 		
 	}
+	
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			SearchButton.doClick();
-		}
-		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }
