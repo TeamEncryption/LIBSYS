@@ -11,7 +11,6 @@ public class Login_Cred {
 	// Login_Cred constructor
 	Login_Cred() {
 		
-		// [Suggestion] User name = NO LARGER than 7 chars??
 		// The current login info that will allow access to the system
 		logininfo.put("Admin12", "Admin");
 		logininfo.put("Mrdor99", "Dorlet1999");
@@ -25,7 +24,7 @@ public class Login_Cred {
 	// it to the information specified within the HashMap
 	protected static HashMap getLoginInfo() {
 		
-		return logininfo;
+		return logininfo; // login information is returned to where it is called
 		
 	}
 	
