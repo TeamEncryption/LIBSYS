@@ -1,6 +1,8 @@
 
-// Tools for JFrame are implemented for the Window being created
+// +---------- Main Menu Page ----------+
+// This is where library staff/admins will be able to make selection on which task to perform
 
+// Libraries for JAVA Swing
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -20,93 +22,95 @@ public class Main_Menu implements ActionListener {
 	JFrame Menu = new JFrame("LIBSYS");
 	
 	// Labels created for use throughout the Main Menu window
-	JLabel LineLabel = new JLabel();
-	JLabel LIBSYSLabel = new JLabel();
-	JLabel WelcomeLabel = new JLabel();
-	JLabel profilePlaceholder = new JLabel();
-	JLabel username = new JLabel();
-	JLabel LOGOplaceholder = new JLabel();
+	JLabel BlueLineLabel = new JLabel(); // Blue line label is declared and assigned
+	JLabel LIBSYSLabel = new JLabel(); // LIBSYS header label is declared and assigned
+	JLabel WelcomeLabel = new JLabel(); // Welcome label is declared and assigned
+	JLabel profilePlaceholder = new JLabel(); // Profile placeholder box is declared and assigned
+	JLabel username = new JLabel(); // user name label is declared and assigned
+	JLabel LOGOplaceholder = new JLabel(); // Logo placeholder label is declared and assigned
 	
 	// Buttons created for use in the Main Menu Window
-	JButton searchButton = new JButton("Search Catalog");
-	JButton clientButton = new JButton("Search Client");
-	JButton managementButton = new JButton("Management");
-	JButton signoutButton = new JButton("Sign Out");
+	JButton searchCatalogButton = new JButton("Search Catalog"); // Catalog search button is declared and assigned, labeled "Search Catalog"
+	JButton clientButton = new JButton("Search Client"); // Client search button declared and assigned, labeled "Search Client"
+	JButton managementButton = new JButton("Management"); // Management reports button declared and assigned, labeled "Management"
+	JButton signoutButton = new JButton("Sign Out"); // sign out button is declared and assigned, labeled "Sign Out"
 	
 	// The userID is sent from the previous page to this page for the sign out label (so it looks nice and personalized)
 	public Main_Menu(String userID) {
 		
-		// The previous window's userID variable is sent through to this window for the user name label
+		// The previous window's userID variable is sent through to this window for the username label
 		namePlate = userID;
 		
 		// +-------------------- Labels placement and personalization --------------------+
-		LIBSYSLabel.setBounds(500, 0, 700, 100);
-		LIBSYSLabel.setText("LIBSYS System");
-		LIBSYSLabel.setFont(new Font(null, Font.BOLD, 35));
+		LIBSYSLabel.setBounds(500, 0, 700, 100); // LIBSYS header label is placed and given dimensions
+		LIBSYSLabel.setText("LIBSYS System"); // LIBSYS header label has text set to it
+		LIBSYSLabel.setFont(new Font(null, Font.BOLD, 35)); // LIBSYS header label is given a new font size of 35
 		
-		LineLabel.setBounds(0, 70, 1280, 3);
-		LineLabel.setOpaque(true);
-		LineLabel.setBackground(Color.blue);
+		BlueLineLabel.setBounds(0, 70, 1280, 3); // Blue line label is placed and given dimensions
+		BlueLineLabel.setOpaque(true); // Blue line label is set to be opaque for it to become blue
+		BlueLineLabel.setBackground(Color.blue); // Blue line label is filled with the color blue
 		
-		WelcomeLabel.setBounds(15, 50, 250, 100);
-		WelcomeLabel.setText("Welcome, " + userID);
-		WelcomeLabel.setFont(new Font(null, Font.PLAIN, 25));
+		WelcomeLabel.setBounds(15, 50, 250, 100); // Welcome label is placed and given dimensions
+		WelcomeLabel.setText("Welcome, " + namePlate); // Welcome label has text set to it
+		WelcomeLabel.setFont(new Font(null, Font.PLAIN, 25)); // Welcome label is given a new font size of 25
 		
-		profilePlaceholder.setBounds(1185, 85, 50, 50);
-		profilePlaceholder.setOpaque(true);
-		profilePlaceholder.setBackground(Color.LIGHT_GRAY);
+		profilePlaceholder.setBounds(1185, 85, 50, 50); // Profile placeholder box is placed and given dimensions
+		profilePlaceholder.setOpaque(true); // Profile placeholder box is set to be opaque for color to fill it
+		profilePlaceholder.setBackground(Color.LIGHT_GRAY); // Profile placeholder box is filled with color light-gray
 		
-		LOGOplaceholder.setBounds(350, 100, 700, 500);
-		LOGOplaceholder.setText("LOGO");
-		LOGOplaceholder.setFont(new Font(null, Font.PLAIN, 200));
+		LOGOplaceholder.setBounds(350, 100, 700, 500); // Logo placeholder text is placed and given dimensions
+		LOGOplaceholder.setText("LOGO"); // Logo placeholder text has text set to it
+		LOGOplaceholder.setFont(new Font(null, Font.PLAIN, 200)); // Logo placeholder text is given a new font size of 200
 		
-		username.setBounds(1185, 100, 100, 100);
-		username.setText(userID);
+		username.setBounds(1185, 100, 100, 100); // user name label is placed and given dimensions
+		username.setText(namePlate); // user name is given text using the name plate variable value
 		
 		// +-------------------- Buttons placement and personalization --------------------+
-		searchButton.setBounds(325, 500, 200, 50);
-		searchButton.addActionListener(this);
-		searchButton.setFocusable(false);
-		searchButton.setFont(new Font(null, Font.PLAIN, 20));
+		searchCatalogButton.setBounds(325, 500, 200, 50); // Search button is placed and given dimensions
+		searchCatalogButton.addActionListener(this); // adds action listener to the Search Catalog button to give it functionality
+		searchCatalogButton.setFocusable(false); // disables box outline to button text
+		searchCatalogButton.setFont(new Font(null, Font.PLAIN, 20)); // Search catalog button is given a new font size of 20
 		
-		clientButton.setBounds(525, 500, 200, 50);
-		clientButton.addActionListener(this);
-		clientButton.setFocusable(false);
-		clientButton.setFont(new Font(null, Font.PLAIN, 20));
+		clientButton.setBounds(525, 500, 200, 50); // Client search button is placed and given dimensions
+		clientButton.addActionListener(this); // adds action listener to the Client search button to give it functionality
+		clientButton.setFocusable(false); // disables box outline around button text
+		clientButton.setFont(new Font(null, Font.PLAIN, 20)); // Client search button is given a new font size of 20
 		
-		managementButton.setBounds(725, 500, 200, 50);
-		managementButton.addActionListener(this);
-		managementButton.setFocusable(false);
-		managementButton.setFont(new Font(null, Font.PLAIN, 20));
+		managementButton.setBounds(725, 500, 200, 50); // Management reports button is placed and given dimensions
+		managementButton.addActionListener(this); // adds action listener to Management reports button to give it functionality
+		managementButton.setFocusable(false); // disables box outline around button text
+		managementButton.setFont(new Font(null, Font.PLAIN, 20)); // Management reports button is given a new font size of 20
 		
-		signoutButton.setBounds(1160, 160, 100, 25);
-		signoutButton.addActionListener(this);
-		signoutButton.setFocusable(false);
-		signoutButton.setFont(new Font(null, Font.PLAIN, 10));
-		signoutButton.setForeground(Color.BLUE);
-		signoutButton.setBorder(BorderFactory.createEmptyBorder());
-		signoutButton.setContentAreaFilled(false);
+		signoutButton.setBounds(1160, 160, 100, 25); // sign out button is placed and given dimensions
+		signoutButton.addActionListener(this); // adds action listener to the Sign Out button to give it functionality
+		signoutButton.setFocusable(false); // disables box outline around button text
+		signoutButton.setFont(new Font(null, Font.PLAIN, 10)); // Sign Out button is given a new font size of 10
+		signoutButton.setForeground(Color.BLUE); // Sign Out Button text is given a blue font color
+		signoutButton.setBorder(BorderFactory.createEmptyBorder()); // The border around the Sign Out button is taken away
+		signoutButton.setContentAreaFilled(false); // the standard blue hue to the Sign Out button is taken away
 		
-		// +-------------------- Frame additions and personalization --------------------+
-		Menu.setSize(1280, 720);
-		Menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Menu.add(LIBSYSLabel);
-		Menu.add(LineLabel);
-		Menu.add(WelcomeLabel);
-		Menu.add(searchButton);
-		Menu.add(clientButton);
-		Menu.add(managementButton);
-		Menu.add(profilePlaceholder);
-		Menu.add(username);
-		Menu.add(signoutButton);
-		Menu.add(LOGOplaceholder);
-		Menu.setLayout(null);
-		Menu.setResizable(false);
-		Menu.setVisible(true);
+		// +-------------------- Frame additions and functionality --------------------+
+		Menu.add(LIBSYSLabel); // adds the LIBSYS header label to the window
+		Menu.add(BlueLineLabel); // adds the Blue Line label to the window
+		Menu.add(WelcomeLabel); // adds the Welcome label to the window
+		Menu.add(searchCatalogButton); // adds the Search Catalog button to the window
+		Menu.add(clientButton); // adds the client search button to the window
+		Menu.add(managementButton); // adds the management reports button to the window
+		Menu.add(profilePlaceholder); // adds the profile placeholder box to the window
+		Menu.add(username); // adds the user name label to the window
+		Menu.add(signoutButton); // adds the Sign Out button to the window
+		Menu.add(LOGOplaceholder); // adds the Logo placeholder text to the window
+		
+		// +-------------------- Frame dimensions and personalization --------------------+
+		Menu.setSize(1280, 720); // dimensions are given to the window
+		Menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // application is halted when window is closed
+		Menu.setLayout(null); // no layout is specified, everything is placed manually
+		Menu.setResizable(false); // disables ability to resize windows
+		Menu.setVisible(true); // window is made visible for users to see
 		
 	}
 		
-	// +-------------------- Action Listener for buttons (WIP)--------------------+
+	// +-------------------- Action Listener for buttons --------------------+
 	public void actionPerformed(ActionEvent e) {
 		
 		// Sign out buttons will take you to the login page
@@ -116,14 +120,22 @@ public class Main_Menu implements ActionListener {
 		}
 		
 		// Search catalog button will send users to the main search screen
-		if (e.getSource() == searchButton) {
+		if (e.getSource() == searchCatalogButton) {
 			Menu.dispose();
 			new Material_Search(namePlate);
 		}
 		
+		// Client search button will send users to the client search screen
 		if (e.getSource() == clientButton) {
 			Menu.dispose();
 			new Client_Search(namePlate);
+			
+		}
+		
+		// Management reports button will take users to the management screen
+		if (e.getSource() == managementButton) {
+			Menu.dispose();
+			new Management_Reports(namePlate);
 			
 		}
 		
