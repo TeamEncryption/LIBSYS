@@ -1,11 +1,12 @@
-//material_search
 
+// +---------- Material Search ----------+
+// This is where users will be able to search the library catalog for the material they wish to find, guest users are confined to this window alone
+
+// Libraries for JAVA Swing
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -14,166 +15,178 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class Material_Search implements ActionListener, KeyListener{
+// Action listener is implemented to allow functionality to buttons and combo boxes
+public class Material_Search implements ActionListener{
 	
+	// Global variable to send the user's name to the next window opened
 	public static String namePlate;
 	
-	public static String[] Material = {"", "Books", "Physical Media", "Documents", "Serials", "Articles",};
-	public static String[] BookType = {"", "Fiction", "Non-Fiction"};
-	public static String[] FictionGenres = {"", "Horror", "Thriller", "Fantasy", "Sci-Fi", "Mystery", "Romance", "Humor"};
-	public static String[] NFictionGenres = {"", "Science", "History", "Biographical", "Art", "Music", "Cooking"};
-	public static String[] TypeSearch = {"", "Materials", "ISBN #", "Author"};
+	// the arrays are used for the combination boxes that will filter materials when a user searches for their desired material
+	public static String[] Material = {"", "Books", "Physical Media", "Documents", "Serials", "Articles",}; // general material list
+	public static String[] BookType = {"", "Fiction", "Non-Fiction"}; // Filter for types of books
+	public static String[] FictionGenres = {"", "Horror", "Thriller", "Fantasy", "Sci-Fi", "Mystery", "Romance", "Humor"}; // filter for fiction book
+	public static String[] NFictionGenres = {"", "Science", "History", "Biographical", "Art", "Music", "Cooking"}; // filter for non-fiction books
+	public static String[] TypeSearch = {"", "Materials", "ISBN #", "Author"}; // filter for the type of search function to take place
 
+	// JFrame creation for the main window for Material Search Page
 	JFrame SearchPage = new JFrame("LIBSYS");
 	
-	JLabel PageHeader = new JLabel();
-	JLabel LineLabel = new JLabel();
-	JLabel LIBSYSLabel = new JLabel();
-	JLabel profilePlaceholder = new JLabel();
-	JLabel username = new JLabel();
-	JLabel SearchLabel = new JLabel();
-	JLabel FilterLabel = new JLabel();
-	JLabel BookTypeLabel = new JLabel();
-	JLabel FGenreLabel = new JLabel();
-	JLabel NonFGenreLabel = new JLabel();
-	JLabel TypeSearchLabel = new JLabel();
+	// JLabels used for the Material Search Page
+	JLabel PageFunctionHeader = new JLabel(); // Page Function header is declared and assigned
+	JLabel BlueLineLabel = new JLabel(); // Blue line label is declared and assigned
+	JLabel LIBSYSLabel = new JLabel(); // LIBSYS header label is declared and assigned
+	JLabel profilePlaceholder = new JLabel(); // Profile placeholder box is declared and assigned
+	JLabel username = new JLabel(); // user name label is declared and assigned
+	JLabel InformationLabel = new JLabel(); // Search label is declared and assigned
+	JLabel MatFilterLabel = new JLabel(); // Filter label is declared and assigned
+	JLabel BookTypeLabel = new JLabel(); // Book type label is declared and assigned
+	JLabel FGenreLabel = new JLabel(); // Fiction Genre Label is declared and assigned, used for filtering Fiction genres
+	JLabel NonFGenreLabel = new JLabel(); // Non Fiction Genre label declared and assigned, used for filtering Non-Fiction genres
+	JLabel MatTypeSearchLabel = new JLabel(); // Type search label is declared and assigned, used for filtering the type of search function used by users
 	
-	JTextField SearchField = new JTextField();
+	// JText Field used in the Material Search Page
+	JTextField SearchField = new JTextField(); // Search Field is declared and assigned
 	
-	JComboBox TypeSearchBox = new JComboBox(TypeSearch);
-	JComboBox FilterBox = new JComboBox(Material);
-	JComboBox BTGenreBox = new JComboBox(BookType);
-	JComboBox FGenreBox = new JComboBox(FictionGenres);
-	JComboBox NonFGenreBox = new JComboBox(NFictionGenres);
+	// JCombo Boxes used for filtering searches on the Material Search Page
+	JComboBox MatTypeSearchBox = new JComboBox(TypeSearch); // Type search box is populated with the Types of materials used for filtering search types
+	JComboBox MatFilterBox = new JComboBox(Material); // Filter Box is populated with the different types of materials used for filtering searches by users
+	JComboBox BookTypeBox = new JComboBox(BookType); // Book Type box is populated with the selection between Fiction and Non-Fiction book types
+	JComboBox FGenreBox = new JComboBox(FictionGenres); //  Fiction Genre box is populated with the different types of genres of Fiction books
+	JComboBox NonFGenreBox = new JComboBox(NFictionGenres); // Non-Fiction genre box is populated with the different types of genres of Non-Fiction books
 	
-	JButton signoutButton = new JButton("Sign Out");
-	JButton SearchButton = new JButton("Search Catalog");
-	JButton BackButton = new JButton("Back");
+	// JButtons used for the Material search page
+	JButton signoutButton = new JButton("Sign Out"); // Sign Out button is declared and assigned, labeled "Sign Out"
+	JButton SearchButton = new JButton("Search Catalog"); // Search button is declared and assigned, labeled "Search Catalog"
+	JButton BackButton = new JButton("Back"); // Back button is declared and assigned, labeled "Back"
 	
+	// The userID is sent from the previous page to this page for the sign out label (so it looks nice and personalized)
 	Material_Search(String userID) {
 		
+		// The previous window's userID variable is sent through to this window for the username label 
 		namePlate = userID;
 		
 		// +-------------------- Labels --------------------+
-		LIBSYSLabel.setBounds(500, 0, 700, 100);
-		LIBSYSLabel.setText("LIBSYS System");
-		LIBSYSLabel.setFont(new Font(null, Font.BOLD, 35));
+		LIBSYSLabel.setBounds(500, 0, 700, 100); // LIBSYS Label is placed and given dimensions
+		LIBSYSLabel.setText("LIBSYS System"); // LIBSYS label has text assigned to it
+		LIBSYSLabel.setFont(new Font(null, Font.BOLD, 35)); // LIBSYS Label is given a new font size of 35
 		
-		LineLabel.setBounds(0, 70, 1280, 3);
-		LineLabel.setOpaque(true);
-		LineLabel.setBackground(Color.blue);
+		BlueLineLabel.setBounds(0, 70, 1280, 3); // Blue Line label is placed and given dimensions
+		BlueLineLabel.setOpaque(true); // Blue Line label is made opaque so it is filled with color
+		BlueLineLabel.setBackground(Color.blue); // Blue Line label is filled with the color blue
 		
-		PageHeader.setBounds(15, 50, 250, 100);
-		PageHeader.setText("Catalog Search");
-		PageHeader.setFont(new Font(null, Font.PLAIN, 25));
+		PageFunctionHeader.setBounds(15, 50, 250, 100); // Page function label is placed and given dimensions
+		PageFunctionHeader.setText("Catalog Search"); // Page function label has text assigned to it
+		PageFunctionHeader.setFont(new Font(null, Font.PLAIN, 25)); // Page function label is given a new font size of 25
 		
-		profilePlaceholder.setBounds(1185, 85, 50, 50);
-		profilePlaceholder.setOpaque(true);
-		profilePlaceholder.setBackground(Color.LIGHT_GRAY);
+		profilePlaceholder.setBounds(1185, 85, 50, 50); // Profile placeholder box is placed and given dimensions
+		profilePlaceholder.setOpaque(true); // Profile placeholder box is made opaque so it is filled with color
+		profilePlaceholder.setBackground(Color.LIGHT_GRAY); // Profile placeholder box is filled with the color light-gray
 		
-		username.setBounds(1185, 100, 100, 100);
-		username.setText(userID);
+		username.setBounds(1185, 100, 100, 100); // user name label is placed and given dimensions
+		username.setText(namePlate); // user name label is given text using the value of the 'nameplate' variable
 		
-		SearchLabel.setBounds(400, 250, 100, 25);
-		SearchLabel.setText("Search:");
-		SearchLabel.setFont(new Font(null, Font.PLAIN, 15));
+		InformationLabel.setBounds(375, 250, 100, 25); // Search label is placed and given dimensions
+		InformationLabel.setText("Information:"); // Search label has text assigned to it
+		InformationLabel.setFont(new Font(null, Font.PLAIN, 15)); // Search label is given a new font size of 15
 		
-		TypeSearchLabel.setBounds(365, 300, 100, 25);
-		TypeSearchLabel.setText("Search Filter:");
-		TypeSearchLabel.setFont(new Font(null, Font.PLAIN, 15));
+		MatTypeSearchLabel.setBounds(365, 300, 100, 25); // Material Type of search label is placed and given dimensions
+		MatTypeSearchLabel.setText("Search Filter:"); // Material Type of search label has text assigned to it
+		MatTypeSearchLabel.setFont(new Font(null, Font.PLAIN, 15)); // Material Type of search label is given a new font size of 15
 		
-		FilterLabel.setBounds(360, 350, 100, 25);
-		FilterLabel.setText("Material Type:");
-		FilterLabel.setFont(new Font(null, Font.PLAIN, 15));
-		FilterLabel.setVisible(false);
+		MatFilterLabel.setBounds(360, 350, 100, 25); // Filter label is placed and given dimensions
+		MatFilterLabel.setText("Material Type:"); // Filter label has text assigned to it
+		MatFilterLabel.setFont(new Font(null, Font.PLAIN, 15)); // Filter label is given a new font size of 15
+		MatFilterLabel.setVisible(false); // Filter label is not visible by default
 		
-		BookTypeLabel.setBounds(375, 400, 100, 25);
-		BookTypeLabel.setText("Book Type:");
-		BookTypeLabel.setFont(new Font(null, Font.PLAIN, 15));
-		BookTypeLabel.setVisible(false);
+		BookTypeLabel.setBounds(375, 400, 100, 25); // Book Type label is placed an given dimensions
+		BookTypeLabel.setText("Book Type:"); // Book Type label has text assigned to it
+		BookTypeLabel.setFont(new Font(null, Font.PLAIN, 15)); // Book Type label is given a new font size of 15
+		BookTypeLabel.setVisible(false); // Book Type label is not visible by default
 		
-		FGenreLabel.setBounds(405, 450, 100, 25);
-		FGenreLabel.setText("Genre:");
-		FGenreLabel.setFont(new Font(null, Font.PLAIN, 15));
-		FGenreLabel.setVisible(false);
+		FGenreLabel.setBounds(405, 450, 100, 25); // Fiction Genre label is placed and given dimensions
+		FGenreLabel.setText("Genre:"); // Fiction genre has text assigned to it
+		FGenreLabel.setFont(new Font(null, Font.PLAIN, 15)); // Fiction Genre is given a new font size of 15
+		FGenreLabel.setVisible(false); // Fiction Genre label is not visible by default
 		
-		NonFGenreLabel.setBounds(405, 450, 100, 25);
-		NonFGenreLabel.setText("Genre:");
-		NonFGenreLabel.setFont(new Font(null, Font.PLAIN, 15));
-		NonFGenreLabel.setVisible(false);
+		NonFGenreLabel.setBounds(405, 450, 100, 25); // Non fiction genre label is placed and given dimensions
+		NonFGenreLabel.setText("Genre:"); // Non fiction genre label has text assigned to it
+		NonFGenreLabel.setFont(new Font(null, Font.PLAIN, 15)); // Non fiction genre label is given a new font size of 15
+		NonFGenreLabel.setVisible(false); // Non fiction genre label is not visible by default
 		
 		// +-------------------- Text Fields --------------------+
-		SearchField.setBounds(475, 250, 250, 25);
+		SearchField.setBounds(475, 250, 250, 25); // Search field is placed and given dimensions
 		
 		// +-------------------- Combo Boxes --------------------+
-		TypeSearchBox.setBounds(475, 300, 150, 25);
-		TypeSearchBox.addActionListener(this);
+		MatTypeSearchBox.setBounds(475, 300, 150, 25); // Material Type search box is placed and given dimensions
+		MatTypeSearchBox.addActionListener(this); // Material Type search 
 		
-		FilterBox.setBounds(475, 350, 150, 25);
-		FilterBox.addActionListener(this);
-		FilterBox.setVisible(false);
+		MatFilterBox.setBounds(475, 350, 150, 25); // filter box is placed and given dimensions
+		MatFilterBox.addActionListener(this); // adds action listener to filter box to give it functionality
+		MatFilterBox.setVisible(false); // Filter box is not visible by default
 		
-		BTGenreBox.setBounds(475, 400, 150, 25);
-		BTGenreBox.addActionListener(this);
-		BTGenreBox.setVisible(false);
+		BookTypeBox.setBounds(475, 400, 150, 25); // Book Type box is placed and given dimensions
+		BookTypeBox.addActionListener(this); // adds action listener to Book Type box to give it functionality
+		BookTypeBox.setVisible(false); // Book Type box is not visible by default
 		
-		FGenreBox.setBounds(475, 450, 150, 25);
-		FGenreBox.addActionListener(this);
-		FGenreBox.setVisible(false);
+		FGenreBox.setBounds(475, 450, 150, 25); // Fiction genre box is placed and given dimensions
+		FGenreBox.addActionListener(this); // adds action listener to Fiction genre box to add functionality
+		FGenreBox.setVisible(false); // Fiction genre box is not visible by default
 		
-		NonFGenreBox.setBounds(475, 450, 150, 25);
-		NonFGenreBox.addActionListener(this);
-		NonFGenreBox.setVisible(false);
+		NonFGenreBox.setBounds(475, 450, 150, 25); // Non Fiction genre box is placed and given dimensions
+		NonFGenreBox.addActionListener(this); // adds action listener to Non Fiction genre box to give it functionality
+		NonFGenreBox.setVisible(false); // Non Fiction genre box is not visible by default
 		
 		// +-------------------- Buttons --------------------+
-		signoutButton.setBounds(1160, 160, 100, 25);
-		signoutButton.addActionListener(this);
-		signoutButton.setFocusable(false);
-		signoutButton.setFont(new Font(null, Font.PLAIN, 10));
-		signoutButton.setForeground(Color.BLUE);
-		signoutButton.setBorder(BorderFactory.createEmptyBorder());
-		signoutButton.setContentAreaFilled(false);
+		signoutButton.setBounds(1160, 160, 100, 25); // sign out button is placed and given dimensions
+		signoutButton.addActionListener(this); // adds action listener to the Sign Out button to give it functionality
+		signoutButton.setFocusable(false); // disables box outline around button text
+		signoutButton.setFont(new Font(null, Font.PLAIN, 10)); // Sign Out button is given a new font size of 10
+		signoutButton.setForeground(Color.BLUE); // Sign Out Button text is given a blue font color
+		signoutButton.setBorder(BorderFactory.createEmptyBorder()); // The border around the Sign Out button is taken away
+		signoutButton.setContentAreaFilled(false); // the standard blue hue to the Sign Out button is taken away
 		
-		SearchButton.setBounds(750, 250, 175, 25);
-		SearchButton.addActionListener(this);
-		SearchButton.setFocusable(false);
+		SearchButton.setBounds(750, 250, 175, 25); // Search button is placed and given dimensions
+		SearchButton.addActionListener(this); // adds action listener to Search Button to give it functionality
+		SearchButton.setFocusable(false); // disables box outline around button text
 		
+		// Disables the ability to go back to the main menu as a Guest user, Guest12 is the hard-coded default Guest user name
 		if (namePlate.equals("Guest12")) {
 			BackButton.setVisible(false);
 		}
 		
-		BackButton.setBounds(750, 300, 100, 25);
-		BackButton.addActionListener(this);
-		BackButton.setFocusable(false);
+		BackButton.setBounds(750, 300, 100, 25); // Back button is placed and given dimensions
+		BackButton.addActionListener(this); // adds action listener to Back button to give it functionality
+		BackButton.setFocusable(false); // disables box outline around button text
 		
-		// +-------------------- Frame --------------------+
-		SearchPage.setSize(1280, 720);
+		// +-------------------- Frame additions and functionality --------------------+
+		SearchPage.add(LIBSYSLabel); // LIBSYS header label is added to window
+		SearchPage.add(BlueLineLabel); // Blue Line is added to the window
+		SearchPage.add(PageFunctionHeader); // Page Function header is added to the window
+		SearchPage.add(profilePlaceholder); // Profile placeholder box is added to the window
+		SearchPage.add(username); // user name label is added to the window
+		SearchPage.add(signoutButton); // Sign Out button is added to the window
+		SearchPage.add(InformationLabel); // Information Label is added to the window 
+		SearchPage.add(SearchField); // Search text field is added to the window
+		SearchPage.add(MatTypeSearchLabel); // Material Type search label is added to the window
+		SearchPage.add(MatTypeSearchBox); // Material Type Search box is added to the window
+		SearchPage.add(SearchButton); // Search button is added to the window
+		SearchPage.add(BackButton); // Back button is added to the window
+		SearchPage.add(MatFilterLabel); // Material Filter Label is added to the window
+		SearchPage.add(MatFilterBox); // Material Filter box is added to the window
+		SearchPage.add(BookTypeBox); // Book type box is added to the window
+		SearchPage.add(BookTypeLabel); // Book type label is added to the window
+		SearchPage.add(FGenreBox); // Fiction genre box is added to the window
+		SearchPage.add(FGenreLabel); // Fiction genre label is added to the window
+		SearchPage.add(NonFGenreBox); // Non Fiction genre box is added to the window
+		SearchPage.add(NonFGenreLabel); // Non fiction genre label is added to the window
 		
-		SearchPage.add(LIBSYSLabel);
-		SearchPage.add(LineLabel);
-		SearchPage.add(PageHeader);
-		SearchPage.add(profilePlaceholder);
-		SearchPage.add(username);
-		SearchPage.add(signoutButton);
-		SearchPage.add(SearchLabel);
-		SearchPage.add(SearchField);
-		SearchPage.add(TypeSearchLabel);
-		SearchPage.add(TypeSearchBox);
-		SearchPage.add(SearchButton);
-		SearchPage.add(BackButton);
-		SearchPage.add(FilterLabel);
-		SearchPage.add(FilterBox);
-		SearchPage.add(BTGenreBox);
-		SearchPage.add(BookTypeLabel);
-		SearchPage.add(FGenreBox);
-		SearchPage.add(FGenreLabel);
-		SearchPage.add(NonFGenreBox);
-		SearchPage.add(NonFGenreLabel);
-		
-		SearchPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		SearchPage.setLayout(null);
-		SearchPage.setVisible(true);
-		SearchPage.getRootPane().setDefaultButton(SearchButton);
+		// +-------------------- Frame dimensions and personalization --------------------+
+		SearchPage.setSize(1280, 720); // dimensions are given to the window
+		SearchPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // application is halted when window is closed
+		SearchPage.setLayout(null); // no layout is specified, everything is placed manually
+		SearchPage.setResizable(false); // disables ability to resize windows
+		SearchPage.setVisible(true); // window is made visible for users to see
+		SearchPage.getRootPane().setDefaultButton(SearchButton); // allows users to press ENTER to search instead of clicking the button
 		
 	}
 
@@ -181,114 +194,108 @@ public class Material_Search implements ActionListener, KeyListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		int Material, BookType, SearchType;
-		int FGenre, NonFGenre; // will be used for the Search function, will read int when searching
+		int Material, BookType, SearchType; // Variables used to toggle the visibility of certain filter functions on the Material Search Page
+		int FGenre, NonFGenre; // will be used for the Search function, will read int when searching?
 		
+		// When the Sign Out button is pressed, the current page is closed and you are returned to the Selection Page
 		if (e.getSource() == signoutButton) {
 			SearchPage.dispose();
 			new Selection_Page();
 		}
 		
+		// The back button will send the user back to the main menu page
 		if (e.getSource() == BackButton) {
 			SearchPage.dispose();
 			new Main_Menu(namePlate);
 		}
 		
-		if (e.getSource() == TypeSearchBox) {
-			SearchType = TypeSearchBox.getSelectedIndex();
+		// This if-else tree will toggle certain combo boxes to become visible based on indexes chosen for filtering a user's search
+		if (e.getSource() == MatTypeSearchBox) {
+			SearchType = MatTypeSearchBox.getSelectedIndex();
 			
+			// When the 'Materials' filter is chosen, the Filter box and Filter label will then display to further filter materials to search
 			if (SearchType == 1) {
-				FilterBox.setVisible(true);
-				FilterLabel.setVisible(true);
+				MatFilterBox.setVisible(true);
+				MatFilterLabel.setVisible(true);
 			}
 			
+			// When the 'Materials' selection is not chosen, all Combo box values below the Material Type
+			// box will revert to index 0 and all combo boxes and labels will become invisible once again
 			else {
-				FilterBox.setVisible(false);
-				FilterLabel.setVisible(false);
-				BTGenreBox.setVisible(false);
+				MatFilterBox.setVisible(false);
+				MatFilterLabel.setVisible(false);
+				BookTypeBox.setVisible(false);
 				BookTypeLabel.setVisible(false);
 				FGenreBox.setVisible(false);
 				FGenreLabel.setVisible(false);
 				SearchType = 0;
 				BookType = 0;
 				Material = 0;
-				FilterBox.setSelectedIndex(0);
-				BTGenreBox.setSelectedIndex(0);
+				MatFilterBox.setSelectedIndex(0);
+				BookTypeBox.setSelectedIndex(0);
 				FGenreBox.setSelectedIndex(0);
 				NonFGenreBox.setSelectedIndex(0);
 			}
 		}
 		
-		if (e.getSource() == FilterBox) {
-			Material = FilterBox.getSelectedIndex();
+		if (e.getSource() == MatFilterBox) {
+			Material = MatFilterBox.getSelectedIndex();
 			
+			// When the 'Books' filter is chosen, the Book Type box and Book Type label will then display to further filter Books to search
 			if (Material == 1) {
-				BTGenreBox.setVisible(true);
+				BookTypeBox.setVisible(true);
 				BookTypeLabel.setVisible(true);				
 			}
 			
+			// When the 'Books' selection is not chosen, all Combo box values below the Book Type
+			// box will revert to index 0 and all combo boxes and labels will become invisible once again
 			else {
-				BTGenreBox.setVisible(false);
+				BookTypeBox.setVisible(false);
 				BookTypeLabel.setVisible(false);
 				FGenreBox.setVisible(false);
 				FGenreLabel.setVisible(false);
 				BookType = 0;
 				Material = 0;
-				BTGenreBox.setSelectedIndex(0);
+				BookTypeBox.setSelectedIndex(0);
 				FGenreBox.setSelectedIndex(0);
 				NonFGenreBox.setSelectedIndex(0);
 			}
 		}
 		
 		
-		if (e.getSource() == BTGenreBox) {
-			BookType = BTGenreBox.getSelectedIndex();
+		if (e.getSource() == BookTypeBox) {
+			BookType = BookTypeBox.getSelectedIndex();
 			
+			// When the 'Fiction' filter is chosen: Fiction Genre box and Genre label will then display to further filter Fiction Books to search
 			if (BookType == 1) {
-				FGenreBox.setVisible(true);
-				FGenreLabel.setVisible(true);
-				NonFGenreBox.setSelectedIndex(0);
-				NonFGenreBox.setVisible(false);
-				NonFGenreLabel.setVisible(false);
+				FGenreBox.setVisible(true); // Fiction Genre box is visible to display Non-Fiction Genres
+				FGenreLabel.setVisible(true); // Fiction Label is visible again
+				NonFGenreBox.setSelectedIndex(0); // Non-Fiction genre index is set back to 0 so search function does not get confused
+				NonFGenreBox.setVisible(false); // Non-Fiction Genre Box is hidden again
+				NonFGenreLabel.setVisible(false); // Non-Fiction Genre label is hidden again
 			}
 			
+			// When the 'Non-Fiction' filter is chosen: Non-Fiction Genre box and Genre label will then display to further filter Non-Fiction Books to search
 			else if (BookType == 2) {
-				NonFGenreBox.setVisible(true);
-				NonFGenreLabel.setVisible(true);
-				FGenreBox.setSelectedIndex(0);
-				FGenreBox.setVisible(false);
-				FGenreLabel.setVisible(false);
+				NonFGenreBox.setVisible(true); // Non-Fiction Genre box is visible to display Non-Fiction Genres
+				NonFGenreLabel.setVisible(true); // Non-Fiction Label is visible again
+				FGenreBox.setSelectedIndex(0); // Fiction genre index is set back to 0 so search function does not get confused
+				FGenreBox.setVisible(false); // Fiction Genre Box is hidden again
+				FGenreLabel.setVisible(false); // Fiction Genre label is hidden again
 			}
 			
+			// When the 'Book Type' selection is not chosen, the Genre box will revert to index 0
 			else {
-				FGenreBox.setVisible(false);
-				FGenreLabel.setVisible(false);
-				BookType = 0;
-				FGenreBox.setSelectedIndex(0);
-				NonFGenreBox.setSelectedIndex(0);
-				NonFGenreBox.setVisible(false);
-				NonFGenreLabel.setVisible(false);
+				FGenreBox.setVisible(false); // Fiction Genre Box is hidden again
+				FGenreLabel.setVisible(false); // Fiction Genre label is hidden again
+				FGenreBox.setSelectedIndex(0); // Fiction genre index is set back to 0 so search function does not get confused
+				NonFGenreBox.setSelectedIndex(0); // Non-Fiction genre index is set back to 0 so search function does not get confused
+				NonFGenreBox.setVisible(false); // Non-Fiction Genre Box is hidden again
+				NonFGenreLabel.setVisible(false); // Non-Fiction Genre label is hidden again
 			}
 		
 		}
 
 	}
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			SearchButton.doClick();
-		}
-		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		
-	}
 }
