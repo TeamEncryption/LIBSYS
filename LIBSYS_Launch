@@ -1,12 +1,13 @@
-// +---------- This is the main function of the LIBSYS ----------+
+
+// +---------- Main function to start LIBSYS ----------+
 
 public class LIBSYS_launch {
 
 	public static void main(String[] args) {
 		
 		// Instances of the login page and the login credentials for use when the application begins
-		new Login_Cred();
-		new Selection_Page();
+		new Login_Cred(); // Generates and implements the login credentials
+		new Selection_Page(); // Creates the selection page for users to login or just browse the catalog as a guest
 
 	}
 
