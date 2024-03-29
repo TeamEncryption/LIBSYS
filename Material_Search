@@ -58,6 +58,7 @@ public class Material_Search implements ActionListener{
 	JButton signoutButton = new JButton("Sign Out"); // Sign Out button is declared and assigned, labeled "Sign Out"
 	JButton SearchButton = new JButton("Search Catalog"); // Search button is declared and assigned, labeled "Search Catalog"
 	JButton BackButton = new JButton("Back"); // Back button is declared and assigned, labeled "Back"
+	JButton ResetButton = new JButton("Reset");
 	
 	// The userID is sent from the previous page to this page for the sign out label (so it looks nice and personalized)
 	Material_Search(String userID) {
@@ -152,11 +153,20 @@ public class Material_Search implements ActionListener{
 		// Disables the ability to go back to the main menu as a Guest user, Guest12 is the hard-coded default Guest user name
 		if (namePlate.equals("Guest12")) {
 			BackButton.setVisible(false);
+			ResetButton.setBounds(750, 300, 100, 25);
+
 		}
 		
-		BackButton.setBounds(750, 300, 100, 25); // Back button is placed and given dimensions
-		BackButton.addActionListener(this); // adds action listener to Back button to give it functionality
-		BackButton.setFocusable(false); // disables box outline around button text
+		else {
+			BackButton.setBounds(750, 300, 100, 25); // Back button is placed and given dimensions
+			BackButton.addActionListener(this); // adds action listener to Back button to give it functionality
+			BackButton.setFocusable(false); // disables box outline around button text
+			
+			ResetButton.setBounds(850, 300, 100, 25);
+			ResetButton.addActionListener(this);
+			ResetButton.setFocusable(false);
+			
+		}
 		
 		// +-------------------- Frame additions and functionality --------------------+
 		SearchPage.add(LIBSYSLabel); // LIBSYS header label is added to window
@@ -171,6 +181,7 @@ public class Material_Search implements ActionListener{
 		SearchPage.add(MatTypeSearchBox); // Material Type Search box is added to the window
 		SearchPage.add(SearchButton); // Search button is added to the window
 		SearchPage.add(BackButton); // Back button is added to the window
+		SearchPage.add(ResetButton);
 		SearchPage.add(MatFilterLabel); // Material Filter Label is added to the window
 		SearchPage.add(MatFilterBox); // Material Filter box is added to the window
 		SearchPage.add(BookTypeBox); // Book type box is added to the window
@@ -209,19 +220,29 @@ public class Material_Search implements ActionListener{
 			new Main_Menu(namePlate);
 		}
 		
+		if (e.getSource() == ResetButton) {
+			SearchField.setText("");
+			MatTypeSearchBox.setSelectedIndex(0);
+			
+		}
+		
 		// This if-else tree will toggle certain combo boxes to become visible based on indexes chosen for filtering a user's search
 		if (e.getSource() == MatTypeSearchBox) {
 			SearchType = MatTypeSearchBox.getSelectedIndex();
 			
 			// When the 'Materials' filter is chosen, the Filter box and Filter label will then display to further filter materials to search
 			if (SearchType == 1) {
+				InformationLabel.setBounds(366, 250, 100, 25);
+				InformationLabel.setText("Material Title:");
 				MatFilterBox.setVisible(true);
 				MatFilterLabel.setVisible(true);
 			}
 			
 			// When the 'Materials' selection is not chosen, all Combo box values below the Material Type
 			// box will revert to index 0 and all combo boxes and labels will become invisible once again
-			else {
+			else if (SearchType == 2) {
+				InformationLabel.setBounds(401, 250, 100, 25);
+				InformationLabel.setText("ISBN #:");
 				MatFilterBox.setVisible(false);
 				MatFilterLabel.setVisible(false);
 				BookTypeBox.setVisible(false);
@@ -235,6 +256,49 @@ public class Material_Search implements ActionListener{
 				BookTypeBox.setSelectedIndex(0);
 				FGenreBox.setSelectedIndex(0);
 				NonFGenreBox.setSelectedIndex(0);
+				
+			}
+			
+			// When the 'Materials' selection is not chosen, all Combo box values below the Material Type
+			// box will revert to index 0 and all combo boxes and labels will become invisible once again
+			else if (SearchType == 3) {
+				InformationLabel.setBounds(405, 250, 100, 25);
+				InformationLabel.setText("Author:");
+				MatFilterBox.setVisible(false);
+				MatFilterLabel.setVisible(false);
+				BookTypeBox.setVisible(false);
+				BookTypeLabel.setVisible(false);
+				FGenreBox.setVisible(false);
+				FGenreLabel.setVisible(false);
+				SearchType = 0;
+				BookType = 0;
+				Material = 0;
+				MatFilterBox.setSelectedIndex(0);
+				BookTypeBox.setSelectedIndex(0);
+				FGenreBox.setSelectedIndex(0);
+				NonFGenreBox.setSelectedIndex(0);
+				
+			}
+			
+			// When the 'Materials' selection is not chosen, all Combo box values below the Material Type
+			// box will revert to index 0 and all combo boxes and labels will become invisible once again
+			else {
+				InformationLabel.setBounds(375, 250, 100, 25);
+				InformationLabel.setText("Information:");
+				MatFilterBox.setVisible(false);
+				MatFilterLabel.setVisible(false);
+				BookTypeBox.setVisible(false);
+				BookTypeLabel.setVisible(false);
+				FGenreBox.setVisible(false);
+				FGenreLabel.setVisible(false);
+				SearchType = 0;
+				BookType = 0;
+				Material = 0;
+				MatFilterBox.setSelectedIndex(0);
+				BookTypeBox.setSelectedIndex(0);
+				FGenreBox.setSelectedIndex(0);
+				NonFGenreBox.setSelectedIndex(0);
+				
 			}
 		}
 		
