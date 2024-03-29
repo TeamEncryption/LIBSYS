@@ -7,6 +7,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Hashtable;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -16,6 +19,7 @@ import javax.swing.JTextField;
 
 // Action listener is implemented to allow functionality to buttons
 public class Client_Search implements ActionListener {
+
 
 	// Global variable to send the user's name to the next window opened
 	public static String namePlate;
@@ -46,12 +50,28 @@ public class Client_Search implements ActionListener {
 	JButton signoutButton = new JButton("Sign Out"); // Sign Out button is declared and assigned
 	JButton SearchButton = new JButton("Search Client"); // Search button is declared and assigned
 	JButton BackButton = new JButton("Back"); // Back button is declared and assigned
+	JButton ResetButton = new JButton("Reset");
+	JButton CreateProfileButton = new JButton("Create Profile");
+	
+	HashMap ClientFirstName = new HashMap<String, String>();
+	HashMap ClientLastName = new HashMap<String, String>();
+	HashMap ClientEmail = new HashMap<String, String>();
+	HashMap ClientFNEmail = new HashMap<String, String>();
+	HashMap ClientPhone = new HashMap<String, String>();
+	HashMap ClientFNPhone = new HashMap<String, String>();
 	
 	// The userID is sent from the previous page to this page for the sign out label (so it looks nice and personalized)
-	Client_Search(String userID) {
+	Client_Search(String userID, Object FirstName, Object LastName, Object Email, Object PhoneNum, Object FNEmail, Object FNPhone) {
 		
 		// The previous window's userID variable is sent through to this window for the username label
 		namePlate = userID;
+		
+		ClientFirstName = (HashMap) FirstName;
+		ClientLastName = (HashMap) LastName;
+		ClientEmail = (HashMap) Email;
+		ClientFNEmail = (HashMap) FNEmail;
+		ClientPhone = (HashMap) PhoneNum;
+		ClientFNPhone = (HashMap) FNPhone;
 		
 		// +-------------------- Labels --------------------+
 				LIBSYSLabel.setBounds(500, 0, 700, 100); // LIBSYS Label is placed and given dimensions
@@ -119,9 +139,18 @@ public class Client_Search implements ActionListener {
 				SearchButton.addActionListener(this); // adds action listener to Search Button to give it functionality
 				SearchButton.setFocusable(false); // disables box outline around button text
 				
+				ResetButton.setBounds(850, 300, 100, 25);
+				ResetButton.addActionListener(this);
+				ResetButton.setFocusable(false);
+				
 				BackButton.setBounds(750, 300, 100, 25); // Back button is placed and given dimensions
 				BackButton.addActionListener(this); // adds action listener to Back button to give it functionality
 				BackButton.setFocusable(false); // disables box outline around button text
+				
+				CreateProfileButton.setBounds(750, 350, 175, 25);
+				CreateProfileButton.addActionListener(this);
+				CreateProfileButton.setFocusable(false);
+				CreateProfileButton.setEnabled(false);
 				
 				// +-------------------- Frame additions and functionality --------------------+
 				ClientSearchPage.add(PageFunctionHeader); // Page function header is added to the window
@@ -130,6 +159,8 @@ public class Client_Search implements ActionListener {
 				ClientSearchPage.add(profilePlaceholder); // Profile placeholder box is added to the window
 				ClientSearchPage.add(BackButton); // Back button is added to the window
 				ClientSearchPage.add(SearchButton); // Search button is added to the window
+				ClientSearchPage.add(ResetButton);
+				ClientSearchPage.add(CreateProfileButton);
 				ClientSearchPage.add(signoutButton); // Sign Out button is added to the window
 				ClientSearchPage.add(username); // username label is added to the window
 				ClientSearchPage.add(SearchFirstNameField); // First name text field is added to the window
@@ -165,10 +196,120 @@ public class Client_Search implements ActionListener {
 			
 		}
 		
+		if (e.getSource() == ResetButton) {
+			SearchFirstNameField.setText("");
+			SearchLastNameField.setText("");
+			SearchEmailField.setText("");
+			SearchPhoneNumberField.setText("");
+			CreateProfileButton.setEnabled(false);
+			
+		}
+		
 		// This function closes the current window and sends users back to the main menu screen
 		if (e.getSource() == BackButton) {
 			ClientSearchPage.dispose();
 			new Main_Menu(namePlate);
+			
+		}
+		
+		if (e.getSource() == SearchButton) {
+			String ClientFN = SearchFirstNameField.getText();
+			String ClientLN = SearchLastNameField.getText();
+			String ClientEM = SearchEmailField.getText();
+			String ClientPN = SearchPhoneNumberField.getText();
+			CreateProfileButton.setEnabled(false);
+			
+			
+			if (ClientFirstName.containsKey(ClientFN) && ClientLastName.containsKey(ClientLN) && ClientEM.equals("") && ClientPN.equals("")) {
+				String FirstNameInfo = (String) ClientFirstName.get(ClientFN);
+				String LastNameInfo = (String) ClientLastName.get(ClientLN);
+				String EmailInfo = (String) ClientFNEmail.get(ClientFN);
+				String PhoneInfo = (String) ClientFNPhone.get(ClientFN);
+				
+				System.out.println("Client's First Name: " + FirstNameInfo);
+				System.out.println("Client's Last Name: " + LastNameInfo);
+				System.out.println("Client's Email: " + EmailInfo);
+				System.out.println("Client's Phone Number: " + PhoneInfo);
+				
+				new Client_Profile(namePlate, FirstNameInfo, LastNameInfo, EmailInfo, PhoneInfo);
+				ClientSearchPage.dispose();
+				
+			}
+			
+			else if (ClientFirstName.containsKey(ClientFN) && ClientLN.equals("") && ClientEM.equals("") && ClientPN.equals("")) {
+				System.out.println("Insufficient information provided");
+				
+			}
+			
+			else if (ClientFN.equals("") && ClientLastName.containsKey(ClientLN) && ClientEM.equals("") && ClientPN.equals("")) {
+				System.out.println("Insufficient information provided");
+				
+			}
+			
+			else if (ClientFirstName.containsKey(ClientFN) && ClientLastName.containsKey(ClientLN) && (!ClientEM.equals("") && ClientPN.equals("") || (!ClientPN.equals("") && ClientEM.equals("")))) {
+				System.out.println("Invalid Search Criteria");
+				
+			}
+			
+			else if (ClientEmail.containsKey(ClientEM) && ClientLN.equals("") && ClientFN.equals("") && ClientPN.equals("")) {
+				String FirstNameInfo = (String) ClientFirstName.get(ClientEM);
+				String LastNameInfo = (String) ClientLastName.get(ClientEM);
+				String EmailInfo = (String) ClientEmail.get(ClientEM);
+				String PhoneInfo = (String) ClientPhone.get(ClientEM);
+				
+				System.out.println("Client's First Name: " + FirstNameInfo);
+				System.out.println("Client's Last Name: " + LastNameInfo);
+				System.out.println("Client's Email: " + EmailInfo);
+				System.out.println("Client's Phone Number: " + PhoneInfo);
+				
+				new Client_Profile(namePlate, FirstNameInfo, LastNameInfo, EmailInfo, PhoneInfo);
+				ClientSearchPage.dispose();
+				
+			}
+			
+			else if (ClientEmail.containsKey(ClientEM) && (!ClientLN.equals("") || !ClientFN.equals("") || !ClientPN.equals(""))) {
+				System.out.println("Invalid Search Criteria");
+				
+			}
+
+			else if (ClientPhone.containsKey(ClientPN) && ClientFN.equals("") && ClientLN.equals("") && ClientEM.equals("")) {
+				String FirstNameInfo = (String) ClientFirstName.get(ClientPN);
+				String LastNameInfo = (String) ClientLastName.get(ClientPN);
+				String EmailInfo = (String) ClientEmail.get(ClientPN);
+				String PhoneInfo = (String) ClientPhone.get(ClientPN);
+				
+				System.out.println("Client's First Name: " + FirstNameInfo);
+				System.out.println("Client's Last Name: " + LastNameInfo);
+				System.out.println("Client's Email: " + EmailInfo);
+				System.out.println("Client's Phone Number: " + PhoneInfo);
+				
+				new Client_Profile(namePlate, FirstNameInfo, LastNameInfo, EmailInfo, PhoneInfo);
+				ClientSearchPage.dispose();
+				
+			}
+			
+			else if (ClientPhone.containsKey(ClientPN) && (!ClientFN.equals("") || !ClientLN.equals("") || !ClientEM.equals(""))) {
+				System.out.println("Invalid Search Criteria");
+				
+			}
+			
+			else {
+				System.out.println("Client Not found");
+				CreateProfileButton.setEnabled(true);
+				
+			}
+			
+		}
+		
+		if (e.getSource() == CreateProfileButton) {
+			String FirstNameInfo = SearchFirstNameField.getText();
+			String LastNameInfo = SearchLastNameField.getText();
+			String EmailInfo = SearchEmailField.getText();
+			String PhoneInfo = SearchPhoneNumberField.getText();
+			
+			// !!!!!!!!!!!! CREATE THE PROFILE CREATION PAGE!!!!!!!!!!!!!!!
+			new Create_Client(namePlate, FirstNameInfo, LastNameInfo, EmailInfo, PhoneInfo);
+			ClientSearchPage.dispose();
 			
 		}
 		
