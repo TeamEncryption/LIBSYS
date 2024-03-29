@@ -1,0 +1,174 @@
+// +---------- This class is currently holding the HashMap for the client page ----------+
+
+import java.util.HashMap;
+
+public class Client_Database {
+
+	static HashMap<String, String> ClientFirstName = new HashMap<String, String>();
+	static HashMap<String, String> ClientLastName = new HashMap<String, String>();
+	static HashMap<String, String> ClientEmail = new HashMap<String, String>();
+	static HashMap<String, String> ClientFNEmail = new HashMap<String, String>();
+	static HashMap<String, String> ClientPhone = new HashMap<String, String>();
+	static HashMap<String, String> ClientFNPhone = new HashMap<String, String>();
+
+// GET THE VOID METHODS TO COMMUNICATE WITH THIS CONSTRUCTOR
+	
+	Client_Database() {
+		
+		ClientFirstName.put("Matthew", "Matthew");
+		ClientFirstName.put("matthewdorlet@gmail.com", "Matthew");
+		ClientFirstName.put("(251) 406-5278", "Matthew");
+		ClientFirstName.put("Mimi", "Mimi");
+		ClientFirstName.put("mimidorlet@gmail.com", "Mimi");
+		ClientFirstName.put("(251) 508-5185", "Mimi");
+		
+		ClientLastName.put("Dorlet", "Dorlet");
+		ClientLastName.put("matthewdorlet@gmail.com", "Dorlet");
+		ClientLastName.put("(251) 406-5278", "Dorlet");
+		ClientLastName.put("mimidorlet@gmail.com", "Dorlet");
+		ClientLastName.put("(251) 508-5185", "Dorlet");
+				
+		ClientEmail.put("matthewdorlet@gmail.com", "matthewdorlet@gmail.com");
+		ClientEmail.put("(251) 406-5278", "matthewdorlet@gmail.com");
+		ClientEmail.put("mimidorlet@gmail.com", "mimidorlet@gmail.com");
+		ClientEmail.put("(251) 508-5185", "mimidorlet@gmail.com");
+		
+		ClientFNEmail.put("Matthew", "matthewdorlet@gmail.com");
+		ClientFNEmail.put("Mimi", "mimidorlet@gmail.com");
+				
+		ClientPhone.put("(251) 406-5278", "(251) 406-5278");
+		ClientPhone.put("matthewdorlet@gmail.com", "(251) 406-5278");
+		ClientPhone.put("(251) 508-5185", "(251) 508-5185");
+		ClientPhone.put("mimidorlet@gmail.com", "(251) 508-5185");
+		
+		ClientFNPhone.put("Matthew", "(251) 406-5278");
+		ClientFNPhone.put("Mimi", "(251) 508-5185");
+
+	}
+	
+	public static Object getClientFirstName() {
+		
+		return ClientFirstName;
+		
+	}
+	
+	public static void updateClientFirstName(String FirstName, String Email, String PhoneNumber) {
+		
+		ClientFirstName.put(FirstName, FirstName);
+		ClientFirstName.put(Email, FirstName);
+		ClientFirstName.put(PhoneNumber, FirstName);
+		
+	}
+	
+	public static void removeClientFirstName(String FirstName, String EMail, String PhoneNumber) {
+		
+		ClientFirstName.remove(FirstName);
+		ClientFirstName.remove(EMail);
+		ClientFirstName.remove(PhoneNumber);
+		
+	}
+
+	public static Object getClientLastName() {
+		
+		return ClientLastName;
+	}
+	
+	public static void updateClientLastName (String LastName, String Email, String PhoneNumber) {
+		
+		if (ClientLastName.containsKey(LastName)) {
+			ClientLastName.put(Email, LastName);
+			ClientLastName.put(PhoneNumber, LastName);
+		}
+		
+		else {
+			ClientLastName.put(LastName, LastName);
+			ClientLastName.put(Email, LastName);
+			ClientLastName.put(PhoneNumber, LastName);
+			
+		}
+		
+	}
+	
+	public static void removeClientLastName (String Email, String PhoneNumber) {
+		
+		ClientLastName.remove(Email);
+		ClientLastName.remove(PhoneNumber);
+		
+	}
+	
+	public static Object getClientEmail() {
+		
+		return ClientEmail;
+	}
+	
+	public static void updateClientEmail(String Email, String PhoneNumber) {
+		
+		ClientEmail.put(Email, Email);
+		ClientEmail.put(PhoneNumber, Email);
+		
+	}
+	
+	public static void removeClientEmail (String Email, String PhoneNumber) {
+		
+		ClientEmail.remove(Email);
+		ClientEmail.remove(PhoneNumber);
+		
+	}
+
+	public static Object getClientFNEmail() {
+	
+		return ClientFNEmail;
+		
+	}
+	
+	public static void updateClientFNEmail(String FirstName, String Email) {
+		
+		ClientFNEmail.put(FirstName, Email);
+		
+	}
+	
+	public static void removeClientFNEmail (String FirstName) {
+		
+		ClientFNEmail.remove(FirstName);
+		
+	}
+	
+	public static Object getClientPhone() {
+	
+		return ClientPhone;
+		
+	}
+	
+	public static void updateClientPhone (String Email, String PhoneNumber) {
+		
+		ClientPhone.put(PhoneNumber, PhoneNumber);
+		ClientPhone.put(Email, PhoneNumber);
+		
+	}
+	
+	public static void removeClientPhone (String Email, String PhoneNumber) {
+		
+		ClientPhone.remove(PhoneNumber);
+		ClientPhone.remove(Email);
+		
+	}
+
+	public static Object getClientFNPhone() {
+	
+		return ClientFNPhone;
+		
+	}
+	
+	public static void updateClientFNPhone (String FirstName, String PhoneNumber) {
+		
+		ClientFNPhone.put(FirstName, PhoneNumber);
+		
+	}
+	
+	public static void removeClientFNPhone (String FirstName) {
+		
+		ClientFNPhone.remove(FirstName);
+		
+	}
+
+}
