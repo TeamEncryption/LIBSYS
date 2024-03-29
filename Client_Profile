@@ -1,0 +1,357 @@
+
+// +---------- Client Profile ----------+
+// This will be the default page to display Client Profiles.
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class Client_Profile implements ActionListener{
+	
+	public static String StaffUser;
+	public static String ClientFirstName;
+	public static String ClientLastName;
+	public static String ClientEmail;
+	public static String ClientPhoneNumber;
+
+	JFrame ClientPage = new JFrame("LIBSYS");
+	
+	JLabel InformationLabel = new JLabel();
+	JLabel FirstNameLabel = new JLabel();
+	JLabel LastNameLabel = new JLabel();
+	JLabel EmailLabel = new JLabel();
+	JLabel PhoneNumberLabel = new JLabel();
+	JLabel ClientPageHeader = new JLabel(); // Login Page header declaration and assignment, says "LIBSYS System"
+	JLabel BlueLineLabel = new JLabel(); // Line label declaration and assignment, will be used to underline header
+	JLabel MaterialLabel = new JLabel();
+	JLabel BoldInfoLineLabel = new JLabel();
+	JLabel BoldMatLineLabel = new JLabel();
+	JLabel FirstNameFieldLabel = new JLabel();
+	JLabel LastNameFieldLabel = new JLabel();
+	JLabel EmailFieldLabel = new JLabel();
+	JLabel PhoneNumberFieldLabel = new JLabel();
+	
+	JTextField FirstNameField = new JTextField();
+	JTextField LastNameField = new JTextField();
+	JTextField EmailField = new JTextField();
+	JTextField PhoneNumberField = new JTextField();
+	
+	JButton BackButton = new JButton("Back");
+	JButton UpdateInfoButton = new JButton("Update Client");
+	JButton SaveChangesButton = new JButton("Save Changes");
+	JButton CancelUpdatesButton = new JButton("Cancel Update");
+	JButton ResetButton = new JButton("Reset");
+	JButton DeleteButton = new JButton("Delete Profile");
+	
+	Client_Profile(String username, String FirstName, String LastName, String Email, String PhoneNumber) {
+		
+		StaffUser = username;
+		ClientFirstName = FirstName;
+		ClientLastName = LastName;
+		ClientEmail = Email;
+		ClientPhoneNumber = PhoneNumber;
+		
+		// +-------------------- Labels --------------------+
+		ClientPageHeader.setBounds(280, 10, 500, 100); // LIBSYS header is placed in the window and given dimensions
+		ClientPageHeader.setText("LIBSYS System"); // allows users to see the header label
+		ClientPageHeader.setFont(new Font(null, Font.BOLD, 30)); // Text size is changed for the header label
+		
+		BlueLineLabel.setBounds(0, 75, 800, 3); // Line is placed underneath the header
+		BlueLineLabel.setOpaque(true); // line is set to be opaque, which allows for color to be added
+		BlueLineLabel.setBackground(Color.BLUE); // line is filled with the color blue
+		
+		InformationLabel.setBounds(15, 100, 200, 25);
+		InformationLabel.setText("Client Information:");
+		InformationLabel.setFont(new Font(null, Font.BOLD, 18));
+		
+		BoldInfoLineLabel.setBounds(15, 122, 160, 2);
+		BoldInfoLineLabel.setOpaque(true);
+		BoldInfoLineLabel.setBackground(Color.black);
+		
+		FirstNameLabel.setBounds(15, 140, 250, 25);
+		FirstNameLabel.setText("First name: " + FirstName);
+		FirstNameLabel.setFont(new Font(null, Font.PLAIN, 15));
+		
+		LastNameLabel.setBounds(15, 165, 250, 25);
+		LastNameLabel.setText("Last Name: " + LastName);
+		LastNameLabel.setFont(new Font(null, Font.PLAIN, 15));
+		
+		EmailLabel.setBounds(15, 190, 350, 25);
+		EmailLabel.setText("Email: " + Email);
+		EmailLabel.setFont(new Font(null, Font.PLAIN, 15));
+		
+		PhoneNumberLabel.setBounds(15, 215, 250, 25);
+		PhoneNumberLabel.setText("Phone Number: " + PhoneNumber);
+		PhoneNumberLabel.setFont(new Font(null, Font.PLAIN, 15));
+		
+		MaterialLabel.setBounds(15, 300, 200, 25);
+		MaterialLabel.setText("Materials Borrowed:");
+		MaterialLabel.setFont(new Font(null, Font.BOLD, 18));
+		
+		BoldMatLineLabel.setBounds(15, 322, 173, 2);
+		BoldMatLineLabel.setOpaque(true);
+		BoldMatLineLabel.setBackground(Color.black);
+		
+		FirstNameFieldLabel.setBounds(450, 140, 100, 25);
+		FirstNameFieldLabel.setText("First Name:");
+		FirstNameFieldLabel.setFont(new Font(null, Font.PLAIN, 15));
+		
+		LastNameFieldLabel.setBounds(450, 165, 100, 25);
+		LastNameFieldLabel.setText("Last Name:");
+		LastNameFieldLabel.setFont(new Font(null, Font.PLAIN, 15));
+		
+		EmailFieldLabel.setBounds(450, 190, 100, 25);
+		EmailFieldLabel.setText("Email:");
+		EmailFieldLabel.setFont(new Font(null, Font.PLAIN, 15));
+		
+		PhoneNumberFieldLabel.setBounds(450, 215, 125, 25);
+		PhoneNumberFieldLabel.setText("Phone Number:");
+		PhoneNumberFieldLabel.setFont(new Font(null, Font.PLAIN, 15));
+		
+		// +-------------------- Buttons --------------------+
+		BackButton.setBounds(15, 255, 105, 25);
+		BackButton.addActionListener(this);
+		BackButton.setFocusable(false);
+		
+		UpdateInfoButton.setBounds(115, 255, 125, 25);
+		UpdateInfoButton.addActionListener(this);
+		UpdateInfoButton.setFocusable(false);
+		
+		CancelUpdatesButton.setBounds(115, 255, 125, 25);
+		CancelUpdatesButton.addActionListener(this);
+		CancelUpdatesButton.setFocusable(false);
+		CancelUpdatesButton.setVisible(false);
+		
+		SaveChangesButton.setBounds(450, 255, 130, 25);
+		SaveChangesButton.addActionListener(this);
+		SaveChangesButton.setFocusable(false);
+		SaveChangesButton.setEnabled(false);
+		
+		ResetButton.setBounds(575, 255, 90, 25);
+		ResetButton.addActionListener(this);
+		ResetButton.setFocusable(false);
+		ResetButton.setEnabled(false);
+		
+		DeleteButton.setBounds(660, 255, 110, 25);
+		DeleteButton.addActionListener(this);
+		DeleteButton.setFocusable(false);
+		DeleteButton.setEnabled(false);
+		
+		// +-------------------- Information Fields --------------------+
+		FirstNameField.setBounds(530, 140, 240, 25);
+		FirstNameField.setText(FirstName);
+		FirstNameField.setEnabled(false);
+		
+		LastNameField.setBounds(530, 165, 240, 25);
+		LastNameField.setText(LastName);
+		LastNameField.setEnabled(false);
+		
+		EmailField.setBounds(495, 190, 240, 25);
+		EmailField.setText(Email);
+		EmailField.setEnabled(false);
+		
+		PhoneNumberField.setBounds(557, 215, 213, 25);
+		PhoneNumberField.setText(PhoneNumber);
+		PhoneNumberField.setEnabled(false);
+		
+		// +-------------------- Frame additions and functionality --------------------+
+		ClientPage.add(InformationLabel);
+		ClientPage.add(BoldInfoLineLabel);
+		ClientPage.add(FirstNameLabel);
+		ClientPage.add(LastNameLabel);
+		ClientPage.add(EmailLabel);
+		ClientPage.add(PhoneNumberLabel);
+		ClientPage.add(ClientPageHeader);
+		ClientPage.add(BlueLineLabel);
+		ClientPage.add(FirstNameField);
+		ClientPage.add(LastNameField);
+		ClientPage.add(EmailField);
+		ClientPage.add(PhoneNumberField);
+		ClientPage.add(MaterialLabel);
+		ClientPage.add(BoldMatLineLabel);
+		ClientPage.add(BackButton);
+		ClientPage.add(UpdateInfoButton);
+		ClientPage.add(CancelUpdatesButton);
+		ClientPage.add(FirstNameFieldLabel);
+		ClientPage.add(LastNameFieldLabel);
+		ClientPage.add(EmailFieldLabel);
+		ClientPage.add(PhoneNumberFieldLabel);
+		ClientPage.add(SaveChangesButton);
+		ClientPage.add(ResetButton);
+		ClientPage.add(DeleteButton);
+		
+		// +-------------------- Frame dimensions and personalization --------------------+
+		ClientPage.setSize(800, 600);
+		ClientPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ClientPage.setLayout(null);
+		ClientPage.setResizable(false);
+		ClientPage.setVisible(true);
+		
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+				
+		if (e.getSource() == BackButton) {
+			new Client_Search(StaffUser, Client_Database.getClientFirstName(), Client_Database.getClientLastName(),
+					Client_Database.getClientEmail(), Client_Database.getClientPhone(),
+					Client_Database.getClientFNEmail(), Client_Database.getClientFNPhone());
+			ClientPage.dispose();
+			
+		}
+		
+		if (e.getSource() == UpdateInfoButton) {
+			FirstNameField.setEnabled(true);
+			LastNameField.setEnabled(true);
+			EmailField.setEnabled(true);
+			PhoneNumberField.setEnabled(true);
+			SaveChangesButton.setEnabled(true);
+			ResetButton.setEnabled(true);
+			DeleteButton.setEnabled(true);
+			UpdateInfoButton.setVisible(false);
+			CancelUpdatesButton.setVisible(true);
+			
+		}
+		
+		if (e.getSource() == CancelUpdatesButton) {
+			FirstNameField.setEnabled(false);
+			LastNameField.setEnabled(false);
+			EmailField.setEnabled(false);
+			PhoneNumberField.setEnabled(false);
+			SaveChangesButton.setEnabled(false);
+			ResetButton.setEnabled(false);
+			DeleteButton.setEnabled(false);
+			UpdateInfoButton.setVisible(true);
+			CancelUpdatesButton.setVisible(false);
+			
+		}
+		
+		if (e.getSource() == SaveChangesButton) {
+			String NewFirstName = FirstNameField.getText();
+			String NewLastName = LastNameField.getText();
+			String NewEmail = EmailField.getText();
+			String NewPhoneNumber = PhoneNumberField.getText();
+			
+			if (!ClientFirstName.equals(NewFirstName)) {
+				Client_Database.removeClientFirstName(ClientFirstName, ClientEmail, ClientPhoneNumber);
+				Client_Database.updateClientFirstName(NewFirstName, NewEmail, NewPhoneNumber);
+				
+				Client_Database.removeClientFNEmail(ClientFirstName);
+				Client_Database.updateClientFNEmail(NewFirstName, NewEmail);
+				
+				Client_Database.removeClientFNPhone(ClientFirstName);
+				Client_Database.updateClientFNPhone(NewFirstName, NewPhoneNumber);
+				
+				Client_Database.removeClientLastName(ClientEmail, ClientPhoneNumber);
+				Client_Database.updateClientLastName(NewLastName, NewEmail, NewPhoneNumber);
+				
+				Client_Database.removeClientEmail(ClientEmail, ClientPhoneNumber);
+				Client_Database.updateClientEmail(NewEmail, NewPhoneNumber);
+				
+				Client_Database.removeClientPhone(ClientEmail, ClientPhoneNumber);
+				Client_Database.updateClientPhone(NewEmail, NewPhoneNumber);
+				
+			}
+			
+			if (!ClientLastName.equals(NewLastName)) {
+				Client_Database.removeClientFirstName(ClientFirstName, ClientEmail, ClientPhoneNumber);
+				Client_Database.updateClientFirstName(NewFirstName, NewEmail, NewPhoneNumber);
+				
+				Client_Database.removeClientFNEmail(ClientFirstName);
+				Client_Database.updateClientFNEmail(NewFirstName, NewEmail);
+				
+				Client_Database.removeClientFNPhone(ClientFirstName);
+				Client_Database.updateClientFNPhone(NewFirstName, NewPhoneNumber);
+				
+				Client_Database.removeClientLastName(ClientEmail, ClientPhoneNumber);
+				Client_Database.updateClientLastName(NewLastName, NewEmail, NewPhoneNumber);
+				
+				Client_Database.removeClientEmail(ClientEmail, ClientPhoneNumber);
+				Client_Database.updateClientEmail(NewEmail, NewPhoneNumber);
+				
+				Client_Database.removeClientPhone(ClientEmail, ClientPhoneNumber);
+				Client_Database.updateClientPhone(NewEmail, NewPhoneNumber);
+				
+			}
+			
+			if (!ClientEmail.equals(NewEmail)) {
+				Client_Database.removeClientFirstName(ClientFirstName, ClientEmail, ClientPhoneNumber);
+				Client_Database.updateClientFirstName(NewFirstName, NewEmail, NewPhoneNumber);
+				
+				Client_Database.removeClientFNEmail(ClientFirstName);
+				Client_Database.updateClientFNEmail(NewFirstName, NewEmail);
+				
+				Client_Database.removeClientFNPhone(ClientFirstName);
+				Client_Database.updateClientFNPhone(NewFirstName, NewPhoneNumber);
+				
+				Client_Database.removeClientLastName(ClientEmail, ClientPhoneNumber);
+				Client_Database.updateClientLastName(NewLastName, NewEmail, NewPhoneNumber);
+				
+				Client_Database.removeClientEmail(ClientEmail, ClientPhoneNumber);
+				Client_Database.updateClientEmail(NewEmail, NewPhoneNumber);
+				
+				Client_Database.removeClientPhone(ClientEmail, ClientPhoneNumber);
+				Client_Database.updateClientPhone(NewEmail, NewPhoneNumber);
+				
+			}
+			
+			if (!ClientPhoneNumber.equals(NewPhoneNumber)) {
+				Client_Database.removeClientFirstName(ClientFirstName, ClientEmail, ClientPhoneNumber);
+				Client_Database.updateClientFirstName(NewFirstName, NewEmail, NewPhoneNumber);
+				
+				Client_Database.removeClientFNEmail(ClientFirstName);
+				Client_Database.updateClientFNEmail(NewFirstName, NewEmail);
+				
+				Client_Database.removeClientFNPhone(ClientFirstName);
+				Client_Database.updateClientFNPhone(NewFirstName, NewPhoneNumber);
+				
+				Client_Database.removeClientLastName(ClientEmail, ClientPhoneNumber);
+				Client_Database.updateClientLastName(NewLastName, NewEmail, NewPhoneNumber);
+				
+				Client_Database.removeClientEmail(ClientEmail, ClientPhoneNumber);
+				Client_Database.updateClientEmail(NewEmail, NewPhoneNumber);
+				
+				Client_Database.removeClientPhone(ClientEmail, ClientPhoneNumber);
+				Client_Database.updateClientPhone(NewEmail, NewPhoneNumber);
+				
+			}
+			
+			new Client_Search(StaffUser, Client_Database.getClientFirstName(), Client_Database.getClientLastName(),
+					Client_Database.getClientEmail(), Client_Database.getClientPhone(),
+					Client_Database.getClientFNEmail(), Client_Database.getClientFNPhone());
+			ClientPage.dispose();
+			
+		}
+		
+		if (e.getSource() == ResetButton) {
+			FirstNameField.setText(ClientFirstName);
+			LastNameField.setText(ClientLastName);
+			EmailField.setText(ClientEmail);
+			PhoneNumberField.setText(ClientPhoneNumber);
+			
+		}
+		
+		if (e.getSource() == DeleteButton) {
+			Client_Database.removeClientFirstName(ClientFirstName, ClientEmail, ClientPhoneNumber);
+			Client_Database.removeClientFNEmail(ClientFirstName);
+			Client_Database.removeClientFNPhone(ClientFirstName);
+			Client_Database.removeClientLastName(ClientEmail, ClientPhoneNumber);
+			Client_Database.removeClientEmail(ClientEmail, ClientPhoneNumber);
+			Client_Database.removeClientPhone(ClientEmail, ClientPhoneNumber);
+			
+			new Client_Search(StaffUser, Client_Database.getClientFirstName(), Client_Database.getClientLastName(),
+					Client_Database.getClientEmail(), Client_Database.getClientPhone(),
+					Client_Database.getClientFNEmail(), Client_Database.getClientFNPhone());
+			ClientPage.dispose();
+			
+		}
+		
+	}
+
+}
