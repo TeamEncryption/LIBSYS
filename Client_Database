@@ -19,30 +19,30 @@ public class Client_Database {
 		ClientFirstName.put("matthewdorlet@gmail.com", "Matthew");
 		ClientFirstName.put("(251) 406-5278", "Matthew");
 		ClientFirstName.put("Mimi", "Mimi");
-		ClientFirstName.put("mimidorlet@gmail.com", "Mimi");
-		ClientFirstName.put("(251) 508-5185", "Mimi");
+		ClientFirstName.put("mimidorlet@yahoo.com", "Mimi");
+		ClientFirstName.put("(251) 509-7379", "Mimi");
 		
 		ClientLastName.put("Dorlet", "Dorlet");
 		ClientLastName.put("matthewdorlet@gmail.com", "Dorlet");
 		ClientLastName.put("(251) 406-5278", "Dorlet");
-		ClientLastName.put("mimidorlet@gmail.com", "Dorlet");
-		ClientLastName.put("(251) 508-5185", "Dorlet");
+		ClientLastName.put("mimidorlet@yahoo.com", "Dorlet");
+		ClientLastName.put("(251) 509-7379", "Dorlet");
 				
 		ClientEmail.put("matthewdorlet@gmail.com", "matthewdorlet@gmail.com");
 		ClientEmail.put("(251) 406-5278", "matthewdorlet@gmail.com");
-		ClientEmail.put("mimidorlet@gmail.com", "mimidorlet@gmail.com");
-		ClientEmail.put("(251) 508-5185", "mimidorlet@gmail.com");
+		ClientEmail.put("mimidorlet@yahoo.com", "mimidorlet@yahoo.com");
+		ClientEmail.put("(251) 509-7379", "mimidorlet@yahoo.com");
 		
 		ClientFNEmail.put("Matthew", "matthewdorlet@gmail.com");
-		ClientFNEmail.put("Mimi", "mimidorlet@gmail.com");
+		ClientFNEmail.put("Mimi", "mimidorlet@yahoo.com");
 				
 		ClientPhone.put("(251) 406-5278", "(251) 406-5278");
 		ClientPhone.put("matthewdorlet@gmail.com", "(251) 406-5278");
-		ClientPhone.put("(251) 508-5185", "(251) 508-5185");
-		ClientPhone.put("mimidorlet@gmail.com", "(251) 508-5185");
+		ClientPhone.put("(251) 509-7379", "(251) 509-7379");
+		ClientPhone.put("mimidorlet@yahoo.com", "(251) 509-7379");
 		
 		ClientFNPhone.put("Matthew", "(251) 406-5278");
-		ClientFNPhone.put("Mimi", "(251) 508-5185");
+		ClientFNPhone.put("Mimi", "(251) 509-7379");
 
 	}
 	
