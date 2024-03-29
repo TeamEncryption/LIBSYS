@@ -48,7 +48,7 @@ public class Management_Reports implements ActionListener{
 	
 	// JButtons used for the Client search page
 	JButton signoutButton = new JButton("Sign Out"); // Sign Out button is declared and assigned
-	JButton SearchButton = new JButton("Search Client"); // Search button is declared and assigned
+	JButton SearchButton = new JButton("Search Invoices"); // Search button is declared and assigned
 	JButton BackButton = new JButton("Back"); // Back button is declared and assigned
 	JButton ResetButton = new JButton("Reset"); // Reset button is declared and assigned
 
@@ -68,7 +68,7 @@ public class Management_Reports implements ActionListener{
 		BlueLineLabel.setBackground(Color.blue); // Blue line label is filled with the color blue
 		
 		PageFunctionHeader.setBounds(15, 50, 250, 100); // Page function header is placed and given dimensions
-		PageFunctionHeader.setText("Client Search"); // Page function header label has text assigned to it
+		PageFunctionHeader.setText("Invoice Search"); // Page function header label has text assigned to it
 		PageFunctionHeader.setFont(new Font(null, Font.PLAIN, 25)); // Page function header label is given a new font size of 25
 		
 		profilePlaceholder.setBounds(1185, 85, 50, 50); // Profile placeholder box is placed and given dimensions
