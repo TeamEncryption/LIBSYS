@@ -1,0 +1,9 @@
+
+public class Create_Client {
+
+	public Create_Client(String namePlate, String FirstName, String LastName, String Email, String PhoneNumber) {
+		
+		
+	}
+
+}
