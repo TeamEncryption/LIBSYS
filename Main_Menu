@@ -128,7 +128,9 @@ public class Main_Menu implements ActionListener {
 		// Client search button will send users to the client search screen
 		if (e.getSource() == clientButton) {
 			Menu.dispose();
-			new Client_Search(namePlate);
+			new Client_Search(namePlate, Client_Database.getClientFirstName(), Client_Database.getClientLastName(),
+					Client_Database.getClientEmail(), Client_Database.getClientPhone(),
+					Client_Database.getClientFNEmail(), Client_Database.getClientFNPhone());
 			
 		}
 		
