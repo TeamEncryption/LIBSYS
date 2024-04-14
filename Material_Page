@@ -1,0 +1,270 @@
+
+// +---------- Material Information Page ----------+
+// This is where the previous window's Book information will be sent to show an overview of the Material's information
+// Client Search will also take place here so library staff can properly loan materials out to client members
+
+// Libraries for JAVA Swing
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URL;
+import java.util.HashMap;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+//Action listener is implemented to allow functionality to buttons
+public class Material_Page implements ActionListener{
+
+	// Global variable to send the user's name and Material information to the next window opened
+	public static String f_BookISBN;
+	public static String f_BookTitle;
+	public static String f_BookAuthor;
+	public static String f_BookGenre;
+	public static String f_BookType;
+	public static int f_BookQuantity;
+	public static String f_Username;
+	
+	// JFrame creation for the main window for Material Page
+	JFrame f_MaterialPage = new JFrame("LIBSYS");
+	
+	URL f_LOGOImage = LIBSYS_launch.class.getResource("Encryption Logo.png"); // Creates a reference to the other folder holding the Logo image
+	
+	ImageIcon f_EncryptionLOGO = new ImageIcon(f_LOGOImage); //Image icon instance of the Logo image
+	
+	// JLabels used for the Material Page
+	JLabel f_MaterialPageHeader = new JLabel(); // Login Page header declaration and assignment, says "LIBSYS System"
+	JLabel f_BlueLineLabel = new JLabel(); // Line label declaration and assignment, will be used to underline header
+	JLabel f_InformationLabel = new JLabel(); // Information Label declaration and assignment, will be used to section off material information
+	JLabel f_BoldInfoLineLabel = new JLabel(); // Bold Info Line Label declared and assigned, used to underline Info. Label
+	JLabel f_BookISBNLabel = new JLabel(); // Book ISBN Label declared and assigned
+	JLabel f_BookTitleLabel = new JLabel(); // Book Title Label declared and assigned
+	JLabel f_BookAuthorLabel = new JLabel(); // Book Author Label declared and assigned
+	JLabel f_BookGenreLabel = new JLabel(); // Book Genre Label declared and assigned
+	JLabel f_BookTypeLabel = new JLabel(); // Book Type Label declared and assigned
+	JLabel f_BookQuantityLabel = new JLabel(); // Book Quantity Label declared and assigned
+	JLabel f_LocationLabel = new JLabel(); // Location Label declared and assigned, header for material location section
+	JLabel f_LocationLineLabel = new JLabel(); // Location Line Label declared and assigned, used to underline Location Label
+	JLabel f_FloorLocationLabel = new JLabel(); // Floor location Label declared and assigned, displays the material location via building level
+	JLabel f_SectionLocationLabel = new JLabel(); // Section Location Label declared and assigned, displays which section a material is in
+	JLabel f_ClientSearchLabel = new JLabel(); // Client Search Label declared and assigned, header for Client Search section
+	JLabel f_ClientSearchLineLabel = new JLabel(); // Client Search Line Label declared and assigned, used to underline Client Search Label
+	JLabel f_ClientFirstNameFieldLabel = new JLabel(); // Client First Name Label declared and assigned, goes with text Client First Name Text field
+	JLabel f_ClientLastNameFieldLabel = new JLabel(); // Client Last Name Field Label declared and assigned, goes with the Client Last Name text field
+	JLabel f_ClientEmailFieldLabel = new JLabel(); // Client Email Field Label declared and assigned, goes with the Client Email text field
+	JLabel f_ClientPhoneFieldLabel = new JLabel(); // Client Phone Number Field Label declared and assigned, goes with the Client Phone Number text field
+	
+	// JText Field used in the Material Page
+	JTextField f_ClientFirstNameField = new JTextField(); // Client First Name Field is declared and assigned
+	JTextField f_ClientLastNameField = new JTextField(); // Client Last Name Field is declared and assigned
+	JTextField f_ClientEmailField = new JTextField(); // Client Email Field is declared and assigned
+	JTextField f_ClientPhoneNumberField = new JTextField(); // Client Phone Number Field is declared and assigned
+	
+	// JButtons used for the Material page
+	JButton f_BackButton = new JButton("Back"); // Back Button is declared and assigned
+	JButton f_CheckoutButton = new JButton("Check-out Material"); // Checkout Button is declared and assigned
+	JButton f_SearchClientButton = new JButton("Search Client"); // Search Client Button is declared and assigned
+	JButton f_FinalizeCheckoutButton = new JButton("Finalize Checkout"); // Finalize Checkout Button is declared and assigned
+	
+	// Global HashMaps used for storing client information coming in from the Client Database
+	HashMap f_ClientFirstName = new HashMap<String, String>();
+	HashMap f_ClientLastName = new HashMap<String, String>();
+	HashMap f_ClientEmail = new HashMap<String, String>();
+	HashMap f_ClientFNEmail = new HashMap<String, String>();
+	HashMap f_ClientPhone = new HashMap<String, String>();
+	HashMap f_ClientFNPhone = new HashMap<String, String>();
+	
+	// The userID is sent from the previous page to this page for the sign out label (so it looks nice and personalized), Client and material database information is also imported
+	Material_Page(String namePlate, String ISBNNum, String Title, String Author, String Genre, String Type, int Quantity, 
+			Object FirstName, Object LastName, Object Email, Object PhoneNum, Object FNEmail, Object FNPhone) {
+		
+		// The previous window's userID variable is sent through to this window for the username label
+		f_Username = namePlate;
+		
+		// Information being imported from the previous page
+		f_BookISBN = ISBNNum;
+		f_BookTitle = Title;
+		f_BookAuthor = Author;
+		f_BookGenre = Genre;
+		f_BookType = Type;
+		f_BookQuantity = Quantity;
+		
+		// Information being imported from the Client Database
+		f_ClientFirstName = (HashMap) FirstName;
+		f_ClientLastName = (HashMap) LastName;
+		f_ClientEmail = (HashMap) Email;
+		f_ClientFNEmail = (HashMap) FNEmail;
+		f_ClientPhone = (HashMap) PhoneNum;
+		f_ClientFNPhone = (HashMap) FNPhone;
+		
+		// +-------------------- Label placement and personalization --------------------+	
+		f_MaterialPageHeader.setBounds(280, 10, 500, 100); // LIBSYS header is placed in the window and given dimensions
+		f_MaterialPageHeader.setText("LIBSYS System"); // allows users to see the header label
+		f_MaterialPageHeader.setFont(new Font(null, Font.BOLD, 30)); // Text size is changed for the header label
+		
+		f_BlueLineLabel.setBounds(0, 75, 800, 3); // Line is placed underneath the header
+		f_BlueLineLabel.setOpaque(true); // line is set to be opaque, which allows for color to be added
+		f_BlueLineLabel.setBackground(Color.BLUE); // line is filled with the color blue
+		
+		f_InformationLabel.setBounds(15, 100, 200, 25); // Information Label is placed in the window and given dimensions
+		f_InformationLabel.setText("Material Information:"); // Text is assigned
+		f_InformationLabel.setFont(new Font(null, Font.BOLD, 18)); // Text size is changed
+		
+		f_BoldInfoLineLabel.setBounds(15, 122, 180, 2); // Bold Info Line Label is placed in the window and given dimensions
+		f_BoldInfoLineLabel.setOpaque(true);  // line is set to be opaque, which allows for color to be added
+		f_BoldInfoLineLabel.setBackground(Color.black); // line is filled with the color black
+		
+		f_BookISBNLabel.setBounds(15, 140, 250, 25); // Book ISBN Label Label is placed in the window and given dimensions
+		f_BookISBNLabel.setText("ISBN #: " + f_BookISBN);  // Text is assigned
+		f_BookISBNLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
+		
+		f_BookTitleLabel.setBounds(15, 165, 400, 25); // Book Title Label is placed in the window and given dimensions
+		f_BookTitleLabel.setText("Title: " + f_BookTitle);  // Text is assigned
+		f_BookTitleLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
+		
+		f_BookAuthorLabel.setBounds(15, 190, 350, 25); // Book Author Label is placed in the window and given dimensions
+		f_BookAuthorLabel.setText("Author: " + f_BookAuthor);  // Text is assigned
+		f_BookAuthorLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
+		
+		f_BookGenreLabel.setBounds(15, 215, 250, 25); // Book Genre Label is placed in the window and given dimensions
+		f_BookGenreLabel.setText("Genre: " + f_BookGenre);  // Text is assigned
+		f_BookGenreLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
+		
+		f_BookTypeLabel.setBounds(15, 240, 250, 25); // Book Type Label is placed in the window and given dimensions
+		f_BookTypeLabel.setText("Material Type: " + f_BookType);  // Text is assigned
+		f_BookTypeLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
+		
+		f_BookQuantityLabel.setBounds(15, 265, 250, 25); // Book Quantity Label is placed in the window and given dimensions
+		f_BookQuantityLabel.setText("Quantity: " + f_BookQuantity); // Text is assigned
+		f_BookTypeLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
+		
+		f_LocationLabel.setBounds(450, 100, 200, 25); // Location Label is placed in the window and given dimensions
+		f_LocationLabel.setText("Material Location:");  // Text is assigned
+		f_LocationLabel.setFont(new Font(null, Font.BOLD, 18)); // Text size is changed
+		
+		f_LocationLineLabel.setBounds(450, 122, 155, 2); // Location Line Label is placed in the window and given dimensions
+		f_LocationLineLabel.setOpaque(true); // line is set to be opaque, which allows for color to be added
+		f_LocationLineLabel.setBackground(Color.black);  // line is filled with the color black
+		
+		f_FloorLocationLabel.setBounds(450, 140, 200, 25); // Floor Location Label is placed in the window and given dimensions
+		// Fiction Books go on floor 2
+		if (f_BookType.equals("Fiction Book")) {
+			f_FloorLocationLabel.setText("Floor: L2");
+		}
+		// Non-Fiction/other materials go on floor 1
+		else {
+			f_FloorLocationLabel.setText("Floor: L1");
+		}
+		f_FloorLocationLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
+		
+		f_SectionLocationLabel.setBounds(450, 165, 300, 25); // Section Location Label is placed in the window and given dimensions
+		f_SectionLocationLabel.setText("Section: " + f_BookGenre);  // Text is assigned
+		f_SectionLocationLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
+		
+		f_ClientSearchLabel.setBounds(15, 315, 200, 25); // Client Search Label is placed in the window and given dimensions
+		f_ClientSearchLabel.setText("Client Search:");  // Text is assigned
+		f_ClientSearchLabel.setFont(new Font(null, Font.BOLD, 18)); // Text size is changed
+		f_ClientSearchLabel.setVisible(false); // Set invisible
+		
+		f_ClientSearchLineLabel.setBounds(15, 337, 123, 2); // Client Search Line Label is placed in the window and given dimensions
+		f_ClientSearchLineLabel.setOpaque(true); // line is set to be opaque, which allows for color to be added
+		f_ClientSearchLineLabel.setBackground(Color.black);  // line is filled with the color black
+		f_ClientSearchLineLabel.setVisible(false); // Set invisible
+		
+		f_ClientFirstNameFieldLabel.setBounds(15, 355, 100, 25); // Client First Name Field Label is placed in the window and given dimensions
+		f_ClientFirstNameFieldLabel.setText("First Name: ");  // Text is assigned
+		f_ClientFirstNameFieldLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
+		f_ClientFirstNameFieldLabel.setVisible(false); // Set invisible
+		
+		f_ClientLastNameFieldLabel.setBounds(15, 380, 100, 25); // Client Last Name Field Label is placed in the window and given dimensions
+		f_ClientLastNameFieldLabel.setText("Last Name: ");  // Text is assigned
+		f_ClientLastNameFieldLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
+		f_ClientLastNameFieldLabel.setVisible(false); // Set invisible
+		
+		// CONTINUE FROM HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		
+		// +-------------------- Button placement and personalization --------------------+
+		// Guest Users Are only allowed to go back to the Material Search Page
+		if (f_Username.equals("Guest12")) {
+			f_BackButton.setBounds(450, 265, 100, 25);
+			f_BackButton.addActionListener(this);
+			f_BackButton.setFocusable(false);
+			
+		}
+		
+		// Library staff users can check out materials and go back to the Material Search Page
+		else {
+			f_CheckoutButton.setBounds(450, 265, 150, 25);
+			f_CheckoutButton.addActionListener(this);
+			f_CheckoutButton.setFocusable(false);
+			
+			f_BackButton.setBounds(595, 265, 100, 25);
+			f_BackButton.addActionListener(this);
+			f_BackButton.setFocusable(false);
+			
+		}
+		
+		// +-------------------- Text Fields placement and dimensions --------------------+
+		
+		// Work in Progress
+		
+		// +-------------------- Frame additions and functionality --------------------+
+		f_MaterialPage.add(f_MaterialPageHeader); // MaterialPageHeader Added to the frame
+		f_MaterialPage.add(f_BlueLineLabel); // BlueLineLabel Added to the frame
+		f_MaterialPage.add(f_InformationLabel); // InformationLabel Added to the frame
+		f_MaterialPage.add(f_BoldInfoLineLabel); // BoldInfoLineLabel Added to the frame
+		f_MaterialPage.add(f_BookISBNLabel); // BookISBNLabel Added to the frame
+		f_MaterialPage.add(f_BookTitleLabel); // BookTitleLabel Added to the frame
+		f_MaterialPage.add(f_BookAuthorLabel); // BookAuthorLabel Added to the frame
+		f_MaterialPage.add(f_BookGenreLabel); // BookGenreLabel Added to the frame
+		f_MaterialPage.add(f_BookTypeLabel); // BookTypeLabel Added to the frame
+		f_MaterialPage.add(f_BookQuantityLabel); // BookQuantityLabel Added to the frame
+		f_MaterialPage.add(f_LocationLabel); // LocationLabel Added to the frame
+		f_MaterialPage.add(f_LocationLineLabel); // LocationLineLabel Added to the frame
+		f_MaterialPage.add(f_FloorLocationLabel); // FloorLocationLabel Added to the frame
+		f_MaterialPage.add(f_SectionLocationLabel); // SectionLocationLabel Added to the frame
+		f_MaterialPage.add(f_BackButton); // BackButton Added to the frame
+		f_MaterialPage.add(f_CheckoutButton); // CheckoutButton Added to the frame
+		f_MaterialPage.add(f_ClientSearchLabel); // ClientSearchLabel Added to the frame
+		f_MaterialPage.add(f_ClientSearchLineLabel); // ClientSearchLineLabel Added to the frame
+		
+		// +-------------------- Frame dimensions and personalization --------------------+
+		f_MaterialPage.setSize(800, 350); // dimensions are given to the window
+		f_MaterialPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // application is halted when window is closed
+		f_MaterialPage.setLayout(null); // no layout is specified, everything is placed manually
+		f_MaterialPage.setResizable(false); // disables ability to resize windows
+		f_MaterialPage.setVisible(true); // window is made visible for users to see
+		f_MaterialPage.setIconImage(f_EncryptionLOGO.getImage()); // Image Icon is used to set the window/application image
+		
+	}
+	
+	// +-------------------- Action Listener --------------------+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		// When the Back Button is pressed, the current page is closed and a new Material Search Page is created with username info and Material Database info sent back through
+		if (e.getSource() == f_BackButton) {
+			f_MaterialPage.dispose();
+			new Material_Search(f_Username, Material_Database.getISBN(), Material_Database.getTitle(),
+					Material_Database.getAuthor(), Material_Database.getGenre(), Material_Database.getQuantity(),
+					Material_Database.getMaterialType(), Material_Database.getISBNCheck());
+			
+		}
+		
+		// When the Checkout Button is pressed, the page will extend downward allowing for more information to be displayed, this is where library staff can checkout books via Client Search
+		if (e.getSource() == f_CheckoutButton) {
+			f_MaterialPage.setSize(800, 550);
+			f_ClientSearchLabel.setVisible(true);
+			f_ClientSearchLineLabel.setVisible(true);
+			f_ClientFirstNameFieldLabel.setVisible(true);
+			f_ClientLastNameFieldLabel.setVisible(true);
+			
+		}
+		
+	}
+
+}
