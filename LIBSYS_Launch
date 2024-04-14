@@ -8,7 +8,8 @@ public class LIBSYS_launch {
 		// Instances of the login page and the login credentials for use when the application begins
 		new Login_Cred(); // Generates and implements the login credentials
 		new Selection_Page(); // Creates the selection page for users to login or just browse the catalog as a guest
-		new Client_Database();
+		new Client_Database(); // Generates and implements Client Information
+		new Material_Database(); // Generates and implements Catalog information
 		
 	}
 
