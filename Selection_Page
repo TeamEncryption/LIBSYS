@@ -7,7 +7,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,55 +18,60 @@ import javax.swing.JLabel;
 public class Selection_Page implements ActionListener {
 	
 	// Frame declaration and assignment for the main window of the Selection Page
-	JFrame SelectionFrame = new JFrame("LIBSYS"); // Displays "LIBSYS" on the top bar of the window
+	JFrame f_SelectionFrame = new JFrame("LIBSYS"); // Displays "LIBSYS" on the top bar of the window
+	
+	URL f_LOGOImage = LIBSYS_launch.class.getResource("Encryption Logo.png"); // Creates a reference to the icon within other folder holding the Logo image
+	
+	ImageIcon f_EncryptionLOGO = new ImageIcon(f_LOGOImage); //Image icon instance of the Logo image
 	
 	// Button used for the Selection Page
-	JButton UserButton = new JButton("User Login"); // User Login Button Declaration and assignment, labeled with "User Login"
-	JButton GuestButton = new JButton("Use as Guest"); // Guest Button Declaration and assignment, labeled with "Use as Guest"
-	JButton exitButton = new JButton("Exit"); // Exit Button declaration and assignment, labeled with "Exit"
+	JButton f_UserButton = new JButton("User Login"); // User Login Button Declaration and assignment, labeled with "User Login"
+	JButton f_GuestButton = new JButton("Use as Guest"); // Guest Button Declaration and assignment, labeled with "Use as Guest"
+	JButton f_exitButton = new JButton("Exit"); // Exit Button declaration and assignment, labeled with "Exit"
 	
 	// Labels used for the Selection Page
-	JLabel LIBSYSHeader = new JLabel("LIBSYS System"); // Header at the top of the window declaration and assignment, says "LIBSYS System"
-	JLabel LineLabel = new JLabel(); // Creates a line to separate the header from the rest of the window, is visually pleasing
+	JLabel f_LIBSYSHeader = new JLabel("LIBSYS System"); // Header at the top of the window declaration and assignment, says "LIBSYS System"
+	JLabel f_LineLabel = new JLabel(); // Creates a line to separate the header from the rest of the window, is visually pleasing
 
 	// Main constructor
 	Selection_Page() {
 		
 		// +-------------------- Label placement and personalization --------------------+
-		LIBSYSHeader.setBounds(180, 10, 300, 100); // placement and size for the Header
-		LIBSYSHeader.setVisible(true); // allows the header to be visible
-		LIBSYSHeader.setFont(new Font(null, Font.BOLD, 30)); // Changing the Header's font size
+		f_LIBSYSHeader.setBounds(180, 10, 300, 100); // placement and size for the Header
+		f_LIBSYSHeader.setVisible(true); // allows the header to be visible
+		f_LIBSYSHeader.setFont(new Font(null, Font.BOLD, 30)); // Changing the Header's font size
 		
-		LineLabel.setBounds(0, 75, 600, 3); // placement and size for the header line
-		LineLabel.setOpaque(true); // sets the label to be opaque
-		LineLabel.setBackground(Color.BLUE); // Fills the label's content area to be colored blue
+		f_LineLabel.setBounds(0, 75, 600, 3); // placement and size for the header line
+		f_LineLabel.setOpaque(true); // sets the label to be opaque
+		f_LineLabel.setBackground(Color.BLUE); // Fills the label's content area to be colored blue
 		
 		// +-------------------- Button placement and personalization --------------------+		
-		UserButton.setBounds(115, 250, 125, 25); // placement and size for the User login button
-		UserButton.addActionListener(this); // allows the button to perform an action when pressed
-		UserButton.setFocusable(false); // disables the box outline around button text
+		f_UserButton.setBounds(115, 250, 125, 25); // placement and size for the User login button
+		f_UserButton.addActionListener(this); // allows the button to perform an action when pressed
+		f_UserButton.setFocusable(false); // disables the box outline around button text
 		
-		GuestButton.setBounds(335, 250, 125, 25); // placement and size for the Guest button
-		GuestButton.addActionListener(this); // allows the button to perform an action when pressed
-		GuestButton.setFocusable(false); // disables the box outline around button text
+		f_GuestButton.setBounds(335, 250, 125, 25); // placement and size for the Guest button
+		f_GuestButton.addActionListener(this); // allows the button to perform an action when pressed
+		f_GuestButton.setFocusable(false); // disables the box outline around button text
 		
-		exitButton.setBounds(520, 80, 60, 25); // placement and size for the Exit Button
-		exitButton.addActionListener((event) -> System.exit(0)); // allows the button to completely exit the application when pressed
-		exitButton.setFocusable(false); // disables the box outline around button text
+		f_exitButton.setBounds(520, 80, 60, 25); // placement and size for the Exit Button
+		f_exitButton.addActionListener((event) -> System.exit(0)); // allows the button to completely exit the application when pressed
+		f_exitButton.setFocusable(false); // disables the box outline around button text
 		
 		// +-------------------- Frame additions and functionality --------------------+		
-		SelectionFrame.add(LIBSYSHeader); // Adds the Header to the window
-		SelectionFrame.add(LineLabel); // adds the line to the window
-		SelectionFrame.add(GuestButton); // adds the Guest login button to window
-		SelectionFrame.add(UserButton); // adds the User Login Button to the window
-		SelectionFrame.add(exitButton); // adds the Exit Button to the window
+		f_SelectionFrame.add(f_LIBSYSHeader); // Adds the Header to the window
+		f_SelectionFrame.add(f_LineLabel); // adds the line to the window
+		f_SelectionFrame.add(f_GuestButton); // adds the Guest login button to window
+		f_SelectionFrame.add(f_UserButton); // adds the User Login Button to the window
+		f_SelectionFrame.add(f_exitButton); // adds the Exit Button to the window
 		
 		// +-------------------- Frame dimensions and personalization --------------------+		
-		SelectionFrame.setSize(600, 400); // setting the dimensions of the window
-		SelectionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // When the frame is closed out, the system is halted
-		SelectionFrame.setResizable(false); // disables the ability for users to resize the window
-		SelectionFrame.setLayout(null); // no imported layout is used, placement is done manually
-		SelectionFrame.setVisible(true); // allows the window to be visible for users
+		f_SelectionFrame.setSize(600, 400); // setting the dimensions of the window
+		f_SelectionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // When the frame is closed out, the system is halted
+		f_SelectionFrame.setResizable(false); // disables the ability for users to resize the window
+		f_SelectionFrame.setLayout(null); // no imported layout is used, placement is done manually
+		f_SelectionFrame.setVisible(true); // allows the window to be visible for users
+		f_SelectionFrame.setIconImage(f_EncryptionLOGO.getImage()); // Image Icon is used to set the window/application image
 		
 	}
 	
@@ -75,17 +82,18 @@ public class Selection_Page implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		// This function sends users to the User Login page when the User button is pressed
-		if (e.getSource() == UserButton) {
+		if (e.getSource() == f_UserButton) {
 			new Login_Page(Login_Cred.getLoginInfo()); // creates new instance of the Login Page, passes in the Login credentials required to login properly
-			SelectionFrame.dispose(); // closes the current window
+			f_SelectionFrame.dispose(); // closes the current window
 			
 		}
 		
 		// This function will send users to the library catalog Search Page under a hard-coded user name with limited system functionality
-		if (e.getSource() == GuestButton) {
+		if (e.getSource() == f_GuestButton) {
 			String userID = "Guest12"; // The pre-determined user name for guest users
-			new Material_Search(userID); // instance for the Search Page is created and the user name information is passed to the Search Page
-			SelectionFrame.dispose(); // closes the current window
+			new Material_Search(userID, Material_Database.getISBN(), Material_Database.getTitle(), Material_Database.getAuthor(), 
+					Material_Database.getGenre(), Material_Database.getQuantity(), Material_Database.getMaterialType(), Material_Database.getISBNCheck()); // instance for the Search Page is created and the user name information is passed to the Search Page
+			f_SelectionFrame.dispose(); // closes the current window
 			
 		}
 		
