@@ -8,136 +8,146 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import java.net.URL;
 
 // Action Listener is implemented for button functionality
 public class Main_Menu implements ActionListener {
 		
 	// This is used for retaining the User name information throughout the system
-	public static String namePlate;
+	public static String f_namePlate;
 	
 	// JFrame creation for the Main Menu window
-	JFrame Menu = new JFrame("LIBSYS");
+	JFrame f_Menu = new JFrame("LIBSYS");
+	
+	URL f_ProfileImage = LIBSYS_launch.class.getResource("Profile Guy.png"); // Creates a reference to the icon within other folder holding the Profile image
+	URL f_LOGOImage = LIBSYS_launch.class.getResource("Encryption Logo.png"); // Creates a reference to the icon within other folder holding the Logo image
+	
+	ImageIcon f_ProfileGuy = new ImageIcon(f_ProfileImage); //Image icon instance of the Profile image
+	ImageIcon f_EncryptionLOGO = new ImageIcon(f_LOGOImage); //Image icon instance of the Logo image
 	
 	// Labels created for use throughout the Main Menu window
-	JLabel BlueLineLabel = new JLabel(); // Blue line label is declared and assigned
-	JLabel LIBSYSLabel = new JLabel(); // LIBSYS header label is declared and assigned
-	JLabel WelcomeLabel = new JLabel(); // Welcome label is declared and assigned
-	JLabel profilePlaceholder = new JLabel(); // Profile placeholder box is declared and assigned
-	JLabel username = new JLabel(); // user name label is declared and assigned
-	JLabel LOGOplaceholder = new JLabel(); // Logo placeholder label is declared and assigned
+	JLabel f_BlueLineLabel = new JLabel(); // Blue line label is declared and assigned
+	JLabel f_LIBSYSLabel = new JLabel(); // LIBSYS header label is declared and assigned
+	JLabel f_WelcomeLabel = new JLabel(); // Welcome label is declared and assigned
+	JLabel f_profilePlaceholder = new JLabel(f_ProfileGuy); // Profile placeholder box is declared and assigned
+	JLabel f_username = new JLabel(); // user name label is declared and assigned
+	JLabel f_LOGOLabel = new JLabel(f_EncryptionLOGO); // Logo placeholder label is declared and assigned
 	
 	// Buttons created for use in the Main Menu Window
-	JButton searchCatalogButton = new JButton("Search Catalog"); // Catalog search button is declared and assigned, labeled "Search Catalog"
-	JButton clientButton = new JButton("Search Client"); // Client search button declared and assigned, labeled "Search Client"
-	JButton managementButton = new JButton("Management"); // Management reports button declared and assigned, labeled "Management"
-	JButton signoutButton = new JButton("Sign Out"); // sign out button is declared and assigned, labeled "Sign Out"
+	JButton f_searchCatalogButton = new JButton("Search Catalog"); // Catalog search button is declared and assigned, labeled "Search Catalog"
+	JButton f_clientButton = new JButton("Search Client"); // Client search button declared and assigned, labeled "Search Client"
+	JButton f_managementButton = new JButton("Management"); // Management reports button declared and assigned, labeled "Management"
+	JButton f_signoutButton = new JButton("Sign Out"); // sign out button is declared and assigned, labeled "Sign Out"
 	
 	// The userID is sent from the previous page to this page for the sign out label (so it looks nice and personalized)
 	public Main_Menu(String userID) {
 		
 		// The previous window's userID variable is sent through to this window for the username label
-		namePlate = userID;
+		f_namePlate = userID;
 		
 		// +-------------------- Labels placement and personalization --------------------+
-		LIBSYSLabel.setBounds(500, 0, 700, 100); // LIBSYS header label is placed and given dimensions
-		LIBSYSLabel.setText("LIBSYS System"); // LIBSYS header label has text set to it
-		LIBSYSLabel.setFont(new Font(null, Font.BOLD, 35)); // LIBSYS header label is given a new font size of 35
+		f_LIBSYSLabel.setBounds(500, 0, 700, 100); // LIBSYS header label is placed and given dimensions
+		f_LIBSYSLabel.setText("LIBSYS System"); // LIBSYS header label has text set to it
+		f_LIBSYSLabel.setFont(new Font(null, Font.BOLD, 35)); // LIBSYS header label is given a new font size of 35
 		
-		BlueLineLabel.setBounds(0, 70, 1280, 3); // Blue line label is placed and given dimensions
-		BlueLineLabel.setOpaque(true); // Blue line label is set to be opaque for it to become blue
-		BlueLineLabel.setBackground(Color.blue); // Blue line label is filled with the color blue
+		f_BlueLineLabel.setBounds(0, 70, 1280, 3); // Blue line label is placed and given dimensions
+		f_BlueLineLabel.setOpaque(true); // Blue line label is set to be opaque for it to become blue
+		f_BlueLineLabel.setBackground(Color.blue); // Blue line label is filled with the color blue
 		
-		WelcomeLabel.setBounds(15, 50, 250, 100); // Welcome label is placed and given dimensions
-		WelcomeLabel.setText("Welcome, " + namePlate); // Welcome label has text set to it
-		WelcomeLabel.setFont(new Font(null, Font.PLAIN, 25)); // Welcome label is given a new font size of 25
+		f_WelcomeLabel.setBounds(15, 50, 250, 100); // Welcome label is placed and given dimensions
+		f_WelcomeLabel.setText("Welcome, " + f_namePlate); // Welcome label has text set to it
+		f_WelcomeLabel.setFont(new Font(null, Font.PLAIN, 25)); // Welcome label is given a new font size of 25
 		
-		profilePlaceholder.setBounds(1185, 85, 50, 50); // Profile placeholder box is placed and given dimensions
-		profilePlaceholder.setOpaque(true); // Profile placeholder box is set to be opaque for color to fill it
-		profilePlaceholder.setBackground(Color.LIGHT_GRAY); // Profile placeholder box is filled with color light-gray
+		f_profilePlaceholder.setBounds(1185, 85, 50, 50); // Profile placeholder box is placed and given dimensions
 		
-		LOGOplaceholder.setBounds(350, 100, 700, 500); // Logo placeholder text is placed and given dimensions
-		LOGOplaceholder.setText("LOGO"); // Logo placeholder text has text set to it
-		LOGOplaceholder.setFont(new Font(null, Font.PLAIN, 200)); // Logo placeholder text is given a new font size of 200
+		f_LOGOLabel.setBounds(375, 60, 500, 500); // Logo placeholder text is placed and given dimensions
 		
-		username.setBounds(1185, 100, 100, 100); // user name label is placed and given dimensions
-		username.setText(namePlate); // user name is given text using the name plate variable value
+		f_username.setBounds(1185, 100, 100, 100); // user name label is placed and given dimensions
+		f_username.setText(f_namePlate); // user name is given text using the name plate variable value
 		
 		// +-------------------- Buttons placement and personalization --------------------+
-		searchCatalogButton.setBounds(325, 500, 200, 50); // Search button is placed and given dimensions
-		searchCatalogButton.addActionListener(this); // adds action listener to the Search Catalog button to give it functionality
-		searchCatalogButton.setFocusable(false); // disables box outline to button text
-		searchCatalogButton.setFont(new Font(null, Font.PLAIN, 20)); // Search catalog button is given a new font size of 20
+		f_searchCatalogButton.setBounds(325, 500, 200, 50); // Search button is placed and given dimensions
+		f_searchCatalogButton.addActionListener(this); // adds action listener to the Search Catalog button to give it functionality
+		f_searchCatalogButton.setFocusable(false); // disables box outline to button text
+		f_searchCatalogButton.setFont(new Font(null, Font.PLAIN, 20)); // Search catalog button is given a new font size of 20
 		
-		clientButton.setBounds(525, 500, 200, 50); // Client search button is placed and given dimensions
-		clientButton.addActionListener(this); // adds action listener to the Client search button to give it functionality
-		clientButton.setFocusable(false); // disables box outline around button text
-		clientButton.setFont(new Font(null, Font.PLAIN, 20)); // Client search button is given a new font size of 20
+		f_clientButton.setBounds(525, 500, 200, 50); // Client search button is placed and given dimensions
+		f_clientButton.addActionListener(this); // adds action listener to the Client search button to give it functionality
+		f_clientButton.setFocusable(false); // disables box outline around button text
+		f_clientButton.setFont(new Font(null, Font.PLAIN, 20)); // Client search button is given a new font size of 20
 		
-		managementButton.setBounds(725, 500, 200, 50); // Management reports button is placed and given dimensions
-		managementButton.addActionListener(this); // adds action listener to Management reports button to give it functionality
-		managementButton.setFocusable(false); // disables box outline around button text
-		managementButton.setFont(new Font(null, Font.PLAIN, 20)); // Management reports button is given a new font size of 20
+		f_managementButton.setBounds(725, 500, 200, 50); // Management reports button is placed and given dimensions
+		f_managementButton.addActionListener(this); // adds action listener to Management reports button to give it functionality
+		f_managementButton.setFocusable(false); // disables box outline around button text
+		f_managementButton.setFont(new Font(null, Font.PLAIN, 20)); // Management reports button is given a new font size of 20
 		
-		signoutButton.setBounds(1160, 160, 100, 25); // sign out button is placed and given dimensions
-		signoutButton.addActionListener(this); // adds action listener to the Sign Out button to give it functionality
-		signoutButton.setFocusable(false); // disables box outline around button text
-		signoutButton.setFont(new Font(null, Font.PLAIN, 10)); // Sign Out button is given a new font size of 10
-		signoutButton.setForeground(Color.BLUE); // Sign Out Button text is given a blue font color
-		signoutButton.setBorder(BorderFactory.createEmptyBorder()); // The border around the Sign Out button is taken away
-		signoutButton.setContentAreaFilled(false); // the standard blue hue to the Sign Out button is taken away
+		f_signoutButton.setBounds(1160, 160, 100, 25); // sign out button is placed and given dimensions
+		f_signoutButton.addActionListener(this); // adds action listener to the Sign Out button to give it functionality
+		f_signoutButton.setFocusable(false); // disables box outline around button text
+		f_signoutButton.setFont(new Font(null, Font.PLAIN, 10)); // Sign Out button is given a new font size of 10
+		f_signoutButton.setForeground(Color.BLUE); // Sign Out Button text is given a blue font color
+		f_signoutButton.setBorder(BorderFactory.createEmptyBorder()); // The border around the Sign Out button is taken away
+		f_signoutButton.setContentAreaFilled(false); // the standard blue hue to the Sign Out button is taken away
 		
 		// +-------------------- Frame additions and functionality --------------------+
-		Menu.add(LIBSYSLabel); // adds the LIBSYS header label to the window
-		Menu.add(BlueLineLabel); // adds the Blue Line label to the window
-		Menu.add(WelcomeLabel); // adds the Welcome label to the window
-		Menu.add(searchCatalogButton); // adds the Search Catalog button to the window
-		Menu.add(clientButton); // adds the client search button to the window
-		Menu.add(managementButton); // adds the management reports button to the window
-		Menu.add(profilePlaceholder); // adds the profile placeholder box to the window
-		Menu.add(username); // adds the user name label to the window
-		Menu.add(signoutButton); // adds the Sign Out button to the window
-		Menu.add(LOGOplaceholder); // adds the Logo placeholder text to the window
+		f_Menu.add(f_LIBSYSLabel); // adds the LIBSYS header label to the window
+		f_Menu.add(f_BlueLineLabel); // adds the Blue Line label to the window
+		f_Menu.add(f_WelcomeLabel); // adds the Welcome label to the window
+		f_Menu.add(f_searchCatalogButton); // adds the Search Catalog button to the window
+		f_Menu.add(f_clientButton); // adds the client search button to the window
+		f_Menu.add(f_managementButton); // adds the management reports button to the window
+		f_Menu.add(f_profilePlaceholder); // adds the profile placeholder box to the window
+		f_Menu.add(f_username); // adds the user name label to the window
+		f_Menu.add(f_signoutButton); // adds the Sign Out button to the window
+		f_Menu.add(f_LOGOLabel); // adds the Logo placeholder text to the window
 		
 		// +-------------------- Frame dimensions and personalization --------------------+
-		Menu.setSize(1280, 720); // dimensions are given to the window
-		Menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // application is halted when window is closed
-		Menu.setLayout(null); // no layout is specified, everything is placed manually
-		Menu.setResizable(false); // disables ability to resize windows
-		Menu.setVisible(true); // window is made visible for users to see
+		f_Menu.setSize(1280, 720); // dimensions are given to the window
+		f_Menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // application is halted when window is closed
+		f_Menu.setLayout(null); // no layout is specified, everything is placed manually
+		f_Menu.setResizable(false); // disables ability to resize windows
+		f_Menu.setIconImage(f_EncryptionLOGO.getImage()); // Image Icon is used to set the window/application image
+		f_Menu.setVisible(true); // window is made visible for users to see
 		
 	}
 		
-	// +-------------------- Action Listener for buttons --------------------+
+	// +-------------------- Action Listener --------------------+
 	public void actionPerformed(ActionEvent e) {
 		
 		// Sign out buttons will take you to the login page
-		if (e.getSource() == signoutButton) {
-			Menu.dispose();
-			new Selection_Page();
+		if (e.getSource() == f_signoutButton) {
+			f_Menu.dispose(); // closes current page
+			new Selection_Page(); // created new selection page
 		}
 		
 		// Search catalog button will send users to the main search screen
-		if (e.getSource() == searchCatalogButton) {
-			Menu.dispose();
-			new Material_Search(namePlate);
+		if (e.getSource() == f_searchCatalogButton) {
+			f_Menu.dispose(); // Closes current page
+			new Material_Search(f_namePlate, Material_Database.getISBN(), Material_Database.getTitle(),
+					Material_Database.getAuthor(),Material_Database.getGenre(), Material_Database.getQuantity(),
+					Material_Database.getMaterialType(), Material_Database.getISBNCheck());
+			 // creates new material Search window with all Material database information and Username
+			
 		}
 		
 		// Client search button will send users to the client search screen
-		if (e.getSource() == clientButton) {
-			Menu.dispose();
-			new Client_Search(namePlate, Client_Database.getClientFirstName(), Client_Database.getClientLastName(),
+		if (e.getSource() == f_clientButton) {
+			f_Menu.dispose(); // Closes current Page
+			new Client_Search(f_namePlate, Client_Database.getClientFirstName(), Client_Database.getClientLastName(),
 					Client_Database.getClientEmail(), Client_Database.getClientPhone(),
 					Client_Database.getClientFNEmail(), Client_Database.getClientFNPhone());
+			 // creates new material Search window with all Client database information and Username
 			
 		}
 		
 		// Management reports button will take users to the management screen
-		if (e.getSource() == managementButton) {
-			Menu.dispose();
-			new Management_Reports(namePlate);
+		if (e.getSource() == f_managementButton) {
+			f_Menu.dispose(); // Closes current Page
+			new Management_Reports(f_namePlate); // creates new Management report page with Username passed into it
 			
 		}
 		
