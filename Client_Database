@@ -1,173 +1,247 @@
 // +---------- This class is currently holding the HashMap for the client page ----------+
+// Each hashmap is utilized when a library staff user searchers for a client via the respective methods on the Client Search Page
 
 import java.util.HashMap;
 
 public class Client_Database {
 
-	static HashMap<String, String> ClientFirstName = new HashMap<String, String>();
-	static HashMap<String, String> ClientLastName = new HashMap<String, String>();
-	static HashMap<String, String> ClientEmail = new HashMap<String, String>();
-	static HashMap<String, String> ClientFNEmail = new HashMap<String, String>();
-	static HashMap<String, String> ClientPhone = new HashMap<String, String>();
-	static HashMap<String, String> ClientFNPhone = new HashMap<String, String>();
-
-// GET THE VOID METHODS TO COMMUNICATE WITH THIS CONSTRUCTOR
+	// Hashmaps for each method of Client search, each unique key needed to hold a value without any overlap
+	static HashMap<String, String> f_ClientFirstName = new HashMap<String, String>();
+	static HashMap<String, String> f_ClientLastName = new HashMap<String, String>();
+	static HashMap<String, String> f_ClientEmail = new HashMap<String, String>();
+	static HashMap<String, String> f_ClientFNEmail = new HashMap<String, String>();
+	static HashMap<String, String> f_ClientPhone = new HashMap<String, String>();
+	static HashMap<String, String> f_ClientFNPhone = new HashMap<String, String>();
 	
+	// Constructor for the Hashmaps
 	Client_Database() {
 		
-		ClientFirstName.put("Matthew", "Matthew");
-		ClientFirstName.put("matthewdorlet@gmail.com", "Matthew");
-		ClientFirstName.put("(251) 406-5278", "Matthew");
-		ClientFirstName.put("Mimi", "Mimi");
-		ClientFirstName.put("mimidorlet@yahoo.com", "Mimi");
-		ClientFirstName.put("(251) 509-7379", "Mimi");
+		// Client first name links Client First names, emails, and Phone numbers to their first name
+		f_ClientFirstName.put("Matthew", "Matthew");
+		f_ClientFirstName.put("matthewdorlet@gmail.com", "Matthew");
+		f_ClientFirstName.put("(251) 406-5278", "Matthew");
 		
-		ClientLastName.put("Dorlet", "Dorlet");
-		ClientLastName.put("matthewdorlet@gmail.com", "Dorlet");
-		ClientLastName.put("(251) 406-5278", "Dorlet");
-		ClientLastName.put("mimidorlet@yahoo.com", "Dorlet");
-		ClientLastName.put("(251) 509-7379", "Dorlet");
-				
-		ClientEmail.put("matthewdorlet@gmail.com", "matthewdorlet@gmail.com");
-		ClientEmail.put("(251) 406-5278", "matthewdorlet@gmail.com");
-		ClientEmail.put("mimidorlet@yahoo.com", "mimidorlet@yahoo.com");
-		ClientEmail.put("(251) 509-7379", "mimidorlet@yahoo.com");
+		// Client last name links client last names, emails, and phone numbers to their last names
+		f_ClientLastName.put("Dorlet", "Dorlet");
+		f_ClientLastName.put("matthewdorlet@gmail.com", "Dorlet");
+		f_ClientLastName.put("(251) 406-5278", "Dorlet");
 		
-		ClientFNEmail.put("Matthew", "matthewdorlet@gmail.com");
-		ClientFNEmail.put("Mimi", "mimidorlet@yahoo.com");
-				
-		ClientPhone.put("(251) 406-5278", "(251) 406-5278");
-		ClientPhone.put("matthewdorlet@gmail.com", "(251) 406-5278");
-		ClientPhone.put("(251) 509-7379", "(251) 509-7379");
-		ClientPhone.put("mimidorlet@yahoo.com", "(251) 509-7379");
+		// Client email links client emails and phone numbers to their emails
+		f_ClientEmail.put("matthewdorlet@gmail.com", "matthewdorlet@gmail.com");
+		f_ClientEmail.put("(251) 406-5278", "matthewdorlet@gmail.com");
 		
-		ClientFNPhone.put("Matthew", "(251) 406-5278");
-		ClientFNPhone.put("Mimi", "(251) 509-7379");
+		// Client FN Email links unique client identifiers to their emails
+		f_ClientFNEmail.put("MatthewDorlet", "matthewdorlet@gmail.com");
+		
+		// Client Phone number links client phone numbers and emails to their phone numbers
+		f_ClientPhone.put("(251) 406-5278", "(251) 406-5278");
+		f_ClientPhone.put("matthewdorlet@gmail.com", "(251) 406-5278");
+		
+		// Client FN Phone Number links unique client identifiers to their phone numbers
+		f_ClientFNPhone.put("MatthewDorlet", "(251) 406-5278");
 
 	}
 	
-	public static Object getClientFirstName() {
+	// This method creates a client profile by storing information taken from the Create Client Page
+	// and formats the information to be stored in the same manner that was shown above
+	public static void createClient(String FirstName, String LastName, String Email, String PhoneNumber) {
 		
-		return ClientFirstName;
-		
-	}
-	
-	public static void updateClientFirstName(String FirstName, String Email, String PhoneNumber) {
-		
-		ClientFirstName.put(FirstName, FirstName);
-		ClientFirstName.put(Email, FirstName);
-		ClientFirstName.put(PhoneNumber, FirstName);
-		
-	}
-	
-	public static void removeClientFirstName(String FirstName, String EMail, String PhoneNumber) {
-		
-		ClientFirstName.remove(FirstName);
-		ClientFirstName.remove(EMail);
-		ClientFirstName.remove(PhoneNumber);
-		
-	}
-
-	public static Object getClientLastName() {
-		
-		return ClientLastName;
-	}
-	
-	public static void updateClientLastName (String LastName, String Email, String PhoneNumber) {
-		
-		if (ClientLastName.containsKey(LastName)) {
-			ClientLastName.put(Email, LastName);
-			ClientLastName.put(PhoneNumber, LastName);
+		// if the first name already exists in the database, just add the
+		// email and phone number as keys to the specified first name
+		if (f_ClientFirstName.containsKey(FirstName)) {
+			f_ClientFirstName.put(Email, FirstName);
+			f_ClientFirstName.put(PhoneNumber, FirstName);
 		}
 		
+		// Otherwise, create a key and value storing the new first name that
+		// did not previously appear in the database
 		else {
-			ClientLastName.put(LastName, LastName);
-			ClientLastName.put(Email, LastName);
-			ClientLastName.put(PhoneNumber, LastName);
+			f_ClientFirstName.put(FirstName, FirstName);
+			f_ClientFirstName.put(Email, FirstName);
+			f_ClientFirstName.put(PhoneNumber, FirstName);
+			
+		}
+		
+		// If the last name is currently in the database, just link the
+		// email and phone number to the specified last name
+		if (f_ClientLastName.containsKey(LastName)) {
+			f_ClientLastName.put(Email, LastName);
+			f_ClientLastName.put(PhoneNumber, LastName);
+		}
+		
+		// Otherwise, create a new entry for that last name within the database,
+		// and link the email and phone number to it
+		else {
+			f_ClientLastName.put(LastName, LastName);
+			f_ClientLastName.put(Email, LastName);
+			f_ClientLastName.put(PhoneNumber, LastName);
+			
+		}
+		
+		// Store the new client email in the database and link to email and phone number
+		f_ClientEmail.put(Email, Email);
+		f_ClientEmail.put(PhoneNumber, Email);
+		
+		// Store unique client identifier and link to email
+		f_ClientFNEmail.put(FirstName + LastName, Email);
+		
+		// Store the client phone number and link it to email and phone number
+		f_ClientPhone.put(PhoneNumber, PhoneNumber);
+		f_ClientPhone.put(Email, PhoneNumber);
+		
+		// Store unique client identifier and link it to the phone number
+		f_ClientFNPhone.put(FirstName + LastName, PhoneNumber);
+		
+	}
+	
+	// Get the Client First Name Hashmap info
+	public static Object getClientFirstName() {
+		
+		return f_ClientFirstName;
+		
+	}
+	
+	// Update the client's first name and link it to the new
+	// email and phone number via the first name entry
+	public static void updateClientFirstName(String FirstName, String Email, String PhoneNumber) {
+		
+		f_ClientFirstName.put(FirstName, FirstName);
+		f_ClientFirstName.put(Email, FirstName);
+		f_ClientFirstName.put(PhoneNumber, FirstName);
+		
+	}
+	
+	// Remove only the email and phone number information from the first name specified
+	public static void removeClientFirstName(String FirstName, String EMail, String PhoneNumber) {
+		
+		f_ClientFirstName.remove(EMail);
+		f_ClientFirstName.remove(PhoneNumber);
+		
+	}
+
+	// Get the Client Last Name Hashmap info
+	public static Object getClientLastName() {
+		
+		return f_ClientLastName;
+	}
+	
+	//  Update the client's Last name and link it to the new
+	// email and phone number via the first name entry
+	public static void updateClientLastName (String LastName, String Email, String PhoneNumber) {
+		
+		// If the last name already exists in database, just link
+		// the new email and phone number to the last name specified
+		if (f_ClientLastName.containsKey(LastName)) {
+			f_ClientLastName.put(Email, LastName);
+			f_ClientLastName.put(PhoneNumber, LastName);
+		}
+		
+		// Otherwise, input and link all of the information to the Last name
+		else {
+			f_ClientLastName.put(LastName, LastName);
+			f_ClientLastName.put(Email, LastName);
+			f_ClientLastName.put(PhoneNumber, LastName);
 			
 		}
 		
 	}
 	
+	// Remove only the email and phone number information from the last name specified
 	public static void removeClientLastName (String Email, String PhoneNumber) {
 		
-		ClientLastName.remove(Email);
-		ClientLastName.remove(PhoneNumber);
+		f_ClientLastName.remove(Email);
+		f_ClientLastName.remove(PhoneNumber);
 		
 	}
 	
+	// Get the Client Email Hashmap info
 	public static Object getClientEmail() {
 		
-		return ClientEmail;
+		return f_ClientEmail;
 	}
 	
+	//  Update the client's Email and link it to the new
+	// email and phone number via the Email entry
 	public static void updateClientEmail(String Email, String PhoneNumber) {
 		
-		ClientEmail.put(Email, Email);
-		ClientEmail.put(PhoneNumber, Email);
+		f_ClientEmail.put(Email, Email);
+		f_ClientEmail.put(PhoneNumber, Email);
 		
 	}
 	
+	// Remove the email and phone number information from the Emailspecified
 	public static void removeClientEmail (String Email, String PhoneNumber) {
 		
-		ClientEmail.remove(Email);
-		ClientEmail.remove(PhoneNumber);
+		f_ClientEmail.remove(Email);
+		f_ClientEmail.remove(PhoneNumber);
 		
 	}
 
+	// Get the Client Email unique identifier Hashmap info
 	public static Object getClientFNEmail() {
 	
-		return ClientFNEmail;
+		return f_ClientFNEmail;
 		
 	}
 	
-	public static void updateClientFNEmail(String FirstName, String Email) {
+	// Update the client's Email and link it to the new
+	// Email via the unique client identifier and Email entry
+	public static void updateClientFNEmail(String FirstName, String LastName, String Email) {
 		
-		ClientFNEmail.put(FirstName, Email);
-		
-	}
-	
-	public static void removeClientFNEmail (String FirstName) {
-		
-		ClientFNEmail.remove(FirstName);
+		f_ClientFNEmail.put(FirstName + LastName, Email);
 		
 	}
 	
+	// Remove the unique client identifier information from the unique client identifier specified
+	public static void removeClientFNEmail (String FirstName, String LastName) {
+		
+		f_ClientFNEmail.remove(FirstName + LastName);
+		
+	}
+	
+	// Get the Client Phone Number Hashmap info
 	public static Object getClientPhone() {
 	
-		return ClientPhone;
+		return f_ClientPhone;
 		
 	}
 	
+	// Update the client's Phone Number and link it to the new
+	// Email and Phone Number via Phone and Email entry
 	public static void updateClientPhone (String Email, String PhoneNumber) {
 		
-		ClientPhone.put(PhoneNumber, PhoneNumber);
-		ClientPhone.put(Email, PhoneNumber);
+		f_ClientPhone.put(PhoneNumber, PhoneNumber);
+		f_ClientPhone.put(Email, PhoneNumber);
 		
 	}
 	
+	// Remove the Client Phone Number and Email information from the Phone Number specified
 	public static void removeClientPhone (String Email, String PhoneNumber) {
 		
-		ClientPhone.remove(PhoneNumber);
-		ClientPhone.remove(Email);
+		f_ClientPhone.remove(PhoneNumber);
+		f_ClientPhone.remove(Email);
 		
 	}
 
+	// Get the Client Phone Number Unique Identifier Hashmap Info
 	public static Object getClientFNPhone() {
 	
-		return ClientFNPhone;
+		return f_ClientFNPhone;
 		
 	}
 	
-	public static void updateClientFNPhone (String FirstName, String PhoneNumber) {
+	// Update the client's Phone number and link it to the new
+	// Client Phone Number Unique Identifier via Unique identifier entry
+	public static void updateClientFNPhone (String FirstName, String LastName, String PhoneNumber) {
 		
-		ClientFNPhone.put(FirstName, PhoneNumber);
+		f_ClientFNPhone.put(FirstName + LastName, PhoneNumber);
 		
 	}
 	
-	public static void removeClientFNPhone (String FirstName) {
+	// Remove the Client Unique identifier information from the Phone Number specified
+	public static void removeClientFNPhone (String FirstName, String LastName) {
 		
-		ClientFNPhone.remove(FirstName);
+		f_ClientFNPhone.remove(FirstName + LastName);
 		
 	}
 
