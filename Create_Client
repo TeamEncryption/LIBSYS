@@ -1,8 +1,204 @@
 
-public class Create_Client {
+// +---------- Create Client Page ----------+
+// This is where library staff users can go to create a new guest profile. Library staff will be prompted
+// to create a new client profile when the database does not return a value when using the Client Search Page
 
+// Libraries for JAVA Swing
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URL;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+//Action listener is implemented to allow functionality to buttons
+public class Create_Client implements ActionListener{
+
+	// Global variable to send the user's name and Client information to the next window opened
+	public static String f_StaffUser;
+	public static String f_ClientFirstName;
+	public static String f_ClientLastName;
+	public static String f_ClientEmail;
+	public static String f_ClientPhoneNumber;
+	
+	// JFrame creation for the main window for Create Client Page
+	JFrame f_CreationPage = new JFrame("LIBSYS");
+	
+	URL f_LOGOImage = LIBSYS_launch.class.getResource("Encryption Logo.png"); // Creates a reference to the other folder holding the Logo image
+	
+	ImageIcon f_EncryptionLOGO = new ImageIcon(f_LOGOImage); //Image icon instance of the Logo image
+	
+	// JLabels used for the Create Client Page
+	JLabel f_CreationPageHeader = new JLabel(); // Login Page header declaration and assignment, says "LIBSYS System"
+	JLabel f_BlueLineLabel = new JLabel(); // Line label declaration and assignment, will be used to underline header
+	JLabel f_InformationLabel = new JLabel(); // Information label declaration and assignment
+	JLabel f_BoldInfoLineLabel = new JLabel(); // Bold Info Line label declaration and assignment, will be used to underline the Information Label
+	JLabel f_FirstNameFieldLabel = new JLabel(); // First Name Field label declaration and assignment
+	JLabel f_LastNameFieldLabel = new JLabel(); // Last Name Field label declaration and assignment
+	JLabel f_EmailFieldLabel = new JLabel(); // Email Field label declaration and assignment
+	JLabel f_PhoneNumberFieldLabel = new JLabel(); // Phone Number Field label declaration and assignment
+	
+	// JText Field used in the Material Page
+	JTextField f_FirstNameField = new JTextField(); // First Name Field declaration and assignment
+	JTextField f_LastNameField = new JTextField(); // Last Name Field declaration and assignment
+	JTextField f_EmailField = new JTextField(); // Email Field declaration and assignment
+	JTextField f_PhoneNumberField = new JTextField(); // Phone Number Field declaration and assignment
+	
+	// JButtons used for the Material page
+	JButton f_BackButton = new JButton("Back"); // Back Button declaration and assignment
+	JButton f_ResetButton = new JButton("Reset"); // Reset Button declaration and assignment
+	JButton f_CreateProfileButton = new JButton("Create Profile"); // Create Profile Button declaration and assignment
+	
+	// The userID is sent from the previous page to this page for the sign out label (so it looks nice and personalized),
+	// Client database information is also imported
 	public Create_Client(String namePlate, String FirstName, String LastName, String Email, String PhoneNumber) {
 		
+		// The previous window's userID variable is sent through to this window for the username label
+		f_StaffUser = namePlate;
+		
+		// Information being imported from the previous page
+		f_ClientFirstName = FirstName;
+		f_ClientLastName = LastName;
+		f_ClientEmail = Email;
+		f_ClientPhoneNumber = PhoneNumber;
+		
+		// +-------------------- Label placement and personalization --------------------+	
+		f_CreationPageHeader.setBounds(180, 10, 500, 100); // LIBSYS header is placed in the window and given dimensions
+		f_CreationPageHeader.setText("LIBSYS System"); // allows users to see the header label
+		f_CreationPageHeader.setFont(new Font(null, Font.BOLD, 30)); // Text size is changed for the header label
+		
+		f_BlueLineLabel.setBounds(0, 75, 600, 3); // Line is placed underneath the header
+		f_BlueLineLabel.setOpaque(true); // line is set to be opaque, which allows for color to be added
+		f_BlueLineLabel.setBackground(Color.BLUE); // line is filled with the color blue
+		
+		f_InformationLabel.setBounds(15, 100, 200, 25); // Information Label is placed and given dimensions
+		f_InformationLabel.setText("Client Information:"); // Text is assigned
+		f_InformationLabel.setFont(new Font(null, Font.BOLD, 18)); // Text size is changed
+		
+		f_BoldInfoLineLabel.setBounds(15, 122, 160, 2); // Bold Info Line Label is placed and given dimensions
+		f_BoldInfoLineLabel.setOpaque(true); // line is set to be opaque, which allows for color to be added
+		f_BoldInfoLineLabel.setBackground(Color.black); // line is filled with the color black
+		
+		f_FirstNameFieldLabel.setBounds(15, 140, 200, 25); // First Name Field Label is placed and given dimensions
+		f_FirstNameFieldLabel.setText("First Name:"); // Text is assigned
+		f_FirstNameFieldLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
+		
+		f_LastNameFieldLabel.setBounds(15, 165, 100, 25); // Last Name Field Label is placed and given dimensions
+		f_LastNameFieldLabel.setText("Last Name:"); // Text is assigned
+		f_LastNameFieldLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
+		
+		f_EmailFieldLabel.setBounds(15, 190, 100, 25); // Email Field Label is placed and given dimensions
+		f_EmailFieldLabel.setText("Email:"); // Text is assigned
+		f_EmailFieldLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
+		
+		f_PhoneNumberFieldLabel.setBounds(15, 215, 125, 25); // Phone Number Field Label is placed and given dimensions
+		f_PhoneNumberFieldLabel.setText("Phone Number:"); // Text is assigned
+		f_PhoneNumberFieldLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
+		
+		// +-------------------- Button placement and personalization --------------------+
+		f_BackButton.setBounds(15, 255, 105, 25); // Back button is placed and given dimensions
+		f_BackButton.addActionListener(this); // adds action listener to the Back button to give it functionality
+		f_BackButton.setFocusable(false); // disables box outline around button text
+		
+		f_ResetButton.setBounds(115, 255, 90, 25); // Reset button is placed and given dimensions
+		f_ResetButton.addActionListener(this); // adds action listener to the Reset button to give it functionality
+		f_ResetButton.setFocusable(false); // disables box outline around button text
+		
+		f_CreateProfileButton.setBounds(200, 255, 130, 25); // Create Profile button is placed and given dimensions
+		f_CreateProfileButton.addActionListener(this); // adds action listener to the Create Profile button to give it functionality
+		f_CreateProfileButton.setFocusable(false); // disables box outline around button text
+		
+		// +-------------------- Text Fields placement and dimensions --------------------+
+		f_FirstNameField.setBounds(95, 140, 240, 25); // First Name field is placed and given dimensions
+		f_FirstNameField.setText(f_ClientFirstName); // Text is assigned
+		
+		f_LastNameField.setBounds(95, 165, 240, 25); // Last Name field is placed and given dimensions
+		f_LastNameField.setText(f_ClientLastName); // Text is assigned
+		
+		f_EmailField.setBounds(60, 190, 240, 25); // Email field is placed and given dimensions
+		f_EmailField.setText(f_ClientEmail); // Text is assigned
+		
+		f_PhoneNumberField.setBounds(122, 215, 213, 25); // Phone Number field is placed and given dimensions
+		f_PhoneNumberField.setText(f_ClientPhoneNumber); // Text is assigned
+		
+		// +-------------------- Frame additions and functionality --------------------+
+		f_CreationPage.add(f_InformationLabel); // InformationLabel is added to window
+		f_CreationPage.add(f_CreationPageHeader); // CreationPageHeader is added to window
+		f_CreationPage.add(f_BoldInfoLineLabel); // BoldInfoLineLabel is added to window
+		f_CreationPage.add(f_BlueLineLabel); // BlueLineLabel is added to window
+		f_CreationPage.add(f_FirstNameField); // FirstNameField is added to window
+		f_CreationPage.add(f_LastNameField); // LastNameField is added to window
+		f_CreationPage.add(f_EmailField); // EmailField is added to window
+		f_CreationPage.add(f_PhoneNumberField); // PhoneNumberField is added to window
+		f_CreationPage.add(f_BackButton); // BackButton is added to window
+		f_CreationPage.add(f_ResetButton); // ResetButton is added to window
+		f_CreationPage.add(f_CreateProfileButton); // CreateProfileButton is added to window
+		f_CreationPage.add(f_FirstNameFieldLabel); // FirstNameFieldLabel is added to window
+		f_CreationPage.add(f_LastNameFieldLabel); // LastNameFieldLabel is added to window
+		f_CreationPage.add(f_EmailFieldLabel); // EmailFieldLabel is added to window
+		f_CreationPage.add(f_PhoneNumberFieldLabel); // PhoneNumberFieldLabel is added to window
+
+		// +-------------------- Frame dimensions and personalization --------------------+
+		f_CreationPage.setSize(600, 400); // dimensions are given to the window
+		f_CreationPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // application is halted when window is closed
+		f_CreationPage.setLayout(null); // no layout is specified, everything is placed manually
+		f_CreationPage.setResizable(false); // disables ability to resize windows
+		f_CreationPage.setVisible(true); // window is made visible for users to see
+		f_CreationPage.setIconImage(f_EncryptionLOGO.getImage()); // Image Icon is used to set the window/application image
+		
+	}
+
+	// +-------------------- Action Listener --------------------+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		// The back button will send the user back to the Client Search page
+		if (e.getSource() == f_BackButton) { // New Client Search Page is created and Client Database is imported
+			new Client_Search(f_StaffUser, Client_Database.getClientFirstName(), Client_Database.getClientLastName(),
+					Client_Database.getClientEmail(), Client_Database.getClientPhone(),
+					Client_Database.getClientFNEmail(), Client_Database.getClientFNPhone());
+			f_CreationPage.dispose(); // Current page is closed
+			
+		}
+		
+		// This function resets all of the Client Information Fields back to blank text with nothing present
+		if (e.getSource() == f_ResetButton) {
+			f_FirstNameField.setText("");
+			f_LastNameField.setText("");
+			f_EmailField.setText("");
+			f_PhoneNumberField.setText("");
+			
+		}
+		
+		// This function creates the client profile by ensuring all text fields are populated with information to store
+		if (e.getSource() == f_CreateProfileButton) {
+			String clientFN = f_FirstNameField.getText();
+			String clientLN = f_LastNameField.getText();
+			String clientEM = f_EmailField.getText();
+			String clientPN = f_PhoneNumberField.getText();
+			
+			// If an information field is empty, the system will request the user populate all text fields with information
+			if (!clientFN.equals("") && !clientLN.equals("") && !clientEM.equals("") && !clientPN.equals("")) {
+				Client_Database.createClient(clientFN, clientLN, clientEM, clientPN); // a client profile is created using text field information
+				new Client_Search(f_StaffUser, Client_Database.getClientFirstName(), Client_Database.getClientLastName(),
+						Client_Database.getClientEmail(), Client_Database.getClientPhone(),
+						Client_Database.getClientFNEmail(), Client_Database.getClientFNPhone()); // returns users to the Client Search page with updated database
+				f_CreationPage.dispose(); // current page is closed
+				
+			}
+			
+			// Function to notify users to enter data into all fields -! PLACEHOLDER !-
+			else {
+				System.out.println("Please enter data into all required fields");
+				
+			}
+			
+		}
 		
 	}
 
