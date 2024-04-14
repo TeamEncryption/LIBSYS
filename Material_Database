@@ -1,0 +1,2093 @@
+// +---------- This class is currently holding the HashMap for the material page ----------+
+
+import java.util.HashMap;
+
+public class Material_Database {
+
+	// Hashmaps for each method of Material search, each unique key needed to hold a value without any overlap
+	static HashMap<String, String> f_BookISBNCheck = new HashMap<String, String>();
+	static HashMap<String, String> f_BookISBN = new HashMap<String, String>();
+	static HashMap<String, String> f_BookTitle = new HashMap<String, String>();
+	static HashMap<String, String> f_BookAuthor = new HashMap<String, String>();
+	static HashMap<String, String> f_BookGenre = new HashMap<String, String>();
+	static HashMap<String, Integer> f_BookQuantity = new HashMap<String, Integer>();
+	static HashMap<String, String> f_MaterialType = new HashMap<String, String>();
+	
+	Material_Database() {
+		
+		// ISBN Restriction for ISBN Search
+		// +----------------------------------------------------------------------------------------------+
+		
+		// Book 1
+		f_BookISBNCheck.put("9780394584041", "9780394584041");
+		
+		// Book 2
+		f_BookISBNCheck.put("9781888963144", "9781888963144");
+		
+		//Book 3
+		f_BookISBNCheck.put("9781684425419", "9781684425419");
+		
+		// Book 4
+		f_BookISBNCheck.put("9781728259499", "9781728259499");
+
+		// Book 5
+		f_BookISBNCheck.put("9780316411059", "9780316411059");
+		
+		// Book 6
+		f_BookISBNCheck.put("9780393970128", "9780393970128");
+		
+		// Book 7
+		f_BookISBNCheck.put("9780486282114", "9780486282114");
+		
+		// Book 8
+		f_BookISBNCheck.put("9780143039983", "9780143039983");
+		
+		//Book 9
+		f_BookISBNCheck.put("9780743412285", "9780743412285");
+		
+		// Book 10
+		f_BookISBNCheck.put("9780062094353", "9780062094353");
+		
+		// Book 11
+		f_BookISBNCheck.put("9780062259653", "9780062259653");
+		
+		//Book 12
+		f_BookISBNCheck.put("9780312022822", "9780312022822");
+		
+		// Book 13
+		f_BookISBNCheck.put("9780727860996", "9780727860996");
+		
+		// Book 14
+		f_BookISBNCheck.put("9781542096591", "9781542096591");
+		
+		// Book 15
+		f_BookISBNCheck.put("9780062678454", "9780062678454");
+		
+		// Book 16
+		f_BookISBNCheck.put("9798875567544", "9798875567544");
+		
+		// Book 17
+		f_BookISBNCheck.put("9780307588364", "9780307588364");
+		
+		//Book 18
+		f_BookISBNCheck.put("9780307454546", "9780307454546");
+		
+		//Book 19
+		f_BookISBNCheck.put("9780380731862", "9780380731862");
+		
+		//Book 20
+		f_BookISBNCheck.put("9780385504201", "9780385504201");
+		
+		//Book 21
+		f_BookISBNCheck.put("9780062060556", "9780062060556");
+		
+		// Book 22
+		f_BookISBNCheck.put("9780399587191", "9780399587191");
+		
+		//Book 23
+		f_BookISBNCheck.put("9780062678416", "9780062678416");
+		
+		// Book 24
+		f_BookISBNCheck.put("9780340924747", "9780340924747");
+		
+		// Book 25
+		f_BookISBNCheck.put("97817876637245", "97817876637245");
+		
+		// Book 26
+		f_BookISBNCheck.put("9780593128251", "9780593128251");
+
+		// Book 27
+		f_BookISBNCheck.put("9781338878929", "9781338878929");
+		
+		// Book 28
+		f_BookISBNCheck.put("9781338878936", "9781338878936");
+
+		// Book 29
+		f_BookISBNCheck.put("9780439655484", "9780439655484");
+		
+		// Book 30
+		f_BookISBNCheck.put("9781338878950", "9781338878950");
+
+		// Book 31
+		f_BookISBNCheck.put("9780439358064", "9780439358064");
+		
+		// Book 32
+		f_BookISBNCheck.put("9780439784542", "9780439784542");
+
+		// Book 33
+		f_BookISBNCheck.put("9780545010221", "9780545010221");
+		
+		// Book 34
+		f_BookISBNCheck.put("9780593316764", "9780593316764");
+
+		// Book 35
+		f_BookISBNCheck.put("9781786189387", "9781786189387");
+		
+		// Book 36
+		f_BookISBNCheck.put("9780765396778", "9780765396778");
+		
+		// Book 37
+		f_BookISBNCheck.put("9780593099322", "9780593099322");
+		
+		// Book 38
+		f_BookISBNCheck.put("9780441007462", "9780441007462");
+		
+		//Book 39
+		f_BookISBNCheck.put("9780553293357", "9780553293357");
+		
+		// Book 40
+		f_BookISBNCheck.put("9780553380958", "9780553380958");
+
+		// Book 41
+		f_BookISBNCheck.put("9780399178610", "9780399178610");
+
+		// Book 42
+		f_BookISBNCheck.put("9780593336700", "9780593336700");
+		
+		// Book 43
+		f_BookISBNCheck.put("9780778310761", "9780778310761");
+
+		// Book 44
+		f_BookISBNCheck.put("9781665903523", "9781665903523");
+		
+		// Book 45
+		f_BookISBNCheck.put("9780593595718", "9780593595718");
+		
+		//Book 46
+		f_BookISBNCheck.put("9781728299792", "9781728299792");
+		
+		// Book 47
+		f_BookISBNCheck.put("9780593336618", "9780593336618");
+		
+		// Book 48
+		f_BookISBNCheck.put("9780655232575", "9780655232575");
+
+		// Book 49
+		f_BookISBNCheck.put("9781641526371", "9781641526371");
+
+		// Book 50
+		f_BookISBNCheck.put("9780578557588", "9780578557588");
+		
+		// Book 51
+		f_BookISBNCheck.put("9781419741852", "9781419741852");
+
+		// Book 52
+		f_BookISBNCheck.put("9781419741869", "9781419741869");
+		
+		// Book 53
+		f_BookISBNCheck.put("9781419741876", "9781419741876");
+		
+		// Book 54
+		f_BookISBNCheck.put("9781419741883", "9781419741883");
+
+		// Book 55
+		f_BookISBNCheck.put("9781419741890", "9781419741890");
+		
+		// Book 56
+		f_BookISBNCheck.put("9781419702235", "9781419702235");
+		
+		// Book 57
+		f_BookISBNCheck.put("9781419705847", "9781419705847");
+
+		// Book 58
+		f_BookISBNCheck.put("9781419711329", "9781419711329");
+
+		// Book 59
+		f_BookISBNCheck.put("9781419711893", "9781419711893");
+		
+		// Book 60
+		f_BookISBNCheck.put("9781419717017", "9781419717017");
+		
+		// Book 61
+		f_BookISBNCheck.put("9781690319849", "9781690319849");
+		
+		// Book 62
+		f_BookISBNCheck.put("9780141385273", "9780141385273");
+
+		// Book 63
+		f_BookISBNCheck.put("9781419741999", "9781419741999");
+		
+		// Book 64
+		f_BookISBNCheck.put("9781419739033", "9781419739033");
+
+		// Book 65
+		f_BookISBNCheck.put("9781419749155", "9781419749155");
+		
+		// Book 66
+		f_BookISBNCheck.put("9781419766947", "9781419766947");
+		
+		// Book 67
+		f_BookISBNCheck.put("9780393339918", "9780393339918");
+		
+		// Book 68
+		f_BookISBNCheck.put("9780199291151", "9780199291151");
+		
+		// Book 69
+		f_BookISBNCheck.put("9780518123201", "9780518123201");
+		
+		// Book 70
+		f_BookISBNCheck.put("9780593729397", "9780593729397");
+		
+		// Book 71
+		f_BookISBNCheck.put("9780143037750", "9780143037750");
+		
+		// Book 72
+		f_BookISBNCheck.put("9781250277954", "9781250277954");
+
+		// Book 73
+		f_BookISBNCheck.put("9781982168537", "9781982168537");
+		
+		// Book 74
+		f_BookISBNCheck.put("9780385680967", "9780385680967");
+		
+		// Book 75
+		f_BookISBNCheck.put("979888777420", "979888777420");
+
+		// Book 76
+		f_BookISBNCheck.put("9780714833552", "9780714833552");
+		
+		// Book 77
+		f_BookISBNCheck.put("9780593652886", "9780593652886");
+		
+		// Book 78
+		f_BookISBNCheck.put("9781573223560", "9781573223560");
+		
+		// Book 79
+		f_BookISBNCheck.put("9781422243725", "9781422243725");
+		
+		// Book 80
+		f_BookISBNCheck.put("9780063076099", "9780063076099");
+
+		// Book ISBN and Titles linked to ISBN
+		// +----------------------------------------------------------------------------------------------+
+		
+		// Book 1
+		f_BookISBN.put("9780394584041", "9780394584041");
+		f_BookISBN.put("Essentials of Classic Italian Cooking", "9780394584041");
+		
+		// Book 2
+		f_BookISBN.put("9781888963144", "9781888963144");
+		f_BookISBN.put("BONE", "9781888963144");
+		
+		//Book 3
+		f_BookISBN.put("9781684425419", "9781684425419");
+		f_BookISBN.put("The Night Will Find Us", "9781684425419");
+		
+		// Book 4
+		f_BookISBN.put("9781728259499", "9781728259499");
+		f_BookISBN.put("It Found Us", "9781728259499");
+		
+		// Book 5
+		f_BookISBN.put("9780316411059", "9780316411059");
+		f_BookISBN.put("In the House in the Dark of the Woods", "9780316411059");
+		
+		// Book 6
+		f_BookISBN.put("9780393970128", "9780393970128");
+		f_BookISBN.put("Dracula", "9780393970128");
+		
+		// Book 7
+		f_BookISBN.put("9780486282114", "9780486282114");
+		f_BookISBN.put("Frankenstein", "9780486282114");
+		
+		// Book 8
+		f_BookISBN.put("9780143039983", "9780143039983");
+		f_BookISBN.put("The Hauting of Hill House", "9780143039983");
+		
+		// Book 9
+		f_BookISBN.put("9780743412285", "9780743412285");
+		f_BookISBN.put("Pet Semetary", "9780743412285");
+		
+		//Book 10
+		f_BookISBN.put("9780062094353","9780062094353");
+		f_BookISBN.put("The Exorcist", "9780062094353");
+		
+		// Book 11
+		f_BookISBN.put("9780062259653", "9780062259653");
+		f_BookISBN.put("Bird Box", "9780062259653");
+		
+		//Book 12 
+		f_BookISBN.put("9780312022822", "9780312022822");
+		f_BookISBN.put("The Silence of the Lambs", "9780312022822");
+		
+		//Book 13
+		f_BookISBN.put("9780727860996", "9780727860996");
+		f_BookISBN.put("Hell House", "9780727860996");
+		
+		// Book 14
+		f_BookISBN.put("9781542096591", "9781542096591");
+		f_BookISBN.put("I Am Watching You", "9781542096591");
+		
+		// Book 15
+		f_BookISBN.put("9780062678454", "9780062678454");
+		f_BookISBN.put("End of Story", "9780062678454");
+		
+		// Book 16
+		f_BookISBN.put("9798875567544", "9798875567544");
+		f_BookISBN.put("The Phantom Child", "9798875567544");
+		
+		// Book 17
+		f_BookISBN.put("9780307588364", "9780307588364");
+		f_BookISBN.put("Gone Girl", "9780307588364");
+		
+		// Book 18
+		f_BookISBN.put("9780307454546", "9780307454546");
+		f_BookISBN.put("The Girl with the Dragon Tattoo", "9780307454546");
+		
+		// Book 19
+		f_BookISBN.put("9780380731862", "9780380731862");
+		f_BookISBN.put("Shutter Island", "9780380731862");
+		
+		// Book 20
+		f_BookISBN.put("9780385504201", "9780385504201");
+		f_BookISBN.put("The Da Vinci Code", "9780385504201");
+		
+		//Book 21
+		f_BookISBN.put("9780062060556", "9780062060556");
+		f_BookISBN.put("Before I Go to Sleep", "9780062060556");
+		
+		// Book 22
+		f_BookISBN.put("9780399587191","9780399587191");
+		f_BookISBN.put("Big Little Lies", "9780399587191");
+		
+		// Book 23
+		f_BookISBN.put("9780062678416", "9780062678416");
+		f_BookISBN.put("The Woman in the Window", "9780062678416");
+		
+		// Book 24
+		f_BookISBN.put("9780340924747", "9780340924747");
+		f_BookISBN.put("In the Woods", "9780340924747");
+		
+		//Book 25
+		f_BookISBN.put("97817876637245", "97817876637245");
+		f_BookISBN.put("The Book of Doors", "97817876637245");
+		
+		//Book 26
+		f_BookISBN.put("9780593128251", "9780593128251");
+		f_BookISBN.put("The Warm Hands of Ghosts", "9780593128251");
+		
+		//Book 27
+		f_BookISBN.put("9781338878929", "9781338878929");
+		f_BookISBN.put("Harry Potter and the Sorcerer’s Stone", "9781338878929");
+		
+		// Book 28
+		f_BookISBN.put("9781338878936", "9781338878936");
+		f_BookISBN.put("Harry Potter and the Chamber of Secrets", "9781338878936");
+		
+		//Book 29
+		f_BookISBN.put("9780439655484", "9780439655484");
+		f_BookISBN.put("Harry Potter and the Prisoner of Azkaban", "9780439655484");
+		
+		//Book 30
+		f_BookISBN.put("9781338878950", "9781338878950");
+		f_BookISBN.put("Harry Potter and the Goblet of Fire", "9781338878950");
+		
+		// Book 31
+		f_BookISBN.put("9780439358064", "9780439358064");
+		f_BookISBN.put("Harry Potter and the Order of the Phoenix", "9780439358064");
+		
+		//Book 32
+		f_BookISBN.put("9780439784542", "9780439784542");
+		f_BookISBN.put("Harry Potter and the Half-Blood Prince", "9780439784542");
+		
+		// Book 33
+		f_BookISBN.put("9780545010221", "9780545010221");
+		f_BookISBN.put("Harry Potter and the Deathly Hallows", "9780545010221");
+		
+		// Book 34
+		f_BookISBN.put("9780593316764", "9780593316764");
+		f_BookISBN.put("Plastic", "9780593316764");
+		
+		// Book 35
+		f_BookISBN.put("9781786189387", "9781786189387");
+		f_BookISBN.put("Redsight", "9781786189387");
+		
+		// Book 36
+		f_BookISBN.put("9780765396778", "9780765396778");
+		f_BookISBN.put("Projections", "9780765396778");
+		
+		// Book 37
+		f_BookISBN.put("9780593099322", "9780593099322");
+		f_BookISBN.put("Dune", "9780593099322");
+		
+		// Book 38
+		f_BookISBN.put("9780441007462", "9780441007462");
+		f_BookISBN.put("Neuromancer", "9780441007462");
+		
+		// Book 39
+		f_BookISBN.put("9780553293357", "9780553293357");
+		f_BookISBN.put("Foundation", "9780553293357");
+		
+		// Book 40
+		f_BookISBN.put("9780553380958", "9780553380958");
+		f_BookISBN.put("Snow Crash", "9780553380958");
+		
+		// Book 41
+		f_BookISBN.put("9780399178610", "9780399178610");
+		f_BookISBN.put("Hyperion", "9780399178610");
+		
+		// Book 42
+		f_BookISBN.put("9780593336700", "9780593336700");
+		f_BookISBN.put("Village in the Dark", "9780593336700");
+		
+		// Book 43
+		f_BookISBN.put("9780778310761", "9780778310761");
+		f_BookISBN.put("A Step Past Darkness", "9780778310761");
+		
+		// Book 44
+		f_BookISBN.put("9781665903523", "9781665903523");
+		f_BookISBN.put("Tender Beasts", "9781665903523");
+		
+		// Boook 45
+		f_BookISBN.put("9780593595718", "9780593595718");
+		f_BookISBN.put("Ready or Not", "9780593595718");
+		
+		// Book 46
+		f_BookISBN.put("9781728299792", "9781728299792");
+		f_BookISBN.put("Girl Abroad", "9781728299792");
+
+		// Book 47
+		f_BookISBN.put("9780593336618", "9780593336618");
+		f_BookISBN.put("The Catch", "9780593336618");
+		
+		// Book 48
+		f_BookISBN.put("9780655232575", "9780655232575");
+		f_BookISBN.put("Seriously, Do Not Open This Book", "9780655232575");
+		
+		// Book 49
+		f_BookISBN.put("9781641526371", "9781641526371");
+		f_BookISBN.put("The Big Book of Silly Jokes for Kids", "9781641526371");
+		
+		// Book 50
+		f_BookISBN.put("9780578557588", "9780578557588");
+		f_BookISBN.put("Patrick Picklebottom and the Penny Book", "9780578557588");
+		
+		// Book 51
+		f_BookISBN.put("9781419741852", "9781419741852");
+		f_BookISBN.put("Diary of a Wimpy Kid #1", "9781419741852");
+		
+		// Book 52
+		f_BookISBN.put("9781419741869", "9781419741869");
+		f_BookISBN.put("Diary of a Wimpy Kid: Rodrick Rules #2", "9781419741869");
+		
+		// Book 53
+		f_BookISBN.put("9781419741876", "9781419741876");
+		f_BookISBN.put("Diary of a Wimpy Kid: The Last Straw #3", "9781419741876");
+		
+		// Book 54
+		f_BookISBN.put("9781419741883", "9781419741883");
+		f_BookISBN.put("Diary of a Wimpy Kid: Dog Days #4", "9781419741883");
+		
+		// Book 55
+		f_BookISBN.put("9781419741890", "9781419741890");
+		f_BookISBN.put("Diary of a Wimpy Kid: The Ugly Truth #5", "9781419741890");
+		
+		// Book 56
+		f_BookISBN.put("9781419702235", "9781419702235");
+		f_BookISBN.put("Diary of a Wimpy Kid: Cabin Fever #6", "9781419702235");
+		
+		// Book 57
+		f_BookISBN.put("9781419705847", "9781419705847");
+		f_BookISBN.put("Diary of a Wimpy Kid: The Third Wheel #7", "9781419705847");
+		
+		// Book 58
+		f_BookISBN.put("9781419711329", "9781419711329");
+		f_BookISBN.put("Diary of a Wimpy Kid: Hard Luck #8", "9781419711329");
+		
+		// Book 59
+		f_BookISBN.put("9781419711893", "9781419711893");
+		f_BookISBN.put("Diary of a Wimpy Kid: The Long Haul #9", "9781419711893");
+		
+		// Book 60
+		f_BookISBN.put("9781419717017", "9781419717017");
+		f_BookISBN.put("Diary of a Wimpy Kid: Old School #10", "9781419717017");
+		
+		// Book 61
+		f_BookISBN.put("9781690319849", "9781690319849");
+		f_BookISBN.put("Diary of a Wimpy Kid: Double Down #11", "9781690319849");
+		
+		// Book 62
+		f_BookISBN.put("9780141385273", "9780141385273");
+		f_BookISBN.put("Diary of a Wimpy Kid: The Getaway #12", "9780141385273");
+		
+		// Book 63
+		f_BookISBN.put("9781419741999", "9781419741999");
+		f_BookISBN.put("Diary of a Wimpy Kid: The Meltdown #13", "9781419741999");
+		
+		// Book 64
+		f_BookISBN.put("9781419739033", "9781419739033");
+		f_BookISBN.put("Diary of a Wimpy Kid: Wrecking Ball #14", "9781419739033");
+		
+		// Book 65
+		f_BookISBN.put("9781419749155", "9781419749155");
+		f_BookISBN.put("Diary of a Wimpy Kid: Big Shot #15", "9781419749155");
+		
+		// Book 66
+		f_BookISBN.put("9781419766947", "9781419766947");
+		f_BookISBN.put("Diary of a Wimpy Kid: No Brainer #16", "9781419766947");
+		
+		// Book 67
+		f_BookISBN.put("9780393339918", "9780393339918");
+		f_BookISBN.put("Packing for Mars", "9780393339918");
+		
+		// Book 68
+		f_BookISBN.put("9780199291151", "9780199291151");
+		f_BookISBN.put("The Selfish Gene", "9780199291151");
+		
+		// Book 69
+		f_BookISBN.put("9780518123201", "9780518123201");
+		f_BookISBN.put("The Origin of Species", "9780518123201");
+		
+		// Book 70
+		f_BookISBN.put("9780593729397", "9780593729397");
+		f_BookISBN.put("The American Daughters", "9780593729397");
+		
+		// Book 71
+		f_BookISBN.put("9780143037750", "9780143037750");
+		f_BookISBN.put("Postwar: A History of Europe Since 1945", "9780143037750");
+		
+		// Book 72
+		f_BookISBN.put("9781250277954", "9781250277954");
+		f_BookISBN.put("My Side of the River", "9781250277954");
+		
+		// Book 73
+		f_BookISBN.put("9781982168537", "9781982168537");
+		f_BookISBN.put("Troubled: A Memoir of Foster Care, Family, and Social Class", "9781982168537");
+		
+		// Book 74
+		f_BookISBN.put("9780385680967", "9780385680967");
+		f_BookISBN.put("Thank You For Your Service", "9780385680967");
+		
+		// Book 75
+		f_BookISBN.put("979888777420", "979888777420");
+		f_BookISBN.put("This Book Will Make You An Artist", "979888777420");
+		
+		// Book 76
+		f_BookISBN.put("9780714833552", "9780714833552");
+		f_BookISBN.put("The Story Of Art", "9780714833552");
+		
+		// Book 77
+		f_BookISBN.put("9780593652886", "9780593652886");
+		f_BookISBN.put("The Creative Act: A Way of Being", "9780593652886");
+		
+		// Book 78
+		f_BookISBN.put("9781573223560", "9781573223560");
+		f_BookISBN.put("Songbook", "9781573223560");
+		
+		// Book 79
+		f_BookISBN.put("9781422243725", "9781422243725");
+		f_BookISBN.put("Hip-Hop", "9781422243725");
+		
+		// Book 80
+		f_BookISBN.put("9780063076099", "9780063076099");
+		f_BookISBN.put("The Storyteller: Tales of Life and Music", "9780063076099");
+		
+		// Book Titles and ISBN linked to Title
+		//+----------------------------------------------------------------------------------------------+
+		
+		// Book 1
+		f_BookTitle.put("9780394584041", "Essentials of Classic Italian Cooking");
+		f_BookTitle.put("Essentials of Classic Italian Cooking", "Essentials of Classic Italian Cooking");
+		
+		// Book 2
+		f_BookTitle.put("9781888963144", "BONE");
+		f_BookTitle.put("BONE", "BONE");
+		
+		//Book 3
+		f_BookTitle.put("9781684425419","The Night Will Find Us");
+		f_BookTitle.put("The Night Will Find Us", "The Night Will Find Us");
+		
+		// Book 4
+		f_BookTitle.put("9781728259499", "It Found Us");
+		f_BookTitle.put("It Found Us", "It Found Us");
+		
+		// Book 5
+		f_BookTitle.put("9780316411059", "In the House in the Dark of the Woods");
+		f_BookTitle.put("In the House in the Dark of the Woods", "In the House in the Dark of the Woods");
+		
+		// Book 6
+		f_BookTitle.put("9780393970128", "Dracula");
+		f_BookTitle.put("Dracula", "Dracula");
+		
+		// Book 7
+		f_BookTitle.put("9780486282114", "Frankenstein");
+		f_BookTitle.put("Frankenstein", "Frankenstein");
+		
+		// Book 8
+		f_BookTitle.put("9780143039983", "The Haunting of Hill House");
+		f_BookTitle.put("The Haunting of Hill House", "The Haunting of Hill House");
+		
+		// Book 9
+		f_BookTitle.put("9780743412285", "Pet Semetary");
+		f_BookTitle.put("Pet Semetary", "Pet Semetary");
+		
+		//Book 10
+		f_BookTitle.put("9780062094353", "The Exorcist");
+		f_BookTitle.put("The Exorcist", "The Exorcist");
+		
+		//Book 11
+		f_BookTitle.put("9780062259653", "Bird Box");
+		f_BookTitle.put("Bird Box", "Bird Box");
+		
+		// Book 12
+		f_BookTitle.put("9780312022822", "The Silence of the Lambs");
+		f_BookTitle.put("The Silence of the Lambs", "The Silence of the Lambs");
+		
+		//Book 13
+		f_BookTitle.put("9780727860996", "Hell House");
+		f_BookTitle.put("Hell House", "Hell House");
+		
+		// Book 14
+		f_BookTitle.put("9781542096591", "I Am Watching You");
+		f_BookTitle.put("I Am Watching You", "I Am Watching You");
+		
+		//Book 15 
+		f_BookTitle.put("9780062678454", "End of Story");
+		f_BookTitle.put("End of Story", "End of Story");
+		
+		// Book 16
+		f_BookTitle.put("9798875567544", "The Phantom Child");
+		f_BookTitle.put("The Phantom Child", "The Phantom Child");
+		
+		//Book 17
+		f_BookTitle.put("9780307588364", "Gone Girl");
+		f_BookTitle.put("Gone Girl", "Gone Girl");
+		
+		//Book 18
+		f_BookTitle.put("9780307454546", "The Girl with the Dragon Tattoo");
+		f_BookTitle.put("The Girl with the Dragon Tattoo", "The Girl with the Dragon Tattoo");
+		
+		// Book 19
+		f_BookTitle.put("9780380731862", "Shutter Island");
+		f_BookTitle.put("Shutter Island", "Shutter Island");
+		
+		// Book 20
+		f_BookTitle.put("9780385504201", "The Da Vinci Code");
+		f_BookTitle.put("The Da Vinci Code", "The Da Vinci Code");
+		
+		// Book 21
+		f_BookTitle.put("9780062060556", "Before I Go to Sleep");
+		f_BookTitle.put("Before I Go to Sleep", "Before I Go to Sleep");
+		
+		// Book 22
+		f_BookTitle.put("9780399587191", "Big Little Lies");
+		f_BookTitle.put("Big Little Lies","Big Little Lies");
+		
+		// Book 23
+		f_BookTitle.put("9780062678416", "The Woman in the Window");
+		f_BookTitle.put("The Woman in the Window", "The Woman in the Window");
+		
+		// Book 24
+		f_BookTitle.put("9780340924747", "In the Woods");
+		f_BookTitle.put("In the Woods", "In the Woods");
+		
+		//Book 25
+		f_BookTitle.put("97817876637245", "The Book of Doors");
+		f_BookTitle.put("The Book of Doors", "The Book of Doors");
+		
+		// Book 26
+		f_BookTitle.put("9780593128251", "The Warm Hands of Ghosts");
+		f_BookTitle.put("The Warm Hands of Ghosts", "The Warm Hands of Ghosts");
+		
+		// Book 27
+		f_BookTitle.put("9781338878929", "Harry Potter and the Sorcerer’s Stone");
+		f_BookTitle.put("Harry Potter and the Sorcerer’s Stone", "Harry Potter and the Sorcerer’s Stone");
+		
+		//Book 28
+		f_BookTitle.put("9781338878936", "Harry Potter and the Chamber of Secrets");
+		f_BookTitle.put("Harry Potter and the Chamber of Secrets", "Harry Potter and the Chamber of Secrets");
+		
+		//Book 29
+		f_BookTitle.put("9780439655484", "Harry Potter and the Prisoner of Azkaban");
+		f_BookTitle.put("Harry Potter and the Prisoner of Azkaban", "Harry Potter and the Prisoner of Azkaban");
+		
+		// Book 30
+		f_BookTitle.put("9781338878950", "Harry Potter and the Goblet of Fire");
+		f_BookTitle.put("Harry Potter and the Goblet of Fire", "Harry Potter and the Goblet of Fire");
+
+		// Book 31
+		f_BookTitle.put("9780439358064", "Harry Potter and the Order of the Phoenix");
+		f_BookTitle.put("Harry Potter and the Order of the Phoenix", "Harry Potter and the Order of the Phoenix");
+		
+		// Book 32
+		f_BookTitle.put("9780439784542", "Harry Potter and the Half-Blood Prince");
+		f_BookTitle.put("Harry Potter and the Half-Blood Prince", "Harry Potter and the Half-Blood Prince");
+		
+		// Book 33
+		f_BookTitle.put("9780545010221", "Harry Potter and the Deathly Hallows");
+		f_BookTitle.put("Harry Potter and the Deathly Hallows", "Harry Potter and the Deathly Hallows");
+		
+		// Book 34
+		f_BookTitle.put("9780593316764", "Plastic");
+		f_BookTitle.put("Plastic", "Plastic");
+		
+		// Book 35
+		f_BookTitle.put("9781786189387", "Redsight");
+		f_BookTitle.put("Redsight", "Redsight");
+		
+		// Book 36
+		f_BookTitle.put("9780765396778", "Projections");
+		f_BookTitle.put("Projections", "Projections");
+		
+		// Book 37
+		f_BookTitle.put("9780593099322", "Dune");
+		f_BookTitle.put("Dune", "Dune");
+		
+		// Book 38
+		f_BookTitle.put("9780441007462", "Neuromancer");
+		f_BookTitle.put("Neuromancer", "Neuromancer");
+		
+		// Book 39 
+		f_BookTitle.put("9780553293357", "Foundation");
+		f_BookTitle.put("Foundation", "Foundation");
+		
+		// Book 40
+		f_BookTitle.put("9780553380958", "Snow Crash");
+		f_BookTitle.put("Snow Crash", "Snow Crash");
+		
+		// Book 41
+		f_BookTitle.put("9780399178610", "Hyperion");
+		f_BookTitle.put("Hyperion", "Hyperion");
+		
+		// Book 42
+		f_BookTitle.put("9780593336700", "Village in the Dark");
+		f_BookTitle.put("Village in the Dark", "Village in the Dark");
+		
+		// Book 43
+		f_BookTitle.put("9780778310761", "A Step Past Darkness");
+		f_BookTitle.put("A Step Past Darkness", "A Step Past Darkness");
+		
+		// Book 44
+		f_BookTitle.put("9781665903523", "Tender Beasts");
+		f_BookTitle.put("Tender Beasts", "Tender Beasts");
+		
+		// Book 45
+		f_BookTitle.put("9780593595718", "Ready or Not");
+		f_BookTitle.put("Ready or Not", "Ready or Not");
+		
+		// Book 46
+		f_BookTitle.put("9781728299792", "Girl Abroad");
+		f_BookTitle.put("Girl Abroad", "Girl Abroad");
+		
+		// Book 47
+		f_BookTitle.put("9780593336618", "The Catch");
+		f_BookTitle.put("The Catch", "The Catch");
+		
+		// Book 48
+		f_BookTitle.put("9780655232575", "Seriously, Do Not Open This Book");
+		f_BookTitle.put("Seriously, Do Not Open This Book", "Seriously, Do Not Open This Book");
+		
+		// Book 49
+		f_BookTitle.put("9781641526371", "The Big Book of Silly Jokes for Kids");
+		f_BookTitle.put("The Big Book of Silly Jokes for Kids", "The Big Book of Silly Jokes for Kids");
+		
+		// Book 50
+		f_BookTitle.put("9780578557588", "Patrick Picklebottom and the Penny Book");
+		f_BookTitle.put("Patrick Picklebottom and the Penny Book", "Patrick Picklebottom and the Penny Book");
+		
+		// Book 51
+		f_BookTitle.put("9781419741852", "Diary of a Wimpy Kid #1");
+		f_BookTitle.put("Diary of a Wimpy Kid #1", "Diary of a Wimpy Kid #1");
+		
+		// Book 52
+		f_BookTitle.put("9781419741869", "Diary of a Wimpy Kid: Rodrick Rules #2");
+		f_BookTitle.put("Diary of a Wimpy Kid: Rodrick Rules #2", "Diary of a Wimpy Kid: Rodrick Rules #2");
+		
+		// Book 53
+		f_BookTitle.put("9781419741876", "Diary of a Wimpy Kid: The Last Straw #3");
+		f_BookTitle.put("Diary of a Wimpy Kid: The Last Straw #3", "Diary of a Wimpy Kid: The Last Straw #3");
+		
+		// Book 54
+		f_BookTitle.put("9781419741883", "Diary of a Wimpy Kid: Dog Days #4");
+		f_BookTitle.put("Diary of a Wimpy Kid: Dog Days #4", "Diary of a Wimpy Kid: Dog Days #4");
+		
+		// Book 55
+		f_BookTitle.put("9781419741890", "Diary of a Wimpy Kid: The Ugly Truth #5");
+		f_BookTitle.put("Diary of a Wimpy Kid: The Ugly Truth #5", "Diary of a Wimpy Kid: The Ugly Truth #5");
+		
+		// Book 56
+		f_BookTitle.put("9781419702235", "Diary of a Wimpy Kid: Cabin Fever #6");
+		f_BookTitle.put("Diary of a Wimpy Kid: Cabin Fever #6", "Diary of a Wimpy Kid: Cabin Fever #6");
+		
+		// Book 57
+		f_BookTitle.put("9781419705847", "Diary of a Wimpy Kid: The Third Wheel #7");
+		f_BookTitle.put("Diary of a Wimpy Kid: The Third Wheel #7", "Diary of a Wimpy Kid: The Third Wheel #7");
+		
+		// Book 58
+		f_BookTitle.put("9781419711329", "Diary of a Wimpy Kid: Hard Luck #8");
+		f_BookTitle.put("Diary of a Wimpy Kid: Hard Luck #8", "Diary of a Wimpy Kid: Hard Luck #8");
+		
+		// Book 59
+		f_BookTitle.put("9781419711893", "Diary of a Wimpy Kid: The Long Haul #9");
+		f_BookTitle.put("Diary of a Wimpy Kid: The Long Haul #9", "Diary of a Wimpy Kid: The Long Haul #9");
+		
+		// Book 60
+		f_BookTitle.put("9781419717017", "Diary of a Wimpy Kid: Old School #10");
+		f_BookTitle.put("Diary of a Wimpy Kid: Old School #10", "Diary of a Wimpy Kid: Old School #10");
+		
+		// Book 61
+		f_BookTitle.put("9781690319849", "Diary of a Wimpy Kid: Double Down #11");
+		f_BookTitle.put("Diary of a Wimpy Kid: Double Down #11", "Diary of a Wimpy Kid: Double Down #11");
+		
+		// Book 62
+		f_BookTitle.put("9780141385273", "Diary of a Wimpy Kid: The Getaway #12");
+		f_BookTitle.put("Diary of a Wimpy Kid: The Getaway #12", "Diary of a Wimpy Kid: The Getaway #12");
+		
+		// Book 63
+		f_BookTitle.put("9781419741999", "Diary of a Wimpy Kid: The Meltdown #13");
+		f_BookTitle.put("Diary of a Wimpy Kid: The Meltdown #13", "Diary of a Wimpy Kid: The Meltdown #13");
+		
+		// Book 64
+		f_BookTitle.put("9781419739033", "Diary of a Wimpy Kid: Wrecking Ball #14");
+		f_BookTitle.put("Diary of a Wimpy Kid: Wrecking Ball #14", "Diary of a Wimpy Kid: Wrecking Ball #14");
+		
+		// Book 65
+		f_BookTitle.put("9781419749155", "Diary of a Wimpy Kid: Big Shot #15");
+		f_BookTitle.put("Diary of a Wimpy Kid: Big Shot #15", "Diary of a Wimpy Kid: Big Shot #15");
+		
+		// Book 66
+		f_BookTitle.put("9781419766947", "Diary of a Wimpy Kid: No Brainer #16");
+		f_BookTitle.put("Diary of a Wimpy Kid: No Brainer #16", "Diary of a Wimpy Kid: No Brainer #16");
+		
+		// Book 67
+		f_BookTitle.put("9780393339918", "Packing for Mars");
+		f_BookTitle.put("Packing for Mars", "Packing for Mars");
+		
+		// Book 68
+		f_BookTitle.put("9780199291151", "The Selfish Gene");
+		f_BookTitle.put("The Selfish Gene", "The Selfish Gene");
+		
+		// Book 69
+		f_BookTitle.put("9780518123201", "The Origin of Species");
+		f_BookTitle.put("The Origin of Species", "The Origin of Species");
+		
+		// Book 70
+		f_BookTitle.put("9780593729397", "The American Daughters");
+		f_BookTitle.put("The American Daughters", "The American Daughters");
+		
+		// Book 71
+		f_BookTitle.put("9780143037750", "Postwar: A History of Europe Since 1945");
+		f_BookTitle.put("Postwar: A History of Europe Since 1945", "Postwar: A History of Europe Since 1945");
+		
+		// Book 72
+		f_BookTitle.put("9781250277954", "My Side of the River");
+		f_BookTitle.put("My Side of the River", "My Side of the River");
+		
+		// Book 73
+		f_BookTitle.put("9781982168537", "Troubled: A Memoir of Foster Care, Family, and Social Class");
+		f_BookTitle.put("Troubled: A Memoir of Foster Care, Family, and Social Class", "Troubled: A Memoir of Foster Care, Family, and Social Class");
+		
+		// Book 74
+		f_BookTitle.put("9780385680967", "Thank You For Your Service");
+		f_BookTitle.put("Thank You For Your Service", "Thank You For Your Service");
+		
+		// Book 75
+		f_BookTitle.put("979888777420", "This Book Will Make You An Artist");
+		f_BookTitle.put("This Book Will Make You An Artist", "This Book Will Make You An Artist");
+		
+		// Book 76
+		f_BookTitle.put("9780714833552", "The Story Of Art");
+		f_BookTitle.put("The Story Of Art", "The Story Of Art");
+		
+		// Book 77
+		f_BookTitle.put("9780593652886", "The Creative Act: A Way of Being");
+		f_BookTitle.put("The Creative Act: A Way of Being", "The Creative Act: A Way of Being");
+		
+		// Book 78
+		f_BookTitle.put("9781573223560", "Songbook");
+		f_BookTitle.put("Songbook", "Songbook");
+		
+		// Book 79
+		f_BookTitle.put("9781422243725", "Hip-Hop");
+		f_BookTitle.put("Hip-Hop", "Hip-Hop");
+		
+		// Book 80
+		f_BookTitle.put("9780063076099", "The Storyteller: Tales of Life and Music");
+		f_BookTitle.put("The Storyteller: Tales of Life and Music", "The Storyteller: Tales of Life and Music");
+
+		// Book Authors via ISBN
+		// +----------------------------------------------------------------------------------------------+
+		
+		// Book 1
+		f_BookAuthor.put("9780394584041", "Marcella Hazan");
+		
+		// Book 2
+		f_BookAuthor.put("9781888963144", "Jeff Smith");
+		
+		//Book 3
+		f_BookAuthor.put("9781684425419", "Matthew Lyons");
+		
+		// Book 4
+		f_BookAuthor.put("9781728259499", "Lindsay Currie");
+		
+		//Book 5 
+		f_BookAuthor.put("9780316411059", "Laird Hunt");
+		
+		// Book 6
+		f_BookAuthor.put("9780393970128", "Bram Stoker");
+		
+		// Book 7
+		f_BookAuthor.put("9780486282114", "Mary Shelley");
+		
+		// Book 8
+		f_BookAuthor.put("9780143039983", "Shirley Jackson");
+		
+		// Book 9
+		f_BookAuthor.put("9780743412285", "Stephen King");
+		
+		//Book 10
+		f_BookAuthor.put("9780062094353", "William Blatty");	
+		
+		// Book 11
+		f_BookAuthor.put("9780062259653", "Josh Malerman");
+		
+		// Book 12
+		f_BookAuthor.put("9780312022822", "Thomas Harris");
+		
+		// Book 13
+		f_BookAuthor.put("9780727860996", "Richard Matheson");
+		
+		// Book 14
+		f_BookAuthor.put("9781542096591 ", "Teresa Driscoll");
+		
+		// Book 15
+		f_BookAuthor.put("9780062678454", "A.J. Finn");
+		
+		//Book 16
+		f_BookAuthor.put("9798875567544", "A.J. Wills");
+		
+		//Book 17
+		f_BookAuthor.put("9780307588364", "Gillian Flynn");
+		
+		//Book 18
+		f_BookAuthor.put("9780307454546", "Stieg Larsson");
+		
+		//Book 19
+		f_BookAuthor.put("9780380731862", "Dennis Lehane");
+		
+		//Book 20
+		f_BookAuthor.put("9780385504201", "Dan Brown");
+		
+		// Book 21
+		f_BookAuthor.put("9780062060556", "S.J.Watson");
+		
+		// Book 22
+		f_BookAuthor.put("9780399587191", "Liane Moriarty");
+		
+		// Book 23
+		f_BookAuthor.put("9780062678416", "A.J. Finn");
+		
+		// Book 24
+		f_BookAuthor.put("9780340924747", "Tana French");
+		
+		// Book 25
+		f_BookAuthor.put("97817876637245", "Gareth Brown");
+		
+		// Book 26
+		f_BookAuthor.put("9780593128251", "Katherine Arden");
+
+		// Book 27
+		f_BookAuthor.put("9781338878929", "J.K. Rowling");
+		
+		// Book 28
+		f_BookAuthor.put("9781338878936", "J.K. Rowling");
+
+		// Book 29
+		f_BookAuthor.put("9780439655484", "J.K. Rowling");
+
+		// Book 30
+		f_BookAuthor.put("9781338878950", "J.K. Rowling");
+		
+		// Book 31
+		f_BookAuthor.put("9780439358064", "J.K. Rowling");
+
+		// Book 32
+		f_BookAuthor.put("9780439784542", "J.K. Rowling");
+
+		// Book 33
+		f_BookAuthor.put("9780545010221", "J.K. Rowling");
+
+		// Book 34
+		f_BookAuthor.put("9780593316764", "Scott Guild");
+		
+		// Book 35
+		f_BookAuthor.put("9781786189387", "Meredith Mooring");
+		
+		// Book 36
+		f_BookAuthor.put("9780765396778", "S.E. Porter");
+		
+		// Book 37
+		f_BookAuthor.put("9780593099322", "Frank Herbert");
+		
+		// Book 38
+		f_BookAuthor.put("9780441007462", "William Gibson");
+
+		// Book 39
+		f_BookAuthor.put("9780553293357", "Isaac Asimov");
+		
+		// Book 40
+		f_BookAuthor.put("9780553380958", "Neal Stephenson");
+		
+		// Book 41
+		f_BookAuthor.put("9780399178610", "Dan Simmons");
+		
+		// Book 42
+		f_BookAuthor.put("9780593336700", "Iris Yamashita");
+		
+		// Book 43
+		f_BookAuthor.put("9780778310761", "Vera Kurian");
+		
+		// Book 44
+		f_BookAuthor.put("9781665903523", "Liselle Sambury");
+		
+		// Book 45
+		f_BookAuthor.put("9780593595718", "Cara Bastone");
+		
+		// Book 46
+		f_BookAuthor.put("9781728299792", "Elle Kennedy");
+		
+		// Book 47
+		f_BookAuthor.put("9780593336618", "Amy Lea");
+		
+		// Book 48
+		f_BookAuthor.put("9780655232575", "Andy Lee");
+
+		// Book 49
+		f_BookAuthor.put("9781641526371", "Carole Roman");
+		
+		// Book 50
+		f_BookAuthor.put("9780578557588", "Mr. Jay");
+
+		// Book 51
+		f_BookAuthor.put("9781419741852", "Jeff Kinney");
+		
+		// Book 52
+		f_BookAuthor.put("9781419741869", "Jeff Kinney");
+
+		// Book 53
+		f_BookAuthor.put("9781419741876", "Jeff Kinney");
+		
+		// Book 54
+		f_BookAuthor.put("9781419741883", "Jeff Kinney");
+		
+		// Book 55
+		f_BookAuthor.put("9781419741890", "Jeff Kinney");
+		
+		// Book 56
+		f_BookAuthor.put("9781419702235", "Jeff Kinney");
+
+		// Book 57
+		f_BookAuthor.put("9781419705847", "Jeff Kinney");
+		
+		// Book 58
+		f_BookAuthor.put("9781419711329", "Jeff Kinney");
+		
+		// Book 59
+		f_BookAuthor.put("9781419711893", "Jeff Kinney");
+		
+		// Book 60
+		f_BookAuthor.put("9781419717017", "Jeff Kinney");
+		
+		// Book 61
+		f_BookAuthor.put("9781690319849", "Jeff Kinney");
+		
+		// Book 62
+		f_BookAuthor.put("9780141385273", "Jeff Kinney");
+
+		// Book 63
+		f_BookAuthor.put("9781419741999", "Jeff Kinney");
+		
+		// Book 64
+		f_BookAuthor.put("9781419739033", "Jeff Kinney");
+		
+		// Book 65
+		f_BookAuthor.put("9781419749155", "Jeff Kinney");
+		
+		// Book 66
+		f_BookAuthor.put("9781419766947", "Jeff Kinney");
+		
+		// Book 67
+		f_BookAuthor.put("9780393339918", "Mary Roach");
+		
+		// Book 68
+		f_BookAuthor.put("9780199291151", "Richard Dawkins");
+		
+		// Book 69
+		f_BookAuthor.put("9780518123201", "Charles Darwin");
+		
+		// Book 70
+		f_BookAuthor.put("9780593729397", "Maurice Carlos Ruffin");
+
+		// Book 71
+		f_BookAuthor.put("9780143037750", "Tony Judt");
+		
+		// Book 72
+		f_BookAuthor.put("9781250277954", "Elizabeth Camarillo Gutierrez");
+
+		// Book 73
+		f_BookAuthor.put("9781982168537", "Rob Henderson");
+		
+		// Book 74
+		f_BookAuthor.put("9780385680967", "David Finkel");
+
+		// Book 75
+		f_BookAuthor.put("979888777420", "Ruth Millington");
+		
+		// Book 76
+		f_BookAuthor.put("9780714833552", "E.H. Gombrich");
+		
+		// Book 77
+		f_BookAuthor.put("9780593652886", "Rick Rubin");
+		
+		// Book 78
+		f_BookAuthor.put("9781573223560", "Nick Hornby");
+		
+		// Book 79
+		f_BookAuthor.put("9781422243725", "Christina Dearmont");
+		
+		// Book 80
+		f_BookAuthor.put("9780063076099", "Dave Grohl");
+	
+		// Book Genres via ISBN and Title assignment
+		// +----------------------------------------------------------------------------------------------+
+		
+		// Book 1
+		f_BookGenre.put("9780394584041", "Cooking");
+		f_BookGenre.put("Essentials of Classic Italian Cooking", "Cooking");
+		
+		// Book 2
+		f_BookGenre.put("9781888963144", "Fantasy");
+		f_BookGenre.put("BONE", "Fantasy");
+		
+		//Book 3
+		f_BookGenre.put("9781684425419", "Horror");
+		f_BookGenre.put("The Night Will Find Us", "Horror");
+		
+		// Book 4
+		f_BookGenre.put("9781728259499", "Horror");
+		f_BookGenre.put("It Found Us", "Horror");
+		
+		// Book 5
+		f_BookGenre.put("9780316411059","Horror");
+		f_BookGenre.put(" In the House in the Dark of the Woods", "Horror");
+		
+		// Book 6
+		f_BookGenre.put("9780393970128", "Horror");
+		f_BookGenre.put("Dracula", "Horror");
+		
+		// Book 7
+		f_BookGenre.put("9780486282114", "Horror");
+		f_BookGenre.put("Frankenstein", "Horror");
+		
+		// Book 8
+		f_BookGenre.put("9780143039983", "Horror");
+		f_BookGenre.put("The Haunting of Hill House", "Horror");
+		
+		// Book 9
+		f_BookGenre.put("9780743412285", "Horror");
+		f_BookGenre.put("Pet Semetary", "Horror");
+		
+		//Book 10
+		f_BookGenre.put("9780062094353", "Horror");
+		f_BookGenre.put("The Exorcist", "Horror");
+		
+		// Book 11
+		f_BookGenre.put("9780062259653", "Horror");
+		f_BookGenre.put("Bird Box", "Horror");
+		
+		// Book 12
+		f_BookGenre.put("9780312022822", "Horror");
+		f_BookGenre.put("The Silence of the Lambs", "Horror");
+		
+		// Book 13
+		f_BookGenre.put("9780727860996", "Horror");
+		f_BookGenre.put("Hell House", "Horror");
+		
+		// Book 14
+		f_BookGenre.put("9781542096591", "Thriller");
+		f_BookGenre.put("I Am Watching You","Thriller");
+		
+		// Book 15
+		f_BookGenre.put("9780062678454", "Thriller");
+		f_BookGenre.put("End of Story", "Thriller");
+		
+		//Book 16
+		f_BookGenre.put("9798875567544", "Thriller");
+		f_BookGenre.put("The Phantom Child", "Thriller");		
+		
+		// Book 17
+		f_BookGenre.put("9780307588364", "Thriller");
+		f_BookGenre.put("Gone Girl", "Thriller");
+		
+		// Book 18
+		f_BookGenre.put("9780307454546", "Thriller");
+		f_BookGenre.put("The Girl with the Dragon Tattoo", "Thriller");
+		
+		//Book 19
+		f_BookGenre.put("9780380731862", "Thriller");
+		f_BookGenre.put("Shutter Island", "Thriller");
+		
+		// Book 20
+		f_BookGenre.put("9780385504201", "Thriller");
+		f_BookGenre.put("The Da Vinci Code", "Thriller");
+		
+		// Book 21
+		f_BookGenre.put("9780062060556", "Thriller");
+		f_BookGenre.put("Before I Go to Sleep", "Thriller");
+		
+		//Book 22
+		f_BookGenre.put("9780399587191", "Thriller");
+		f_BookGenre.put("Big Little Lies", "Thriller");
+		
+		//Book 23
+		f_BookGenre.put("9780062678416", "Thriller");
+		f_BookGenre.put("The Woman in the Window", "Thriller");
+		
+		//Book 24
+		f_BookGenre.put("9780340924747", "Thriller");
+		f_BookGenre.put("In the Woods", "Thriller");
+		
+		// Book 25
+		f_BookGenre.put("97817876637245", "Fiction");
+		f_BookGenre.put("The Book of Doors", "Fiction");
+		
+		// Book 26
+		f_BookGenre.put("9780593128251", "Fiction");
+		f_BookGenre.put("The Warm Hands of Ghosts", "Fiction");
+		
+		// Book 27
+		f_BookGenre.put("9781338878929", "Fantasy");
+		f_BookGenre.put("Harry Potter and the Sorcerer’s Stone", "Fantasy");
+		
+		// Book 28
+		f_BookGenre.put("9781338878936", "Fantasy");
+		f_BookGenre.put("Harry Potter and the Chamber of Secrets", "Fantasy");
+		
+		//Book 29
+		f_BookGenre.put("9780439655484", "Fantasy");
+		f_BookGenre.put("Harry Potter and the Prisoner of Azkaban", "Fantasy");
+		
+		// Book 30
+		f_BookGenre.put("9781338878950", "Fantasy");
+		f_BookGenre.put("Harry Potter and the Goblet of Fire", "Fantasy");
+		
+		// Book 31
+		f_BookGenre.put("9780439358064", "Fantasy");
+		f_BookGenre.put("Harry Potter and the Order of the Phoenix", "Fantasy");
+		
+		// Book 32
+		f_BookGenre.put("9780439784542", "Fantasy");
+		f_BookGenre.put("Harry Potter and the Half-Blood Prince", "Fantasy");
+		
+		// Book 33
+		f_BookGenre.put("9780545010221", "Fantasy");
+		f_BookGenre.put("Harry Potter and the Deathly Hallows", "Fantasy");
+		
+		// Book 34
+		f_BookGenre.put("9780593316764", "Sci-Fi");
+		f_BookGenre.put("Plastic", "Sci-Fi");
+		
+		// Book 35
+		f_BookGenre.put("9781786189387", "Sci-Fi");
+		f_BookGenre.put("Redsight", "Sci-Fi");
+		
+		// Book 36
+		f_BookGenre.put("9780765396778", "Sci-Fi");
+		f_BookGenre.put("Projections", "Sci-Fi");
+		
+		// Book 37
+		f_BookGenre.put("9780593099322", "Sci-Fi");
+		f_BookGenre.put("Dune", "Sci-Fi");
+		
+		// Book 38
+		f_BookGenre.put("9780441007462", "Sci-Fi");
+		f_BookGenre.put("Neuromancer", "Sci-Fi");
+		
+		// Book 39
+		f_BookGenre.put("9780553293357", "Sci-Fi");
+		f_BookGenre.put("Foundation", "Sci-Fi");
+		
+		// Book 40
+		f_BookGenre.put("9780553380958", "Sci-Fi");
+		f_BookGenre.put("Snow Crash", "Sci-Fi");
+		
+		// Book 41
+		f_BookGenre.put("9780399178610", "Sci-Fi");
+		f_BookGenre.put("Hyperion", "Sci-Fi");
+		
+		// Book 42
+		f_BookGenre.put("9780593336700", "Mystery");
+		f_BookGenre.put("Village in the Dark", "Mystery");
+		
+		// Book 43
+		f_BookGenre.put("9780778310761", "Mystery");
+		f_BookGenre.put("A Step Past Darkness", "Mystery");
+		
+		// Book 44
+		f_BookGenre.put("9781665903523", "Mystery");
+		f_BookGenre.put("Tender Beasts", "Mystery");
+		
+		// Book 45
+		f_BookGenre.put("9780593595718", "Romance");
+		f_BookGenre.put("Ready or Not", "Romance");
+		
+		// Book 46
+		f_BookGenre.put("9781728299792", "Romance");
+		f_BookGenre.put("Girl Abroad", "Romance");
+		
+		// Book 47
+		f_BookGenre.put("9780593336618", "Romance");
+		f_BookGenre.put("The Catch", "Romance");
+		
+		// Book 48
+		f_BookGenre.put("9780655232575", "Humor");
+		f_BookGenre.put("Seriously, Do Not Open This Book", "Humor");
+		
+		//Book 49
+		f_BookGenre.put("9781641526371", "Humor");
+		f_BookGenre.put("The Big Book of Silly Jokes for Kids", "Humor");
+		
+		// Book 50
+		f_BookGenre.put("9780578557588", "Humor");
+		f_BookGenre.put("Patrick Picklebottom and the Penny Book", "Humor");
+		
+		//Book 51
+		f_BookGenre.put("9781419741852", "Humor");
+		f_BookGenre.put("Diary of a Wimpy Kid #1", "Humor");
+		
+		// Book 52
+		f_BookGenre.put("9781419741869", "Humor");
+		f_BookGenre.put("Diary of a Wimpy Kid: Rodrick Rules #2", "Humor");
+		
+		// Book 53
+		f_BookGenre.put("9781419741876", "Humor");
+		f_BookGenre.put("Diary of a Wimpy Kid: The Last Straw #3", "Humor");
+		
+		// Book 54
+		f_BookGenre.put("9781419741883", "Humor");
+		f_BookGenre.put("Diary of a Wimpy Kid: Dog Days #4", "Humor");
+		
+		// Book 55
+		f_BookGenre.put("9781419741890", "Humor");
+		f_BookGenre.put("Diary of a Wimpy Kid: The Ugly Truth #5", "Humor");
+		
+		// Book 56
+		f_BookGenre.put("9781419702235", "Humor");
+		f_BookGenre.put("Diary of a Wimpy Kid: Cabin Fever #6", "Humor");
+		
+		// Book 57
+		f_BookGenre.put("9781419705847", "Humor");
+		f_BookGenre.put("Diary of a Wimpy Kid: The Third Wheel #7", "Humor");
+		
+		// Book 58
+		f_BookGenre.put("9781419711329", "Humor");
+		f_BookGenre.put("Diary of a Wimpy Kid: Hard Luck #8", "Humor");
+		
+		// Book 59
+		f_BookGenre.put("9781419711893", "Humor");
+		f_BookGenre.put("Diary of a Wimpy Kid: The Long Haul #9", "Humor");
+		
+		// Book 60
+		f_BookGenre.put("9781419717017", "Humor");
+		f_BookGenre.put("Diary of a Wimpy Kid: Old School #10", "Humor");
+		
+		// Book 61
+		f_BookGenre.put("9781690319849", "Humor");
+		f_BookGenre.put("Diary of a Wimpy Kid: Double Down #11", "Humor");
+		
+		// Book 62
+		f_BookGenre.put("9780141385273", "Humor");
+		f_BookGenre.put("Diary of a Wimpy Kid: The Getaway #12", "Humor");
+		
+		// Book 63
+		f_BookGenre.put("9781419741999", "Humor");
+		f_BookGenre.put("Diary of a Wimpy Kid: The Meltdown #13", "Humor");
+		
+		// Book 64
+		f_BookGenre.put("9781419739033", "Humor");
+		f_BookGenre.put("Diary of a Wimpy Kid: Wrecking Ball #14", "Humor");
+		
+		// Book 65
+		f_BookGenre.put("9781419749155", "Humor");
+		f_BookGenre.put("Diary of a Wimpy Kid: Big Shot #15", "Humor");
+		
+		// Book 66
+		f_BookGenre.put("9781419766947", "Humor");
+		f_BookGenre.put("Diary of a Wimpy Kid: No Brainer #16", "Humor");
+		
+		// Book 67
+		f_BookGenre.put("9780393339918", "Science");
+		f_BookGenre.put("Packing for Mars", "Science");
+		
+		// Book 68
+		f_BookGenre.put("9780199291151", "Science");
+		f_BookGenre.put("The Selfish Gene", "Science");
+		
+		// Book 69
+		f_BookGenre.put("9780518123201", "Science");
+		f_BookGenre.put("The Origin of Species", "Science");
+		
+		// Book 70
+		f_BookGenre.put("9780593729397", "History");
+		f_BookGenre.put("The American Daughters", "History");
+		
+		// Book 71
+		f_BookGenre.put("9780143037750", "History");
+		f_BookGenre.put("Postwar: A History of Europe Since 1945", "History");
+		
+		// Book 72
+		f_BookGenre.put("9781250277954", "Biographical");
+		f_BookGenre.put("My Side of the River", "Biographical");
+		
+		// Book 73
+		f_BookGenre.put("9781982168537", "Biographical");
+		f_BookGenre.put("Troubled: A Memoir of Foster Care, Family, and Social Class", "Biographical");
+
+		// Book 74
+		f_BookGenre.put("9780385680967", "Biographical");
+		f_BookGenre.put("Thank You For Your Service", "Biographical");
+		
+		// Book 75
+		f_BookGenre.put("979888777420", "Art");
+		f_BookGenre.put("This Book Will Make You An Artist", "Art");
+		
+		// Book 76
+		f_BookGenre.put("9780714833552", "Art");
+		f_BookGenre.put("The Story Of Art", "Art");
+		
+		// Book 77
+		f_BookGenre.put("9780593652886", "Art");
+		f_BookGenre.put("The Creative Act: A Way of Being", "Art");
+		
+		// Book 78
+		f_BookGenre.put("9781573223560", "Music");
+		f_BookGenre.put("Songbook", "Music");
+		
+		// Book 79
+		f_BookGenre.put("9781422243725", "Music");
+		f_BookGenre.put("Hip-Hop", "Music");
+		
+		// Book 80
+		f_BookGenre.put("9780063076099", "Music");
+		f_BookGenre.put("The Storyteller: Tales of Life and Music", "Music");
+		
+		// Book/Material Quantities linked to ISBN
+		// +----------------------------------------------------------------------------------------------+
+		
+		// Book 1
+		f_BookQuantity.put("9780394584041", 20);
+		
+		// Book 2
+		f_BookQuantity.put("9781888963144", 10);
+		
+		//Book 3 
+		f_BookQuantity.put("9781684425419", 5);
+		
+		// Book 4
+		f_BookQuantity.put("9781728259499", 2);
+		
+		// Book 5 
+		f_BookQuantity.put("9780316411059", 3);
+		
+		// Book 6
+		f_BookQuantity.put("9780393970128", 4);
+		
+		// Book 7
+		f_BookQuantity.put("9780486282114", 3);
+		
+		// Book 8
+		f_BookQuantity.put("9780143039983", 3);
+		
+		// Book 9
+		f_BookQuantity.put("9780743412285", 2);
+		
+		//Book 10
+		f_BookQuantity.put("9780062094353", 1);
+		
+		//Book 11
+		f_BookQuantity.put("9780062259653", 2);
+		
+		// Book 12
+		f_BookQuantity.put("9780312022822", 4);
+		
+		// Book 13 
+		f_BookQuantity.put("9780727860996", 2);
+		
+		// Book 14
+		f_BookQuantity.put("9781542096591", 3);
+		
+		// Book 15
+		f_BookQuantity.put("9780062678454", 6);
+		
+		// Book 16
+		f_BookQuantity.put("9798875567544", 4);
+		
+		// Book 17
+		f_BookQuantity.put("9780307588364", 4);
+		
+		//Book 18
+		f_BookQuantity.put("9780307454546", 2);
+		
+		//Book 19
+		f_BookQuantity.put("9780380731862", 3);
+		
+		// Book 20
+		f_BookQuantity.put("9780385504201", 2);
+		
+		// Book 21
+		f_BookQuantity.put("9780062060556", 3);
+		
+		// Book 22
+		f_BookQuantity.put("9780399587191", 5);
+		
+		// Book 23
+		f_BookQuantity.put("9780062678416", 2);
+		
+		// Book 24
+		f_BookQuantity.put("9780340924747", 2);
+		
+		// Book 25
+		f_BookQuantity.put("97817876637245", 3);
+		
+		// Book 26
+		f_BookQuantity.put("9780593128251", 4); 
+	 
+		// Book 27
+		f_BookQuantity.put("9781338878929", 5); 
+		
+		// Book 28
+		f_BookQuantity.put("9781338878936", 5);
+		
+		// Book 29
+		f_BookQuantity.put("9780439655484", 4);
+		
+		// Book 30
+		f_BookQuantity.put("9781338878950", 4); 
+
+		// Book 31
+		f_BookQuantity.put("9780439358064", 3);
+		
+		// Book 32
+		f_BookQuantity.put("9780439784542", 3);
+		
+		// Book 33
+		f_BookQuantity.put("9780545010221", 3);
+		
+		// Book 34
+		f_BookQuantity.put("9780593316764", 4); 
+		
+		// Book 35
+		f_BookQuantity.put("9781786189387", 1);
+		
+		// Book 36
+		f_BookQuantity.put("9780765396778", 2);
+		
+		// Book 37
+		f_BookQuantity.put("9780593099322", 3); 
+		
+		// Book 38
+		f_BookQuantity.put("9780441007462", 2); 
+		
+		// Book 39
+		f_BookQuantity.put("9780553293357", 1); 
+		
+		// Book 40
+		f_BookQuantity.put("9780553380958", 1); 
+		
+		//Book 41
+		f_BookQuantity.put("9780399178610", 2);
+		
+		// Book 42
+		f_BookQuantity.put("9780593336700", 1);
+		
+		// Book 43
+		f_BookQuantity.put("9780778310761", 4);
+		
+		// Book 44
+		f_BookQuantity.put("9781665903523", 2);
+		
+		// Book 45
+		f_BookQuantity.put("9780593595718", 6); 
+		
+		// Book 46
+		f_BookQuantity.put("9781728299792", 4); 
+		
+		// Book 47
+		f_BookQuantity.put("9780593336618", 3);
+		
+		// Book 48
+		f_BookQuantity.put("9780655232575", 3); 
+		
+		// Book 49
+		f_BookQuantity.put("9781641526371", 2);
+		
+		// Book 50
+		f_BookQuantity.put("9780578557588", 4);
+		
+		// Book 51
+		f_BookQuantity.put("9781419741852", 6);
+		
+		// Book 52
+		f_BookQuantity.put("9781419741869", 3);
+		
+		// Book 53
+		f_BookQuantity.put("9781419741876", 5);
+		
+		// Book 54
+		f_BookQuantity.put("9781419741883", 6); 
+		
+		// Book 55
+		f_BookQuantity.put("9781419741890", 5);
+		
+		// Book 56
+		f_BookQuantity.put("9781419702235", 3);
+		
+		// Book 57
+		f_BookQuantity.put("9781419705847", 4);
+		
+		// Book 58
+		f_BookQuantity.put("9781419711329", 3); 
+		
+		// Book 59
+		f_BookQuantity.put("9781419711893", 4); 
+		
+		// Book 60
+		f_BookQuantity.put("9781419717017", 6);
+		
+		// Book 61
+		f_BookQuantity.put("9781690319849", 5);
+		
+		// Book 62
+		f_BookQuantity.put("9780141385273", 3);
+		
+		// Book 63
+		f_BookQuantity.put("9781419741999", 5);
+		
+		// Book 64
+		f_BookQuantity.put("9781419739033", 3); 
+		
+		// Book 65
+		f_BookQuantity.put("9781419749155", 6);
+		
+		// Book 66
+		f_BookQuantity.put("9781419766947", 3); 
+		
+		// Book 67
+		f_BookQuantity.put("9780393339918", 4);
+		
+		// Book 68
+		f_BookQuantity.put("9780199291151", 3); 
+		
+		// Book 69
+		f_BookQuantity.put("9780518123201", 3);
+		
+		// Book 70
+		f_BookQuantity.put("9780593729397", 6);
+		
+		// Book 71
+		f_BookQuantity.put("9780143037750", 3);
+		
+		// Book 72
+		f_BookQuantity.put("9781250277954", 3);
+		
+		// Book 73
+		f_BookQuantity.put("9781982168537", 6);
+		
+		// Book 74
+		f_BookQuantity.put("9780385680967", 3);
+		
+		// Book 75
+		f_BookQuantity.put("979888777420", 2); 
+		
+		// Book 76
+		f_BookQuantity.put("9780714833552", 3); 
+		
+		// Book 77
+		f_BookQuantity.put("9780593652886", 4);
+		
+		// Book 78
+		f_BookQuantity.put("9781573223560", 3);
+		
+		// Book 79
+		f_BookQuantity.put("9781422243725", 6);
+		
+		// Book 80
+		f_BookQuantity.put("9780063076099", 2); 
+		
+		// Book 81
+		f_BookQuantity.put("9781639932436", 3);
+		
+		// Material Types via ISBN and Title assignment
+		// +----------------------------------------------------------------------------------------------+
+		
+		// Book 1
+		f_MaterialType.put("9780394584041", "Non-Fiction Book");
+		f_MaterialType.put("Essentials of Classic Italian Cooking", "Non-Fiction Book");
+		
+		// Book 2
+		f_MaterialType.put("9781888963144", "Fiction Book");
+		f_MaterialType.put("BONE", "Fiction Book");
+		
+		// Book 3
+		f_MaterialType.put("9781684425419", "Fiction Book");
+		f_MaterialType.put("The Night Will Find Us", "Fiction Book");
+		
+		// Book 4
+		f_MaterialType.put("9781728259499", "Fiction Book");
+		f_MaterialType.put("It Found Us", "Fiction Book");
+		
+		// Book 5
+		f_MaterialType.put("9780316411059", "Fiction Book");
+		f_MaterialType.put("In the House in the Dark of the Woods", "Fiction Book");
+		
+		// Book 6
+		f_MaterialType.put("9780393970128", "Fiction Book");
+		f_MaterialType.put("Dracula", "Fiction Book");
+		
+		//Book 7
+		f_MaterialType.put("9780486282114", "Fiction Book");
+		f_MaterialType.put("Frankenstein", "Fiction Book");
+		
+		// Book 8
+		f_MaterialType.put("9780143039983", "Fiction Book");
+		f_MaterialType.put("The Haunting of Hill House", "Fiction Book");
+		
+		// Book 9
+		f_MaterialType.put("9780743412285", "Fiction Book");
+		f_MaterialType.put("Pet Semetary", "Fiction Book");
+		
+		// Book 10
+		f_MaterialType.put("9780062094353", "Fiction Book");
+		f_MaterialType.put("The Exorcist", "Fiction Book");
+		
+		// Book 11
+		f_MaterialType.put("9780062259653", "Fiction Book");
+		f_MaterialType.put("Bird Box", "Fiction Book");
+		
+		// Book 12
+		f_MaterialType.put("9780312022822", "Fiction Book");
+		f_MaterialType.put("The Silence of the Lambs", "Fiction Book");
+		
+		// Book 13
+		f_MaterialType.put("9780727860996", "Fiction Book");
+		f_MaterialType.put("Hell House", "Fiction Book");
+		
+		// Book 14
+		f_MaterialType.put("9781542096591 ", "Fiction Book");
+		f_MaterialType.put("I Am Watching You", "Fiction Book");
+		
+		// Book 15
+		f_MaterialType.put("9780062678454", "Fiction Book");
+		f_MaterialType.put("End of Story", "Fiction Book");
+		
+		//Book 16
+		f_MaterialType.put("9798875567544", "Fiction Book");
+		f_MaterialType.put("The Phantom Child", "Fiction Book");
+		
+		//Book 17
+		f_MaterialType.put("9780307588364", "Fiction Book");
+		f_MaterialType.put("Gone Girl", "Fiction Book");
+		
+		//Book 18
+		f_MaterialType.put("9780307454546", "Fiction Book");
+		f_MaterialType.put("The Girl with the Dragon Tattoo", "Fiction Book");
+		
+		// Book 19
+		f_MaterialType.put("9780380731862", "Fiction Book");
+		f_MaterialType.put("Shutter Island", "Fiction Book");
+		
+		//Book 20
+		f_MaterialType.put("9780385504201", "Fiction Book");
+		f_MaterialType.put("The Da Vinci Code", "Fiction Book");
+		
+		//Book 21
+		f_MaterialType.put("9780062060556", "Fiction Book");
+		f_MaterialType.put("Before I Go to Sleep", "Fiction Book");
+		
+		// Book 22
+		f_MaterialType.put("9780399587191", "Fiction Book");
+		f_MaterialType.put("Big Little Lies", "Fiction Book");
+		
+		//Book 23
+		f_MaterialType.put("9780062678416", "Fiction Book");
+		f_MaterialType.put("The Woman in the Window", "Fiction Book");
+		
+		// Book 24
+		f_MaterialType.put("9780340924747", "Fiction Book");
+		f_MaterialType.put("In the Woods", "Fiction Book");
+		
+		// Book 25
+		f_MaterialType.put("97817876637245", "Fiction Book");
+		f_MaterialType.put("The Book of Doors", "Fiction Book");
+		
+		//Book 26
+		f_MaterialType.put("9780593128251", "Fiction Book");
+		f_MaterialType.put("The Warm Hands of Ghosts", "Fiction Book");
+	
+		// Book 27
+		f_MaterialType.put("9781338878929", "Fantasy Book");
+		f_MaterialType.put("Harry Potter and the Sorcerer’s Stone", "Fantasy Book");
+	
+		// Book 28
+		f_MaterialType.put("9781338878936", "Fantasy Book");
+		f_MaterialType.put("Harry Potter and the Chamber of Secrets", "Fantasy Book");
+		
+		// Book 29
+		f_MaterialType.put("9780439655484", "Fantasy Book");
+		f_MaterialType.put("Harry Potter and the Prisoner of Azkaban", "Fantasy Book");
+	
+		// Book 30
+		f_MaterialType.put("9781338878950", "Fantasy Book");
+		f_MaterialType.put("Harry Potter and the Goblet of Fire", "Fantasy Book");
+	
+		// Book 31
+		f_MaterialType.put("9780439358064", "Fantasy Book");
+		f_MaterialType.put("Harry Potter and the Order of the Phoenix", "Fantasy Book");
+	
+		// Book 32
+		f_MaterialType.put("9780439784542", "Fantasy Book");
+		f_MaterialType.put("Harry Potter and the Half-Blood Prince", "Fantasy Book");
+
+		// Book 33
+		f_MaterialType.put("9780545010221", "Fantasy Book");
+		f_MaterialType.put("Harry Potter and the Deathly Hallows", "Fantasy Book");
+	
+		// Book 34
+		f_MaterialType.put("9780593316764", "Fiction Book");
+		f_MaterialType.put("Plastic", "Fiction Book");
+		
+		// Book 35
+		f_MaterialType.put("9781786189387", "Fiction Book");
+		f_MaterialType.put("Redsight", "Fiction Book");
+		
+		// Book 36
+		f_MaterialType.put("9780765396778", "Fiction Book");
+		f_MaterialType.put("Projections", "Fiction Book");
+		
+		// Book 37
+		f_MaterialType.put("9780593099322", "Fiction Book");
+		f_MaterialType.put("Dune", "Sci-Fi Book");
+		
+		// Book 38
+		f_MaterialType.put("9780441007462", "Fiction Book");
+		f_MaterialType.put("Neuromancer", "Fiction Book");
+		
+		// Book 39
+		f_MaterialType.put("9780553293357", "Fiction Book");
+		f_MaterialType.put("Foundation", "Fiction Book");
+		
+		// Book 40
+		f_MaterialType.put("9780553380958", "Fiction Book");
+		f_MaterialType.put("Snow Crash", "Fiction Book");
+		
+		// Book 41
+		f_MaterialType.put("9780399178610", "Fiction Book");
+		f_MaterialType.put("Hyperion", "Fiction Book");
+	
+		// Book 42
+		f_MaterialType.put("9780593336700", "Fiction Book");
+		f_MaterialType.put("Village in the Dark", "Fiction Book");
+	
+		// Book 43
+		f_MaterialType.put("9780778310761", "Fiction Book");
+		f_MaterialType.put("A Step Past Darkness", "Fiction Book");
+		
+		// Book 44
+		f_MaterialType.put("9781665903523", "Fiction Book");
+		f_MaterialType.put("Tender Beasts", "Fiction Book");
+		
+		// Book 45
+		f_MaterialType.put("9780593595718", "Fiction Book");
+		f_MaterialType.put("Ready or Not", "Fiction Book");
+		
+		// Book 46
+		f_MaterialType.put("9781728299792", "Fiction Book");
+		f_MaterialType.put("Girl Abroad", "Fiction Book");
+		
+		// Book 47
+		f_MaterialType.put("9780593336618", "Fiction Book");
+		f_MaterialType.put("The Catch", "Fiction Book");
+		
+		// Book 48
+		f_MaterialType.put("9780655232575", "Fiction Book");
+		f_MaterialType.put("Seriously, Do Not Open This Book", "Fiction Book");
+	
+		// Book 49
+		f_MaterialType.put("9781641526371", "Fiction Book");
+		f_MaterialType.put("The Big Book of Silly Jokes for Kids", "Fiction Book");
+		
+		// Book 50
+		f_MaterialType.put("9780578557588", "Fiction Book");
+		f_MaterialType.put("Patrick Picklebottom and the Penny Book", "Fiction Book");
+		
+		// Book 51
+		f_MaterialType.put("9781419741852", "Fiction Book");
+		f_MaterialType.put("Diary of a Wimpy Kid #1", "Fiction Book");
+	
+		// Book 52
+		f_MaterialType.put("9781419741869", "Fiction Book");
+		f_MaterialType.put("Diary of a Wimpy Kid: Rodrick Rules #2", "Fiction Book");
+		
+		// Book 53
+		f_MaterialType.put("9781419741876", "Fiction Book");
+		f_MaterialType.put("Diary of a Wimpy Kid: The Last Straw #3", "Fiction Book");
+	
+		// Book 54
+		f_MaterialType.put("9781419741883", "Fiction Book");
+		f_MaterialType.put("Diary of a Wimpy Kid: Dog Days #4", "Fiction Book");
+	
+		// Book 55
+		f_MaterialType.put("9781419741890", "Fiction Book");
+		f_MaterialType.put("Diary of a Wimpy Kid: The Ugly Truth #5", "Fiction Book");
+	
+		// Book 56
+		f_MaterialType.put("9781419702235", "Fiction Book");
+		f_MaterialType.put("Diary of a Wimpy Kid: Cabin Fever #6", "Fiction Book");
+	
+		// Book 57
+		f_MaterialType.put("9781419705847", "Fiction Book");
+		f_MaterialType.put("Diary of a Wimpy Kid: The Third Wheel #7", "Fiction Book");
+	
+		// Book 58
+		f_MaterialType.put("9781419711329", "Fiction Book");
+		f_MaterialType.put("Diary of a Wimpy Kid: Hard Luck #8", "Fiction Book");
+	
+		// Book 59
+		f_MaterialType.put("9781419711893", "Fiction Book");
+		f_MaterialType.put("Diary of a Wimpy Kid: The Long Haul #9", "Fiction Book");
+	
+		// Book 60
+		f_MaterialType.put("9781419717017", "Fiction Book");
+		f_MaterialType.put("Diary of a Wimpy Kid: Old School #10", "Fiction Book");
+	
+		// Book 61
+		f_MaterialType.put("9781690319849", "Fiction Book");
+		f_MaterialType.put("Diary of a Wimpy Kid: Double Down #11", "Fiction Book");
+	
+		// Book 62
+		f_MaterialType.put("9780141385273", "Fiction Book");
+		f_MaterialType.put("Diary of a Wimpy Kid: The Getaway #12", "Fiction Book");
+	
+		// Book 63
+		f_MaterialType.put("9781419741999", "Fiction Book");
+		f_MaterialType.put("Diary of a Wimpy Kid: The Meltdown #13", "Fiction Book");
+	
+		// Book 64
+		f_MaterialType.put("9781419739033", "Fiction Book");
+		f_MaterialType.put("Diary of a Wimpy Kid: Wrecking Ball #14", "Fiction Book");
+		
+		// Book 65
+		f_MaterialType.put("9781419749155", "Fiction Book");
+		f_MaterialType.put("Diary of a Wimpy Kid: Big Shot #15", "Fiction Book");
+	
+		// Book 66
+		f_MaterialType.put("9781419766947", "Fiction Book");
+		f_MaterialType.put("Diary of a Wimpy Kid: No Brainer #16", "Fiction Book");
+	
+		// Book 67
+		f_MaterialType.put("9780393339918", "Non-Fiction Book");
+		f_MaterialType.put("Packing for Mars", "Non-Fiction Book");
+		
+		// Book 68
+		f_MaterialType.put("9780199291151", "Non-Fiction Book");
+		f_MaterialType.put("The Selfish Gene", "Non-Fiction Book");
+		
+		// Book 69
+		f_MaterialType.put("9780518123201", "Non-Fiction Book");
+		f_MaterialType.put("The Origin of Species", "Non-Fiction Book");
+		
+		// Book 70
+		f_MaterialType.put("9780593729397", "Non-Fiction Book");
+		f_MaterialType.put("The American Daughters", "Non-Fiction Book");
+		
+		// Book 71
+		f_MaterialType.put("9780143037750", "Non-Fiction Book");
+		f_MaterialType.put("Postwar: A History of Europe Since 1945", "Non-Fiction Book");
+	
+		// Book 72
+		f_MaterialType.put("9781250277954", "Non-Fiction Book");
+		f_MaterialType.put("My Side of the River", "Non-Fiction Book");
+		
+		// Book 73
+		f_MaterialType.put("9781982168537", "Non-Fiction Book");
+		f_MaterialType.put("Troubled: A Memoir of Foster Care, Family, and Social Class", "Non-Fiction Book");
+	
+		// Book 74
+		f_MaterialType.put("9780385680967", "Non-Fiction Book");
+		f_MaterialType.put("Thank You For Your Service", "Non-Fiction Book");
+	
+		// Book 75
+		f_MaterialType.put("979888777420", "Non-Fiction Book");
+		f_MaterialType.put("This Book Will Make You An Artist", "Non-Fiction Book");
+	
+		// Book 76
+		f_MaterialType.put("9780714833552", "Non-Fiction Book");
+		f_MaterialType.put("The Story Of Art", "Non-Fiction Book");
+		
+		// Book 77
+		f_MaterialType.put("9780593652886", "Non-Fiction Book");
+		f_MaterialType.put("The Creative Act: A Way of Being", "Non-Fiction Book");
+		
+		// Book 78
+		f_MaterialType.put("9781573223560", "Non-Fiction Book");
+		f_MaterialType.put("Songbook", "Non-Fiction Book");
+		
+		// Book 79
+		f_MaterialType.put("9781422243725", "Non-Fiction Book");
+		f_MaterialType.put("Hip-Hop", "Non-Fiction Book");
+		
+		// Book 80
+		f_MaterialType.put("9780063076099", "Non-Fiction Book");
+		f_MaterialType.put("The Storyteller: Tales of Life and Music", "Non-Fiction Book");
+	
+		// Book 81
+		f_MaterialType.put("9781639932436", "Cooking Book");
+		f_MaterialType.put("Elise’s Home Kitchen: Eat Dessert First", "Non-Fiction Book");
+		
+		// +----------------------------------------------------------------------------------------------+
+		
+	}
+	
+	// Gets the ISBN Check Hashmap to verify that the information used in ISBN search
+	// is strictly an ISBN number instead of another means of book search
+	public static Object getISBNCheck () {
+		return f_BookISBNCheck;
+		
+	}
+	
+	// Gets the BookISBN Hashmap and information
+	public static Object getISBN() {
+		return f_BookISBN;
+		
+	}
+	
+	// Gets the Book Title Hashmap and information
+	public static Object getTitle() {
+		return f_BookTitle;
+		
+	}
+	
+	// Gets the Book Author Hashmap and information
+	public static Object getAuthor() {
+		return f_BookAuthor;
+		
+	}
+	
+	// Gets the Book Genre Hashmap and information
+	public static Object getGenre() {
+		return f_BookGenre;
+		
+	}
+	
+	// Gets the Book Quantity Hashmap and information
+	public static Object getQuantity() {
+		return f_BookQuantity;
+		
+	}
+	
+	// Gets the Material Type Hashmap and Information
+	public static Object getMaterialType() {
+		return f_MaterialType;
+		
+	}
+	
+}
