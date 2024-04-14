@@ -8,8 +8,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -20,158 +22,164 @@ import javax.swing.JTextField;
 public class Management_Reports implements ActionListener{
 	
 	// These arrays will be utilized within combo boxes when filtering searches for management reports
-	public static String[] Month = {"", "January" , "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}; // Calendar Months
-	public static String[] Year = {"", "2022", "2023", "2024", "2025"}; // Recent years that I chose at random
+	public static String[] f_Month = {"", "January" , "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}; // Calendar Months
+	public static String[] f_Year = {"", "2022", "2023", "2024", "2025"}; // Recent years that I chose at random
 	
 	// Global variable to send the user's name to the next window opened
-	public static String namePlate;
+	public static String f_namePlate;
 	
 	// JFrame creation for the main window for Client Search Page
-	JFrame ManagementPage = new JFrame("LIBSYS");
+	JFrame f_ManagementPage = new JFrame("LIBSYS");
+	
+	URL f_LOGOImage = LIBSYS_launch.class.getResource("Encryption Logo.png"); // Creates a reference to the other folder holding the Logo image
+	
+	ImageIcon f_EncryptionLOGO = new ImageIcon(f_LOGOImage); //Image icon instance of the Logo image
+	
+	URL f_ProfileImage = LIBSYS_launch.class.getResource("Profile Guy.png"); // Creates a reference to the other folder holding the Profile image
+	
+	ImageIcon f_ProfileGuy = new ImageIcon(f_ProfileImage); //Image icon instance of the Profile image
 	
 	// JLabels used for the Client Search Page
-	JLabel PageFunctionHeader = new JLabel(); // Page function header is declared and assigned
-	JLabel BlueLineLabel = new JLabel(); // Blue line label is declared and assigned
-	JLabel LIBSYSLabel = new JLabel(); // LIBSYS header label is declared and assigned
-	JLabel profilePlaceholder = new JLabel(); // Profile placeholder box is declared and assigned
-	JLabel username = new JLabel(); // username label is declared and assigned
-	JLabel OrLabel1 = new JLabel(); // first 'Or' label is declared and assigned
-	JLabel InvoiceLabel = new JLabel(); // Invoice label is declared and assigned
-	JLabel DateLabel = new JLabel(); // Date label is declared and assigned
+	JLabel f_PageFunctionHeader = new JLabel(); // Page function header is declared and assigned
+	JLabel f_BlueLineLabel = new JLabel(); // Blue line label is declared and assigned
+	JLabel f_LIBSYSLabel = new JLabel(); // LIBSYS header label is declared and assigned
+	JLabel f_profilePlaceholder = new JLabel(f_ProfileGuy); // Profile placeholder box is declared and assigned
+	JLabel f_username = new JLabel(); // username label is declared and assigned
+	JLabel f_OrLabel1 = new JLabel(); // first 'Or' label is declared and assigned
+	JLabel f_InvoiceLabel = new JLabel(); // Invoice label is declared and assigned
+	JLabel f_DateLabel = new JLabel(); // Date label is declared and assigned
 	
 	// JCombo Boxes used within the Management Reports filtration system
-	JComboBox MonthBox = new JComboBox(Month); // Month box is populated with calendar month to aid in filtering invoice search function
-	JComboBox YearBox = new JComboBox(Year); // Year box is populated with recent years to aid in filtering invoice search function
+	JComboBox f_MonthBox = new JComboBox(f_Month); // Month box is populated with calendar month to aid in filtering invoice search function
+	JComboBox f_YearBox = new JComboBox(f_Year); // Year box is populated with recent years to aid in filtering invoice search function
 	
 	// JText Field used in the Client Search Page
-	JTextField SearchInvoiceField = new JTextField(); // Invoice search text field is declared and assigned
+	JTextField f_SearchInvoiceField = new JTextField(); // Invoice search text field is declared and assigned
 	
 	// JButtons used for the Client search page
-	JButton signoutButton = new JButton("Sign Out"); // Sign Out button is declared and assigned
-	JButton SearchButton = new JButton("Search Invoices"); // Search button is declared and assigned
-	JButton BackButton = new JButton("Back"); // Back button is declared and assigned
-	JButton ResetButton = new JButton("Reset"); // Reset button is declared and assigned
+	JButton f_signoutButton = new JButton("Sign Out"); // Sign Out button is declared and assigned
+	JButton f_SearchButton = new JButton("Search Invoices"); // Search button is declared and assigned
+	JButton f_BackButton = new JButton("Back"); // Back button is declared and assigned
+	JButton f_ResetButton = new JButton("Reset"); // Reset button is declared and assigned
 
 	// The userID is sent from the previous page to this page for the sign out label (so it looks nice and personalized)
 	Management_Reports(String userID) {
 		
 		// The previous window's userID variable is sent through to this window for the username label
-		namePlate = userID;
+		f_namePlate = userID;
 		
-		// +-------------------- Labels --------------------+
-		LIBSYSLabel.setBounds(500, 0, 700, 100); // LIBSYS Label is placed and given dimensions
-		LIBSYSLabel.setText("LIBSYS System"); // LIBSYS Label has text assigned to it
-		LIBSYSLabel.setFont(new Font(null, Font.BOLD, 35)); // LIBSYS Label is given a new font size of 35
+		// +-------------------- Label placement and personalization --------------------+	
+		f_LIBSYSLabel.setBounds(500, 0, 700, 100); // LIBSYS Label is placed and given dimensions
+		f_LIBSYSLabel.setText("LIBSYS System"); // LIBSYS Label has text assigned to it
+		f_LIBSYSLabel.setFont(new Font(null, Font.BOLD, 35)); // LIBSYS Label is given a new font size of 35
 		
-		BlueLineLabel.setBounds(0, 70, 1280, 3); // Blue line label is placed and given dimensions
-		BlueLineLabel.setOpaque(true); // Blue line label is made opaque to be made a different color
-		BlueLineLabel.setBackground(Color.blue); // Blue line label is filled with the color blue
+		f_BlueLineLabel.setBounds(0, 70, 1280, 3); // Blue line label is placed and given dimensions
+		f_BlueLineLabel.setOpaque(true); // Blue line label is made opaque to be made a different color
+		f_BlueLineLabel.setBackground(Color.blue); // Blue line label is filled with the color blue
 		
-		PageFunctionHeader.setBounds(15, 50, 250, 100); // Page function header is placed and given dimensions
-		PageFunctionHeader.setText("Invoice Search"); // Page function header label has text assigned to it
-		PageFunctionHeader.setFont(new Font(null, Font.PLAIN, 25)); // Page function header label is given a new font size of 25
+		f_PageFunctionHeader.setBounds(15, 50, 250, 100); // Page function header is placed and given dimensions
+		f_PageFunctionHeader.setText("Invoice Search"); // Page function header label has text assigned to it
+		f_PageFunctionHeader.setFont(new Font(null, Font.PLAIN, 25)); // Page function header label is given a new font size of 25
 		
-		profilePlaceholder.setBounds(1185, 85, 50, 50); // Profile placeholder box is placed and given dimensions
-		profilePlaceholder.setOpaque(true); // Profile placeholder box is made opaque to be made a different color
-		profilePlaceholder.setBackground(Color.LIGHT_GRAY); // Profile placeholder box is filled with the color light-gray
+		f_profilePlaceholder.setBounds(1185, 85, 50, 50); // Profile placeholder box is placed and given dimensions
 		
-		username.setBounds(1185, 100, 100, 100); // username label is placed and given dimensions
-		username.setText(namePlate); // user name label is given text using the value of the 'nameplate' variable
+		f_username.setBounds(1185, 100, 100, 100); // username label is placed and given dimensions
+		f_username.setText(f_namePlate); // user name label is given text using the value of the 'nameplate' variable
 		
-		OrLabel1.setBounds(475, 285, 25, 25); // Or label 1 is placed and given dimensions
-		OrLabel1.setText("Or"); // Or label 1 has text assigned to it
-		OrLabel1.setFont(new Font(null, Font.PLAIN, 15)); // Or label 1 is given a new font size of 15
+		f_OrLabel1.setBounds(475, 285, 25, 25); // Or label 1 is placed and given dimensions
+		f_OrLabel1.setText("Or"); // Or label 1 has text assigned to it
+		f_OrLabel1.setFont(new Font(null, Font.PLAIN, 15)); // Or label 1 is given a new font size of 15
 		
-		InvoiceLabel.setBounds(340, 250, 200, 25); // Invoice label is placed and given dimensions
-		InvoiceLabel.setText("Invoice/Report #:"); // Invoice label has text assigned to it
-		InvoiceLabel.setFont(new Font(null, Font.PLAIN, 15)); // Invoice label is given a new font size of 15
+		f_InvoiceLabel.setBounds(340, 250, 200, 25); // Invoice label is placed and given dimensions
+		f_InvoiceLabel.setText("Invoice/Report #:"); // Invoice label has text assigned to it
+		f_InvoiceLabel.setFont(new Font(null, Font.PLAIN, 15)); // Invoice label is given a new font size of 15
 		
-		DateLabel.setBounds(345, 315, 150, 25); // Date label is placed and given dimensions
-		DateLabel.setText("Month and Year:"); // Date label has text assigned to it
-		DateLabel.setFont(new Font(null, Font.PLAIN, 15)); // Date label is given a new font size of 15
+		f_DateLabel.setBounds(345, 315, 150, 25); // Date label is placed and given dimensions
+		f_DateLabel.setText("Month and Year:"); // Date label has text assigned to it
+		f_DateLabel.setFont(new Font(null, Font.PLAIN, 15)); // Date label is given a new font size of 15
 		
-		// +-------------------- Text Fields --------------------+
-		SearchInvoiceField.setBounds(475, 250, 250, 25); // Search invoice field is placed and given dimensions
+		// +-------------------- Text Fields placement and dimensions --------------------+
+		f_SearchInvoiceField.setBounds(475, 250, 250, 25); // Search invoice field is placed and given dimensions
 		
-		// +-------------------- ComboBoxes --------------------+
-		MonthBox.setBounds(475, 315, 100, 25); // Month Box is placed and given dimensions
+		// +-------------------- Combo Box Placement and Personalization --------------------+
+		f_MonthBox.setBounds(475, 315, 100, 25); // Month Box is placed and given dimensions
 		
-		YearBox.setBounds(580, 315, 75, 25); // Year Box is placed and given dimensions
+		f_YearBox.setBounds(580, 315, 75, 25); // Year Box is placed and given dimensions
 		
-		// +-------------------- Buttons --------------------+
-		signoutButton.setBounds(1160, 160, 100, 25); // sign out button is placed and given dimensions
-		signoutButton.addActionListener(this); // adds action listener to the Sign Out button to give it functionality
-		signoutButton.setFocusable(false); // disables box outline around button text
-		signoutButton.setFont(new Font(null, Font.PLAIN, 10)); // Sign Out button is given a new font size of 10
-		signoutButton.setForeground(Color.BLUE); // Sign Out Button text is given a blue font color
-		signoutButton.setBorder(BorderFactory.createEmptyBorder()); // The border around the Sign Out button is taken away
-		signoutButton.setContentAreaFilled(false); // the standard blue hue to the Sign Out button is taken away
+		// +-------------------- Button placement and personalization --------------------+
+		f_signoutButton.setBounds(1160, 160, 100, 25); // sign out button is placed and given dimensions
+		f_signoutButton.addActionListener(this); // adds action listener to the Sign Out button to give it functionality
+		f_signoutButton.setFocusable(false); // disables box outline around button text
+		f_signoutButton.setFont(new Font(null, Font.PLAIN, 10)); // Sign Out button is given a new font size of 10
+		f_signoutButton.setForeground(Color.BLUE); // Sign Out Button text is given a blue font color
+		f_signoutButton.setBorder(BorderFactory.createEmptyBorder()); // The border around the Sign Out button is taken away
+		f_signoutButton.setContentAreaFilled(false); // the standard blue hue to the Sign Out button is taken away
 		
-		SearchButton.setBounds(750, 250, 175, 25); // Search button is placed and given dimensions
-		SearchButton.addActionListener(this); // adds action listener so Search button is given functionality
-		SearchButton.setFocusable(false); // disables box outline around button text
+		f_SearchButton.setBounds(750, 250, 175, 25); // Search button is placed and given dimensions
+		f_SearchButton.addActionListener(this); // adds action listener so Search button is given functionality
+		f_SearchButton.setFocusable(false); // disables box outline around button text
 		
-		BackButton.setBounds(750, 300, 100, 25); // Back button is placed and given dimensions
-		BackButton.addActionListener(this); // adds action listener so Back button is given functionality
-		BackButton.setFocusable(false); // disables box outline around button text
+		f_BackButton.setBounds(750, 300, 100, 25); // Back button is placed and given dimensions
+		f_BackButton.addActionListener(this); // adds action listener so Back button is given functionality
+		f_BackButton.setFocusable(false); // disables box outline around button text
 		
-		ResetButton.setBounds(850, 300, 100, 25); // Rest button is placed and given dimensions
-		ResetButton.addActionListener(this); // adds action listener so Reset button is given functionality
-		ResetButton.setFocusable(false); // disables box outline around button text
+		f_ResetButton.setBounds(850, 300, 100, 25); // Rest button is placed and given dimensions
+		f_ResetButton.addActionListener(this); // adds action listener so Reset button is given functionality
+		f_ResetButton.setFocusable(false); // disables box outline around button text
 		
 		// +-------------------- Frame additions and functionality  --------------------+
-		ManagementPage.add(LIBSYSLabel); // LIBSYS header label is added to the window
-		ManagementPage.add(BlueLineLabel); // Blue line is added to the window
-		ManagementPage.add(PageFunctionHeader); // Page function header is added to the window
-		ManagementPage.add(profilePlaceholder); // Profile placeholder box is added to the window
-		ManagementPage.add(username); // username label is added to the window
-		ManagementPage.add(OrLabel1); // Or label 1 is added to the window
-		ManagementPage.add(signoutButton); // Sign Out button is added to the window
-		ManagementPage.add(SearchButton); // Search button is added to the window
-		ManagementPage.add(BackButton); //  Back button is added to the window
-		ManagementPage.add(SearchInvoiceField); // Invoice text field is added to the window
-		ManagementPage.add(MonthBox); // Month Combo box is added to the window
-		ManagementPage.add(InvoiceLabel); // Invoice label is added to the window
-		ManagementPage.add(YearBox); // Year Combo box is added to the window
-		ManagementPage.add(ResetButton); // Reset button is added to the window
-		ManagementPage.add(DateLabel); // Date label is added to the window
+		f_ManagementPage.add(f_LIBSYSLabel); // LIBSYS header label is added to the window
+		f_ManagementPage.add(f_BlueLineLabel); // Blue line is added to the window
+		f_ManagementPage.add(f_PageFunctionHeader); // Page function header is added to the window
+		f_ManagementPage.add(f_profilePlaceholder); // Profile placeholder box is added to the window
+		f_ManagementPage.add(f_username); // username label is added to the window
+		f_ManagementPage.add(f_OrLabel1); // Or label 1 is added to the window
+		f_ManagementPage.add(f_signoutButton); // Sign Out button is added to the window
+		f_ManagementPage.add(f_SearchButton); // Search button is added to the window
+		f_ManagementPage.add(f_BackButton); //  Back button is added to the window
+		f_ManagementPage.add(f_SearchInvoiceField); // Invoice text field is added to the window
+		f_ManagementPage.add(f_MonthBox); // Month Combo box is added to the window
+		f_ManagementPage.add(f_InvoiceLabel); // Invoice label is added to the window
+		f_ManagementPage.add(f_YearBox); // Year Combo box is added to the window
+		f_ManagementPage.add(f_ResetButton); // Reset button is added to the window
+		f_ManagementPage.add(f_DateLabel); // Date label is added to the window
 		
 		// +-------------------- Frame dimensions and personalization --------------------+
-		ManagementPage.setSize(1280, 720); // dimensions are given to the window
-		ManagementPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // application is halted when window is closed
-		ManagementPage.setLayout(null); // no layout is specified, everything is placed manually
-		ManagementPage.setResizable(false); // disables ability to resize windows
-		ManagementPage.setVisible(true); // window is made visible for users to see
-		ManagementPage.getRootPane().setDefaultButton(SearchButton); // allows users to press ENTER to search instead of clicking the button
+		f_ManagementPage.setSize(1280, 720); // dimensions are given to the window
+		f_ManagementPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // application is halted when window is closed
+		f_ManagementPage.setLayout(null); // no layout is specified, everything is placed manually
+		f_ManagementPage.setResizable(false); // disables ability to resize windows
+		f_ManagementPage.setVisible(true); // window is made visible for users to see
+		f_ManagementPage.getRootPane().setDefaultButton(f_SearchButton); // allows users to press ENTER to search instead of clicking the button
+		f_ManagementPage.setIconImage(f_EncryptionLOGO.getImage()); // Image Icon is used to set the window/application image
 		
 	}
 	
 	// +-------------------- Action Listener --------------------+
-	
 	// ADD ERROR MESSAGES WHEN A CALENDAR MONTH IS SELECTED W/O YEAR AND VICE VERSA; INVOICE # CANNOT BE SEARCHED ALONG WITH DATE RANGE
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		// Function that closes the current window and sends the user back to the Selection Page
-		if (e.getSource() == signoutButton) {
-			ManagementPage.dispose();
+		if (e.getSource() == f_signoutButton) {
+			f_ManagementPage.dispose();
 			new Selection_Page();
 			
 		}
 		
 		// Function that closes the current window and sends the user back to the Main Menu page
-		if (e.getSource() == BackButton) {
-			ManagementPage.dispose();
-			new Main_Menu(namePlate);
+		if (e.getSource() == f_BackButton) {
+			f_ManagementPage.dispose();
+			new Main_Menu(f_namePlate);
 			
 		}
 		
 		// Function that clears all of the fields in the Management Reports window
-		if (e.getSource() == ResetButton) {
-			SearchInvoiceField.setText("");
-			MonthBox.setSelectedIndex(0);
-			YearBox.setSelectedIndex(0);
+		if (e.getSource() == f_ResetButton) {
+			f_SearchInvoiceField.setText("");
+			f_MonthBox.setSelectedIndex(0);
+			f_YearBox.setSelectedIndex(0);
 			
 		}
 		
