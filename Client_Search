@@ -7,11 +7,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Hashtable;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,294 +24,318 @@ public class Client_Search implements ActionListener {
 
 
 	// Global variable to send the user's name to the next window opened
-	public static String namePlate;
+	public static String f_namePlate;
+	
+	URL f_LOGOImage = LIBSYS_launch.class.getResource("Encryption Logo.png"); // Creates a reference to the other folder holding the Logo image
+	
+	ImageIcon f_EncryptionLOGO = new ImageIcon(f_LOGOImage); //Image icon instance of the Logo image
+	
+	URL f_ProfileImage = LIBSYS_launch.class.getResource("Profile Guy.png"); // Creates a reference to the other folder holding the profile image
+	
+	ImageIcon f_ProfileGuy = new ImageIcon(f_ProfileImage); //Image icon instance of the Profile image
 	
 	// JFrame creation for the main window for Client Search Page
-	JFrame ClientSearchPage = new JFrame("LIBSYS");
+	JFrame f_ClientSearchPage = new JFrame("LIBSYS");
 	
 	// JLabels used for the Client Search Page
-	JLabel PageFunctionHeader = new JLabel(); // Page function header is declared and assigned
-	JLabel BlueLineLabel = new JLabel(); // Blue line label is declared and assigned
-	JLabel LIBSYSLabel = new JLabel(); // LIBSYS header label is declared and assigned
-	JLabel profilePlaceholder = new JLabel(); // Profile placeholder box is declared and assigned
-	JLabel username = new JLabel(); // username label is declared and assigned
-	JLabel OrLabel1 = new JLabel(); // first 'Or' label is declared and assigned
-	JLabel OrLabel2 = new JLabel(); // second 'Or' label is declared and assigned
-	JLabel FirstNameLabel = new JLabel(); // First name label is declared and assigned
-	JLabel LastNameLabel = new JLabel(); // Last name label is declared and assigned
-	JLabel EmailLabel = new JLabel(); // Email label is declared and assigned
-	JLabel PhoneNumberLabel = new JLabel(); // Phone number label is declared and assigned
+	JLabel f_PageFunctionHeader = new JLabel(); // Page function header is declared and assigned
+	JLabel f_BlueLineLabel = new JLabel(); // Blue line label is declared and assigned
+	JLabel f_LIBSYSLabel = new JLabel(); // LIBSYS header label is declared and assigned
+	JLabel f_profilePlaceholder = new JLabel(f_ProfileGuy); // Profile placeholder box is declared and assigned
+	JLabel f_username = new JLabel(); // username label is declared and assigned
+	JLabel f_OrLabel1 = new JLabel(); // first 'Or' label is declared and assigned
+	JLabel f_OrLabel2 = new JLabel(); // second 'Or' label is declared and assigned
+	JLabel f_FirstNameLabel = new JLabel(); // First name label is declared and assigned
+	JLabel f_LastNameLabel = new JLabel(); // Last name label is declared and assigned
+	JLabel f_EmailLabel = new JLabel(); // Email label is declared and assigned
+	JLabel f_PhoneNumberLabel = new JLabel(); // Phone number label is declared and assigned
 	
 	// JText Fields used in the Client Search Page
-	JTextField SearchFirstNameField = new JTextField(); // First name text field is declared and assigned
-	JTextField SearchLastNameField = new JTextField(); // Last name text field is declared and assigned
-	JTextField SearchEmailField = new JTextField(); // Email text field is declared and assigned
-	JTextField SearchPhoneNumberField = new JTextField(); // Phone number text field is declared and assigned
+	JTextField f_SearchFirstNameField = new JTextField(); // First name text field is declared and assigned
+	JTextField f_SearchLastNameField = new JTextField(); // Last name text field is declared and assigned
+	JTextField f_SearchEmailField = new JTextField(); // Email text field is declared and assigned
+	JTextField f_SearchPhoneNumberField = new JTextField(); // Phone number text field is declared and assigned
 
 	// JButtons used for the Client search page
-	JButton signoutButton = new JButton("Sign Out"); // Sign Out button is declared and assigned
-	JButton SearchButton = new JButton("Search Client"); // Search button is declared and assigned
-	JButton BackButton = new JButton("Back"); // Back button is declared and assigned
-	JButton ResetButton = new JButton("Reset");
-	JButton CreateProfileButton = new JButton("Create Profile");
+	JButton f_signoutButton = new JButton("Sign Out"); // Sign Out button is declared and assigned
+	JButton f_SearchButton = new JButton("Search Client"); // Search button is declared and assigned
+	JButton f_BackButton = new JButton("Back"); // Back button is declared and assigned
+	JButton f_ResetButton = new JButton("Reset"); // Reset button is declared and assigned
+	JButton f_CreateProfileButton = new JButton("Create Profile"); // Create Profile button is declared and assigned
 	
-	HashMap ClientFirstName = new HashMap<String, String>();
-	HashMap ClientLastName = new HashMap<String, String>();
-	HashMap ClientEmail = new HashMap<String, String>();
-	HashMap ClientFNEmail = new HashMap<String, String>();
-	HashMap ClientPhone = new HashMap<String, String>();
+	// Global HashMaps used for storing client information coming in from the Client Database
+	HashMap f_ClientFirstName = new HashMap<String, String>();
+	HashMap f_ClientLastName = new HashMap<String, String>();
+	HashMap f_ClientEmail = new HashMap<String, String>();
+	HashMap f_ClientFNEmail = new HashMap<String, String>();
+	HashMap f_ClientPhone = new HashMap<String, String>();
 	HashMap ClientFNPhone = new HashMap<String, String>();
 	
-	// The userID is sent from the previous page to this page for the sign out label (so it looks nice and personalized)
+	// The userID is sent from the previous page to this page for the sign out label (so it looks nice and personalized), Client database information is also imported
 	Client_Search(String userID, Object FirstName, Object LastName, Object Email, Object PhoneNum, Object FNEmail, Object FNPhone) {
 		
 		// The previous window's userID variable is sent through to this window for the username label
-		namePlate = userID;
+		f_namePlate = userID;
 		
-		ClientFirstName = (HashMap) FirstName;
-		ClientLastName = (HashMap) LastName;
-		ClientEmail = (HashMap) Email;
-		ClientFNEmail = (HashMap) FNEmail;
-		ClientPhone = (HashMap) PhoneNum;
+		// Information being imported from the Client Database
+		f_ClientFirstName = (HashMap) FirstName;
+		f_ClientLastName = (HashMap) LastName;
+		f_ClientEmail = (HashMap) Email;
+		f_ClientFNEmail = (HashMap) FNEmail;
+		f_ClientPhone = (HashMap) PhoneNum;
 		ClientFNPhone = (HashMap) FNPhone;
 		
-		// +-------------------- Labels --------------------+
-				LIBSYSLabel.setBounds(500, 0, 700, 100); // LIBSYS Label is placed and given dimensions
-				LIBSYSLabel.setText("LIBSYS System"); // LIBSYS Label has text assigned to it
-				LIBSYSLabel.setFont(new Font(null, Font.BOLD, 35)); // LIBSYS Label is given a new font size of 35
+		// +-------------------- Label placement and personalization --------------------+	
+		f_LIBSYSLabel.setBounds(500, 0, 700, 100); // LIBSYS Label is placed and given dimensions
+		f_LIBSYSLabel.setText("LIBSYS System"); // LIBSYS Label has text assigned to it
+		f_LIBSYSLabel.setFont(new Font(null, Font.BOLD, 35)); // LIBSYS Label is given a new font size of 35
+		
+		f_BlueLineLabel.setBounds(0, 70, 1280, 3); // Blue line label is placed and given dimensions
+		f_BlueLineLabel.setOpaque(true); // Blue line label is made opaque to be made a different color
+		f_BlueLineLabel.setBackground(Color.blue); // Blue line label is filled with the color blue
+			
+		f_PageFunctionHeader.setBounds(15, 50, 250, 100); // Page function header is placed and given dimensions
+		f_PageFunctionHeader.setText("Client Search"); // Page function header label has text assigned to it
+		f_PageFunctionHeader.setFont(new Font(null, Font.PLAIN, 25)); // Page function header label is given a new font size of 25
 				
-				BlueLineLabel.setBounds(0, 70, 1280, 3); // Blue line label is placed and given dimensions
-				BlueLineLabel.setOpaque(true); // Blue line label is made opaque to be made a different color
-				BlueLineLabel.setBackground(Color.blue); // Blue line label is filled with the color blue
+		f_profilePlaceholder.setBounds(1185, 85, 50, 50); // Profile placeholder box is placed and given dimensions
 				
-				PageFunctionHeader.setBounds(15, 50, 250, 100); // Page function header is placed and given dimensions
-				PageFunctionHeader.setText("Client Search"); // Page function header label has text assigned to it
-				PageFunctionHeader.setFont(new Font(null, Font.PLAIN, 25)); // Page function header label is given a new font size of 25
+		f_username.setBounds(1185, 100, 100, 100); // username label is placed and given dimensions
+		f_username.setText(f_namePlate); // user name label is given text using the value of the 'nameplate' variable
 				
-				profilePlaceholder.setBounds(1185, 85, 50, 50); // Profile placeholder box is placed and given dimensions
-				profilePlaceholder.setOpaque(true); // Profile placeholder box is made opaque to be made a different color
-				profilePlaceholder.setBackground(Color.LIGHT_GRAY); // Profile placeholder box is filled with the color light-gray
+		f_FirstNameLabel.setBounds(375, 250, 150, 25); // First name label is placed and given dimensions
+		f_FirstNameLabel.setText("First Name:"); // First name label has text assigned to it
+		f_FirstNameLabel.setFont(new Font(null, Font.PLAIN, 15)); // First name label is given a new font size of 15
 				
-				username.setBounds(1185, 100, 100, 100); // username label is placed and given dimensions
-				username.setText(namePlate); // user name label is given text using the value of the 'nameplate' variable
+		f_LastNameLabel.setBounds(375, 300, 100, 25); // Last name label is placed and given dimensions
+		f_LastNameLabel.setText("Last Name:"); // Last name label has text assigned to it
+		f_LastNameLabel.setFont(new Font(null, Font.PLAIN, 15)); // Last name label is given a new font size of 15
 				
-				FirstNameLabel.setBounds(375, 250, 100, 25); // First name label is placed and given dimensions
-				FirstNameLabel.setText("First Name:"); // First name label has text assigned to it
-				FirstNameLabel.setFont(new Font(null, Font.PLAIN, 15)); // First name label is given a new font size of 15
+		f_EmailLabel.setBounds(408, 370, 100, 25); // Email label is placed and given dimensions
+		f_EmailLabel.setText("Email:"); // Email label has text assigned to it
+		f_EmailLabel.setFont(new Font(null, Font.PLAIN, 15)); // Email label is given a new font size of 15
 				
-				LastNameLabel.setBounds(375, 300, 100, 25); // Last name label is placed and given dimensions
-				LastNameLabel.setText("Last Name:"); // Last name label has text assigned to it
-				LastNameLabel.setFont(new Font(null, Font.PLAIN, 15)); // Last name label is given a new font size of 15
+		f_PhoneNumberLabel.setBounds(350, 430, 150, 25); // Phone number label is placed and given dimensions
+		f_PhoneNumberLabel.setText("Phone Number:"); // Phone number label has text assigned to it
+		f_PhoneNumberLabel.setFont(new Font(null, Font.PLAIN, 15)); // Phone number label is given a new font size of 15
 				
-				EmailLabel.setBounds(408, 370, 100, 25); // Email label is placed and given dimensions
-				EmailLabel.setText("Email:"); // Email label has text assigned to it
-				EmailLabel.setFont(new Font(null, Font.PLAIN, 15)); // Email label is given a new font size of 15
+		f_OrLabel1.setBounds(475, 335, 25, 25); // Or label 1 is placed and given dimensions
+		f_OrLabel1.setText("Or"); // Or label 1 has text assigned to it
+		f_OrLabel1.setFont(new Font(null, Font.PLAIN, 15)); // Or label 1 is given a new font size of 15
 				
-				PhoneNumberLabel.setBounds(350, 430, 150, 25); // Phone number label is placed and given dimensions
-				PhoneNumberLabel.setText("Phone Number:"); // Phone number label has text assigned to it
-				PhoneNumberLabel.setFont(new Font(null, Font.PLAIN, 15)); // Phone number label is given a new font size of 15
+		f_OrLabel2.setBounds(475, 400, 25, 25); // or label 2 is placed and given dimensions
+		f_OrLabel2.setText("Or"); // Or label 2 has text assigned to it
+		f_OrLabel2.setFont(new Font(null, Font.PLAIN, 15)); // Or label 2 is given a new font size of 15
 				
-				OrLabel1.setBounds(475, 335, 25, 25); // Or label 1 is placed and given dimensions
-				OrLabel1.setText("Or"); // Or label 1 has text assigned to it
-				OrLabel1.setFont(new Font(null, Font.PLAIN, 15)); // Or label 1 is given a new font size of 15
+		// +-------------------- Text Fields placement and dimensions --------------------+
+		f_SearchFirstNameField.setBounds(475, 250, 250, 25); // First name text field is placed and given dimensions
 				
-				OrLabel2.setBounds(475, 400, 25, 25); // or label 2 is placed and given dimensions
-				OrLabel2.setText("Or"); // Or label 2 has text assigned to it
-				OrLabel2.setFont(new Font(null, Font.PLAIN, 15)); // Or label 2 is given a new font size of 15
+		f_SearchLastNameField.setBounds(475, 300, 250, 25); // Last name text field is placed and given dimensions
 				
-				// +-------------------- Search Fields --------------------+
-				SearchFirstNameField.setBounds(475, 250, 250, 25); // First name text field is placed and given dimensions
+		f_SearchEmailField.setBounds(475, 370, 250, 25); // Email text field is placed and given dimensions
 				
-				SearchLastNameField.setBounds(475, 300, 250, 25); // Last name text field is placed and given dimensions
+		f_SearchPhoneNumberField.setBounds(475, 430, 250, 25); // Phone number text field is placed and given dimensions
 				
-				SearchEmailField.setBounds(475, 370, 250, 25); // Email text field is placed and given dimensions
+		// +-------------------- Button placement and personalization --------------------+
+		f_signoutButton.setBounds(1160, 160, 100, 25); // sign out button is placed and given dimensions
+		f_signoutButton.addActionListener(this); // adds action listener to the Sign Out button to give it functionality
+		f_signoutButton.setFocusable(false); // disables box outline around button text
+		f_signoutButton.setFont(new Font(null, Font.PLAIN, 10)); // Sign Out button is given a new font size of 10
+		f_signoutButton.setForeground(Color.BLUE); // Sign Out Button text is given a blue font color
+		f_signoutButton.setBorder(BorderFactory.createEmptyBorder()); // The border around the Sign Out button is taken away
+		f_signoutButton.setContentAreaFilled(false); // the standard blue hue to the Sign Out button is taken away
 				
-				SearchPhoneNumberField.setBounds(475, 430, 250, 25); // Phone number text field is placed and given dimensions
+		f_SearchButton.setBounds(750, 250, 175, 25); // Search button is placed and given dimensions
+		f_SearchButton.addActionListener(this); // adds action listener to Search Button to give it functionality
+		f_SearchButton.setFocusable(false); // disables box outline around button text
 				
-				// +-------------------- Buttons --------------------+
-				signoutButton.setBounds(1160, 160, 100, 25); // sign out button is placed and given dimensions
-				signoutButton.addActionListener(this); // adds action listener to the Sign Out button to give it functionality
-				signoutButton.setFocusable(false); // disables box outline around button text
-				signoutButton.setFont(new Font(null, Font.PLAIN, 10)); // Sign Out button is given a new font size of 10
-				signoutButton.setForeground(Color.BLUE); // Sign Out Button text is given a blue font color
-				signoutButton.setBorder(BorderFactory.createEmptyBorder()); // The border around the Sign Out button is taken away
-				signoutButton.setContentAreaFilled(false); // the standard blue hue to the Sign Out button is taken away
+		f_ResetButton.setBounds(850, 300, 100, 25); // Reset Button is placed and given dimensions
+		f_ResetButton.addActionListener(this); // adds action listener to Reset Button to give it functionality
+		f_ResetButton.setFocusable(false); // disables box outline around button text
 				
-				SearchButton.setBounds(750, 250, 175, 25); // Search button is placed and given dimensions
-				SearchButton.addActionListener(this); // adds action listener to Search Button to give it functionality
-				SearchButton.setFocusable(false); // disables box outline around button text
+		f_BackButton.setBounds(750, 300, 100, 25); // Back button is placed and given dimensions
+		f_BackButton.addActionListener(this); // adds action listener to Back button to give it functionality
+		f_BackButton.setFocusable(false); // disables box outline around button text
 				
-				ResetButton.setBounds(850, 300, 100, 25);
-				ResetButton.addActionListener(this);
-				ResetButton.setFocusable(false);
-				
-				BackButton.setBounds(750, 300, 100, 25); // Back button is placed and given dimensions
-				BackButton.addActionListener(this); // adds action listener to Back button to give it functionality
-				BackButton.setFocusable(false); // disables box outline around button text
-				
-				CreateProfileButton.setBounds(750, 350, 175, 25);
-				CreateProfileButton.addActionListener(this);
-				CreateProfileButton.setFocusable(false);
-				CreateProfileButton.setEnabled(false);
+		f_CreateProfileButton.setBounds(750, 350, 175, 25); // Client Profile button is placed and given dimensions
+		f_CreateProfileButton.addActionListener(this); // // adds action listener to Create Profile button to give it functionality
+		f_CreateProfileButton.setFocusable(false); // disables box outline around button text
+		f_CreateProfileButton.setEnabled(false); // sets the Create Profile Button to not be visible when page is created
 				
 				// +-------------------- Frame additions and functionality --------------------+
-				ClientSearchPage.add(PageFunctionHeader); // Page function header is added to the window
-				ClientSearchPage.add(BlueLineLabel); // Blue line is added to the window
-				ClientSearchPage.add(LIBSYSLabel); // LIBSYS header label is added to the window
-				ClientSearchPage.add(profilePlaceholder); // Profile placeholder box is added to the window
-				ClientSearchPage.add(BackButton); // Back button is added to the window
-				ClientSearchPage.add(SearchButton); // Search button is added to the window
-				ClientSearchPage.add(ResetButton);
-				ClientSearchPage.add(CreateProfileButton);
-				ClientSearchPage.add(signoutButton); // Sign Out button is added to the window
-				ClientSearchPage.add(username); // username label is added to the window
-				ClientSearchPage.add(SearchFirstNameField); // First name text field is added to the window
-				ClientSearchPage.add(SearchLastNameField); // Last name text field is added to the window
-				ClientSearchPage.add(SearchEmailField); // Email text field is added to the window
-				ClientSearchPage.add(SearchPhoneNumberField); // Phone number text field is added to the window
-				ClientSearchPage.add(OrLabel1); // Or label 1 is added to the window
-				ClientSearchPage.add(OrLabel2); // Or label 2 is added to the window
-				ClientSearchPage.add(FirstNameLabel); // First name label is added to the window
-				ClientSearchPage.add(LastNameLabel); // Last name label is added to the window
-				ClientSearchPage.add(EmailLabel); // Email label is added to the window
-				ClientSearchPage.add(PhoneNumberLabel); // Phone number label is added to the window
-				
-				// +-------------------- Frame dimensions and personalization --------------------+
-				ClientSearchPage.setSize(1280, 720); // dimensions are given to the window
-				ClientSearchPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // application is halted when window is closed
-				ClientSearchPage.setLayout(null); // no layout is specified, everything is placed manually
-				ClientSearchPage.setResizable(false); // disables ability to resize windows
-				ClientSearchPage.setVisible(true); // window is made visible for users to see
-				ClientSearchPage.getRootPane().setDefaultButton(SearchButton); // allows users to press ENTER to search instead of clicking the button
+		f_ClientSearchPage.add(f_PageFunctionHeader); // Page function header is added to the window
+		f_ClientSearchPage.add(f_BlueLineLabel); // Blue line is added to the window
+		f_ClientSearchPage.add(f_LIBSYSLabel); // LIBSYS header label is added to the window
+		f_ClientSearchPage.add(f_profilePlaceholder); // Profile placeholder box is added to the window
+		f_ClientSearchPage.add(f_BackButton); // Back button is added to the window
+		f_ClientSearchPage.add(f_SearchButton); // Search button is added to the window
+		f_ClientSearchPage.add(f_ResetButton); // Reset Button is added to the window
+		f_ClientSearchPage.add(f_CreateProfileButton); // CreateProfile Button is added to the window
+		f_ClientSearchPage.add(f_signoutButton); // Sign Out button is added to the window
+		f_ClientSearchPage.add(f_username); // username label is added to the window
+		f_ClientSearchPage.add(f_SearchFirstNameField); // First name text field is added to the window
+		f_ClientSearchPage.add(f_SearchLastNameField); // Last name text field is added to the window
+		f_ClientSearchPage.add(f_SearchEmailField); // Email text field is added to the window
+		f_ClientSearchPage.add(f_SearchPhoneNumberField); // Phone number text field is added to the window
+		f_ClientSearchPage.add(f_OrLabel1); // Or label 1 is added to the window
+		f_ClientSearchPage.add(f_OrLabel2); // Or label 2 is added to the window
+		f_ClientSearchPage.add(f_FirstNameLabel); // First name label is added to the window
+		f_ClientSearchPage.add(f_LastNameLabel); // Last name label is added to the window
+		f_ClientSearchPage.add(f_EmailLabel); // Email label is added to the window
+		f_ClientSearchPage.add(f_PhoneNumberLabel); // Phone number label is added to the window
+		
+		// +-------------------- Frame dimensions and personalization --------------------+
+		f_ClientSearchPage.setSize(1280, 720); // dimensions are given to the window
+		f_ClientSearchPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // application is halted when window is closed
+		f_ClientSearchPage.setLayout(null); // no layout is specified, everything is placed manually
+		f_ClientSearchPage.setResizable(false); // disables ability to resize windows
+		f_ClientSearchPage.setVisible(true); // window is made visible for users to see
+		f_ClientSearchPage.getRootPane().setDefaultButton(f_SearchButton); // allows users to press ENTER to search instead of clicking the button
+		f_ClientSearchPage.setIconImage(f_EncryptionLOGO.getImage()); // Image Icon is used to set the window/application image
 		
 	}
 
 	// +-------------------- Action Listener --------------------+
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		// This function closes the current window and sends users back to the selection screen
-		if (e.getSource() == signoutButton) {
-			ClientSearchPage.dispose();
-			new Selection_Page();
+		if (e.getSource() == f_signoutButton) {
+			f_ClientSearchPage.dispose(); // Closes current page
+			new Selection_Page(); // Creates new Selection Page
 			
 		}
 		
-		if (e.getSource() == ResetButton) {
-			SearchFirstNameField.setText("");
-			SearchLastNameField.setText("");
-			SearchEmailField.setText("");
-			SearchPhoneNumberField.setText("");
-			CreateProfileButton.setEnabled(false);
+		// This function resets the search fields to have no information present
+		if (e.getSource() == f_ResetButton) {
+			f_SearchFirstNameField.setText("");
+			f_SearchLastNameField.setText("");
+			f_SearchEmailField.setText("");
+			f_SearchPhoneNumberField.setText("");
+			f_CreateProfileButton.setEnabled(false); // Disables Create Profile Button
 			
 		}
 		
 		// This function closes the current window and sends users back to the main menu screen
-		if (e.getSource() == BackButton) {
-			ClientSearchPage.dispose();
-			new Main_Menu(namePlate);
+		if (e.getSource() == f_BackButton) {
+			f_ClientSearchPage.dispose(); // Closes current page
+			new Main_Menu(f_namePlate); // Creates new Main Menu Page
 			
 		}
 		
-		if (e.getSource() == SearchButton) {
-			String ClientFN = SearchFirstNameField.getText();
-			String ClientLN = SearchLastNameField.getText();
-			String ClientEM = SearchEmailField.getText();
-			String ClientPN = SearchPhoneNumberField.getText();
-			CreateProfileButton.setEnabled(false);
+		// This function is used to search for the client via the databases containing all of the client data using the text fields as reference
+		if (e.getSource() == f_SearchButton) {
+			String clientFN = f_SearchFirstNameField.getText();
+			String clientLN = f_SearchLastNameField.getText();
+			String clientEM = f_SearchEmailField.getText();
+			String clientPN = f_SearchPhoneNumberField.getText();
+			f_CreateProfileButton.setEnabled(false); // Disables the Create Profile Button
 			
-			
-			if (ClientFirstName.containsKey(ClientFN) && ClientLastName.containsKey(ClientLN) && ClientEM.equals("") && ClientPN.equals("")) {
-				String FirstNameInfo = (String) ClientFirstName.get(ClientFN);
-				String LastNameInfo = (String) ClientLastName.get(ClientLN);
-				String EmailInfo = (String) ClientFNEmail.get(ClientFN);
-				String PhoneInfo = (String) ClientFNPhone.get(ClientFN);
+			// This restricts users to searching ONLY by data being put into Client First and Last name fields
+			if (f_ClientFirstName.containsKey(clientFN) && f_ClientLastName.containsKey(clientLN) && clientEM.equals("") && clientPN.equals("")) {
+				String firstNameInfo = (String) f_ClientFirstName.get(clientFN); // gets value of hashmap with specified first name
+				String lastNameInfo = (String) f_ClientLastName.get(clientLN); // gets value of hashmap with specified Last name
+				String emailInfo = (String) f_ClientFNEmail.get(clientFN + clientLN); // gets value of hashmap with specified First and Last name
+				String phoneInfo = (String) ClientFNPhone.get(clientFN + clientLN); // gets value of hashmap with specified First and Last name
 				
-				System.out.println("Client's First Name: " + FirstNameInfo);
-				System.out.println("Client's Last Name: " + LastNameInfo);
-				System.out.println("Client's Email: " + EmailInfo);
-				System.out.println("Client's Phone Number: " + PhoneInfo);
+				// !!!!!!!!!!!!!!!!!!! PLACEHOLDER !!!!!!!!!!!!!!!!!!!!!!!
+				System.out.println("Client's First Name: " + firstNameInfo);
+				System.out.println("Client's Last Name: " + lastNameInfo);
+				System.out.println("Client's Email: " + emailInfo);
+				System.out.println("Client's Phone Number: " + phoneInfo);
+				// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				
-				new Client_Profile(namePlate, FirstNameInfo, LastNameInfo, EmailInfo, PhoneInfo);
-				ClientSearchPage.dispose();
+				new Client_Profile(f_namePlate, firstNameInfo, lastNameInfo, emailInfo, phoneInfo); // Creates new Client Profile Page with Client information
+				f_ClientSearchPage.dispose(); // closes current page
 				
 			}
 			
-			else if (ClientFirstName.containsKey(ClientFN) && ClientLN.equals("") && ClientEM.equals("") && ClientPN.equals("")) {
+			// User fails to fill out proper required fields
+			else if (f_ClientFirstName.containsKey(clientFN) && clientLN.equals("") && clientEM.equals("") && clientPN.equals("")) {
 				System.out.println("Insufficient information provided");
 				
 			}
 			
-			else if (ClientFN.equals("") && ClientLastName.containsKey(ClientLN) && ClientEM.equals("") && ClientPN.equals("")) {
+			// User fails to fill out proper required fields
+			else if (clientFN.equals("") && f_ClientLastName.containsKey(clientLN) && clientEM.equals("") && clientPN.equals("")) {
 				System.out.println("Insufficient information provided");
 				
 			}
 			
-			else if (ClientFirstName.containsKey(ClientFN) && ClientLastName.containsKey(ClientLN) && (!ClientEM.equals("") && ClientPN.equals("") || (!ClientPN.equals("") && ClientEM.equals("")))) {
+			// User fills more information fields than what is required to search for a client, user should used each function present before the 'OR' label
+			else if (f_ClientFirstName.containsKey(clientFN) && f_ClientLastName.containsKey(clientLN) && (!clientEM.equals("") && clientPN.equals("") || (!clientPN.equals("") && clientEM.equals("")))) {
 				System.out.println("Invalid Search Criteria");
 				
 			}
 			
-			else if (ClientEmail.containsKey(ClientEM) && ClientLN.equals("") && ClientFN.equals("") && ClientPN.equals("")) {
-				String FirstNameInfo = (String) ClientFirstName.get(ClientEM);
-				String LastNameInfo = (String) ClientLastName.get(ClientEM);
-				String EmailInfo = (String) ClientEmail.get(ClientEM);
-				String PhoneInfo = (String) ClientPhone.get(ClientEM);
+			// User searches for a client based on EMAIL
+			else if (f_ClientEmail.containsKey(clientEM) && clientLN.equals("") && clientFN.equals("") && clientPN.equals("")) {
+				String firstNameInfo = (String) f_ClientFirstName.get(clientEM); // gets value of hashmap with specified Email
+				String lastNameInfo = (String) f_ClientLastName.get(clientEM); // gets value of hashmap with specified Email
+				String emailInfo = (String) f_ClientEmail.get(clientEM); // gets value of hashmap with specified Email
+				String phoneInfo = (String) f_ClientPhone.get(clientEM); // gets value of hashmap with specified Email
 				
-				System.out.println("Client's First Name: " + FirstNameInfo);
-				System.out.println("Client's Last Name: " + LastNameInfo);
-				System.out.println("Client's Email: " + EmailInfo);
-				System.out.println("Client's Phone Number: " + PhoneInfo);
+				// !!!!!!!!!!!!!!!!!!! PLACEHOLDER !!!!!!!!!!!!!!!!!!!!!!!
+				System.out.println("Client's First Name: " + firstNameInfo);
+				System.out.println("Client's Last Name: " + lastNameInfo);
+				System.out.println("Client's Email: " + emailInfo);
+				System.out.println("Client's Phone Number: " + phoneInfo);
+				// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				
-				new Client_Profile(namePlate, FirstNameInfo, LastNameInfo, EmailInfo, PhoneInfo);
-				ClientSearchPage.dispose();
+				new Client_Profile(f_namePlate, firstNameInfo, lastNameInfo, emailInfo, phoneInfo); // Creates new Client Profile Page with Client information
+				f_ClientSearchPage.dispose(); // closes current page
 				
 			}
 			
-			else if (ClientEmail.containsKey(ClientEM) && (!ClientLN.equals("") || !ClientFN.equals("") || !ClientPN.equals(""))) {
+			// User fails to only search via EMAIL
+			else if (f_ClientEmail.containsKey(clientEM) && (!clientLN.equals("") || !clientFN.equals("") || !clientPN.equals(""))) {
 				System.out.println("Invalid Search Criteria");
 				
 			}
 
-			else if (ClientPhone.containsKey(ClientPN) && ClientFN.equals("") && ClientLN.equals("") && ClientEM.equals("")) {
-				String FirstNameInfo = (String) ClientFirstName.get(ClientPN);
-				String LastNameInfo = (String) ClientLastName.get(ClientPN);
-				String EmailInfo = (String) ClientEmail.get(ClientPN);
-				String PhoneInfo = (String) ClientPhone.get(ClientPN);
+			// User is searching for clients via a Phone Number
+			else if (f_ClientPhone.containsKey(clientPN) && clientFN.equals("") && clientLN.equals("") && clientEM.equals("")) {
+				String firstNameInfo = (String) f_ClientFirstName.get(clientPN); // gets value of hashmap with specified Phone Number
+				String lastNameInfo = (String) f_ClientLastName.get(clientPN); // gets value of hashmap with specified Phone Number
+				String emailInfo = (String) f_ClientEmail.get(clientPN); // gets value of hashmap with specified Phone Number
+				String phoneInfo = (String) f_ClientPhone.get(clientPN); // gets value of hashmap with specified Phone Number
 				
-				System.out.println("Client's First Name: " + FirstNameInfo);
-				System.out.println("Client's Last Name: " + LastNameInfo);
-				System.out.println("Client's Email: " + EmailInfo);
-				System.out.println("Client's Phone Number: " + PhoneInfo);
-				
-				new Client_Profile(namePlate, FirstNameInfo, LastNameInfo, EmailInfo, PhoneInfo);
-				ClientSearchPage.dispose();
+				// !!!!!!!!!!!!!!!!!!! PLACEHOLDER !!!!!!!!!!!!!!!!!!!!!!!
+				System.out.println("Client's First Name: " + firstNameInfo);
+				System.out.println("Client's Last Name: " + lastNameInfo);
+				System.out.println("Client's Email: " + emailInfo);
+				System.out.println("Client's Phone Number: " + phoneInfo);
+				// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+				new Client_Profile(f_namePlate, firstNameInfo, lastNameInfo, emailInfo, phoneInfo); // Creates new Client Profile Page with Client information
+				f_ClientSearchPage.dispose(); // closes current page
 				
 			}
 			
-			else if (ClientPhone.containsKey(ClientPN) && (!ClientFN.equals("") || !ClientLN.equals("") || !ClientEM.equals(""))) {
+			// User fails to only search via Phone Number
+			else if (f_ClientPhone.containsKey(clientPN) && (!clientFN.equals("") || !clientLN.equals("") || !clientEM.equals(""))) {
 				System.out.println("Invalid Search Criteria");
 				
 			}
 			
+			// Client is not found/ data is not present within the database
 			else {
 				System.out.println("Client Not found");
-				CreateProfileButton.setEnabled(true);
+				f_CreateProfileButton.setEnabled(true);
 				
 			}
 			
 		}
 		
-		if (e.getSource() == CreateProfileButton) {
-			String FirstNameInfo = SearchFirstNameField.getText();
-			String LastNameInfo = SearchLastNameField.getText();
-			String EmailInfo = SearchEmailField.getText();
-			String PhoneInfo = SearchPhoneNumberField.getText();
+		// This function will take the information present within the text fields and use that info to begin the Client Creation process, Create client page is opened
+		if (e.getSource() == f_CreateProfileButton) {
+			String firstNameInfo = f_SearchFirstNameField.getText();
+			String lastNameInfo = f_SearchLastNameField.getText();
+			String emailInfo = f_SearchEmailField.getText();
+			String phoneInfo = f_SearchPhoneNumberField.getText();
 			
-			// !!!!!!!!!!!! CREATE THE PROFILE CREATION PAGE!!!!!!!!!!!!!!!
-			new Create_Client(namePlate, FirstNameInfo, LastNameInfo, EmailInfo, PhoneInfo);
-			ClientSearchPage.dispose();
+			new Create_Client(f_namePlate, firstNameInfo, lastNameInfo, emailInfo, phoneInfo); // Creates new Client Profile Page with Client information
+			f_ClientSearchPage.dispose(); // closes current page
 			
 		}
 		
