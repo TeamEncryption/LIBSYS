@@ -1,4 +1,5 @@
 // +---------- This class is currently holding the HashMap for the login page ----------+
+// This class stores user login information to allow library staff users to login to LIBSYS
 
 // HashMap importation
 import java.util.HashMap;
@@ -6,17 +7,17 @@ import java.util.HashMap;
 public class Login_Cred {
 
 // HashMap declaration and assignment as to what content it holds
-	static HashMap<String, String> logininfo = new HashMap<String, String>();
+	static HashMap<String, String> f_logininfo = new HashMap<String, String>();
 	
 	// Login_Cred constructor
 	Login_Cred() {
 		
-		// The current login info that will allow access to the system
-		logininfo.put("Admin12", "Admin");
-		logininfo.put("Mrdor99", "Dorlet1999");
-		logininfo.put("Jschn02", "Schnupp2002");
-		logininfo.put("Jeguy02", "Guy2002");
-		logininfo.put("Akoll02", "Kolluri2002");
+		// The current login info that will allow access to the system, Username and passwords
+		f_logininfo.put("Admin12", "Admin");
+		f_logininfo.put("Mrdor99", "Dorlet1999");
+		f_logininfo.put("Jschn02", "Schnupp2002");
+		f_logininfo.put("Jeguy02", "Guy2002");
+		f_logininfo.put("Akoll02", "Kolluri2002");
 
 	}
 	
@@ -24,7 +25,7 @@ public class Login_Cred {
 	// it to the information specified within the HashMap
 	protected static HashMap getLoginInfo() {
 		
-		return logininfo; // login information is returned to where it is called
+		return f_logininfo; // login information is returned to where it is called
 		
 	}
 	
