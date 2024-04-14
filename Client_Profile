@@ -1,354 +1,394 @@
 
 // +---------- Client Profile ----------+
-// This will be the default page to display Client Profiles.
+// This will be the default page to display Client Profiles. Client profiles can have information changed or be deleted
 
+// Libraries for JAVA Swing
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+//Action listener is implemented to allow functionality to buttons
 public class Client_Profile implements ActionListener{
 	
-	public static String StaffUser;
-	public static String ClientFirstName;
-	public static String ClientLastName;
-	public static String ClientEmail;
-	public static String ClientPhoneNumber;
+	// Global variable to send the user's name and Client information to the next window opened
+	public static String f_StaffUser;
+	public static String f_ClientFirstName;
+	public static String f_ClientLastName;
+	public static String f_ClientEmail;
+	public static String f_ClientPhoneNumber;
 
-	JFrame ClientPage = new JFrame("LIBSYS");
+	// JFrame creation for the main window for Create Client Page
+	JFrame f_ClientPage = new JFrame("LIBSYS");
 	
-	JLabel InformationLabel = new JLabel();
-	JLabel FirstNameLabel = new JLabel();
-	JLabel LastNameLabel = new JLabel();
-	JLabel EmailLabel = new JLabel();
-	JLabel PhoneNumberLabel = new JLabel();
-	JLabel ClientPageHeader = new JLabel(); // Login Page header declaration and assignment, says "LIBSYS System"
-	JLabel BlueLineLabel = new JLabel(); // Line label declaration and assignment, will be used to underline header
-	JLabel MaterialLabel = new JLabel();
-	JLabel BoldInfoLineLabel = new JLabel();
-	JLabel BoldMatLineLabel = new JLabel();
-	JLabel FirstNameFieldLabel = new JLabel();
-	JLabel LastNameFieldLabel = new JLabel();
-	JLabel EmailFieldLabel = new JLabel();
-	JLabel PhoneNumberFieldLabel = new JLabel();
+	URL f_LOGOImage = LIBSYS_launch.class.getResource("Encryption Logo.png"); // Creates a reference to the other folder holding the Logo image
 	
-	JTextField FirstNameField = new JTextField();
-	JTextField LastNameField = new JTextField();
-	JTextField EmailField = new JTextField();
-	JTextField PhoneNumberField = new JTextField();
+	ImageIcon f_EncryptionLOGO = new ImageIcon(f_LOGOImage);  //Image icon instance of the Logo image
 	
-	JButton BackButton = new JButton("Back");
-	JButton UpdateInfoButton = new JButton("Update Client");
-	JButton SaveChangesButton = new JButton("Save Changes");
-	JButton CancelUpdatesButton = new JButton("Cancel Update");
-	JButton ResetButton = new JButton("Reset");
-	JButton DeleteButton = new JButton("Delete Profile");
+	// JLabels used for the Create Client Page
+	JLabel f_InformationLabel = new JLabel(); // Information label declaration and assignment
+	JLabel f_FirstNameLabel = new JLabel(); // First Name label declaration and assignment
+	JLabel f_LastNameLabel = new JLabel(); // Last Name label declaration and assignment
+	JLabel f_EmailLabel = new JLabel(); // Email label declaration and assignment
+	JLabel f_PhoneNumberLabel = new JLabel(); // Phone Number label declaration and assignment
+	JLabel f_ClientPageHeader = new JLabel(); // Login Page header declaration and assignment, says "LIBSYS System"
+	JLabel f_BlueLineLabel = new JLabel(); // Line label declaration and assignment, will be used to underline header
+	JLabel f_MaterialLabel = new JLabel(); // Material label declaration and assignment
+	JLabel f_BoldInfoLineLabel = new JLabel(); // Bold Info Line label declaration and assignment, will be used to underline the Information Label
+	JLabel f_BoldMatLineLabel = new JLabel(); // label declaration and assignment, will be used to underline the Material Label
+	JLabel f_FirstNameFieldLabel = new JLabel(); // First Name Field label declaration and assignment
+	JLabel f_LastNameFieldLabel = new JLabel(); // Last Name Field label declaration and assignment
+	JLabel f_EmailFieldLabel = new JLabel(); // Email Field label declaration and assignment
+	JLabel f_PhoneNumberFieldLabel = new JLabel(); // Phone Number Field label declaration and assignment
 	
+	// JText Field used in the Material Page
+	JTextField f_FirstNameField = new JTextField(); // First Name Field declaration and assignment
+	JTextField f_LastNameField = new JTextField(); // Last Name Field declaration and assignment
+	JTextField f_EmailField = new JTextField(); // Email Field declaration and assignment
+	JTextField f_PhoneNumberField = new JTextField(); // Phone Number Field declaration and assignment
+	
+	// JButtons used for the Material page
+	JButton f_BackButton = new JButton("Back"); // Button declaration and assignment
+	JButton f_UpdateInfoButton = new JButton("Update Client"); // Update Info Button declaration and assignment
+	JButton f_SaveChangesButton = new JButton("Save Changes"); // Save Changes Button declaration and assignment
+	JButton f_CancelUpdatesButton = new JButton("Cancel Update"); // Cancel Updates Button declaration and assignment
+	JButton f_ResetButton = new JButton("Reset"); // Reset Button declaration and assignment
+	JButton f_DeleteButton = new JButton("Delete Profile"); // Delete Button declaration and assignment
+	
+	// The userID is sent from the previous page to this page for the sign out label (so it looks nice and personalized),
+	// Client database information is also imported
 	Client_Profile(String username, String FirstName, String LastName, String Email, String PhoneNumber) {
 		
-		StaffUser = username;
-		ClientFirstName = FirstName;
-		ClientLastName = LastName;
-		ClientEmail = Email;
-		ClientPhoneNumber = PhoneNumber;
+		// The previous window's userID variable is sent through to this window for the username label
+		f_StaffUser = username;
 		
-		// +-------------------- Labels --------------------+
-		ClientPageHeader.setBounds(280, 10, 500, 100); // LIBSYS header is placed in the window and given dimensions
-		ClientPageHeader.setText("LIBSYS System"); // allows users to see the header label
-		ClientPageHeader.setFont(new Font(null, Font.BOLD, 30)); // Text size is changed for the header label
+		// Information being imported from the previous page
+		f_ClientFirstName = FirstName;
+		f_ClientLastName = LastName;
+		f_ClientEmail = Email;
+		f_ClientPhoneNumber = PhoneNumber;
 		
-		BlueLineLabel.setBounds(0, 75, 800, 3); // Line is placed underneath the header
-		BlueLineLabel.setOpaque(true); // line is set to be opaque, which allows for color to be added
-		BlueLineLabel.setBackground(Color.BLUE); // line is filled with the color blue
+		// +-------------------- Label placement and personalization --------------------+	
+		f_ClientPageHeader.setBounds(280, 10, 500, 100); // LIBSYS header is placed in the window and given dimensions
+		f_ClientPageHeader.setText("LIBSYS System"); // allows users to see the header label
+		f_ClientPageHeader.setFont(new Font(null, Font.BOLD, 30)); // Text size is changed for the header label
 		
-		InformationLabel.setBounds(15, 100, 200, 25);
-		InformationLabel.setText("Client Information:");
-		InformationLabel.setFont(new Font(null, Font.BOLD, 18));
+		f_BlueLineLabel.setBounds(0, 75, 800, 3); // Line is placed underneath the header
+		f_BlueLineLabel.setOpaque(true); // line is set to be opaque, which allows for color to be added
+		f_BlueLineLabel.setBackground(Color.BLUE); // line is filled with the color blue
 		
-		BoldInfoLineLabel.setBounds(15, 122, 160, 2);
-		BoldInfoLineLabel.setOpaque(true);
-		BoldInfoLineLabel.setBackground(Color.black);
+		f_InformationLabel.setBounds(15, 100, 200, 25); // InformationLabel is placed in the window and given dimensions
+		f_InformationLabel.setText("Client Information:"); // Text is assigned
+		f_InformationLabel.setFont(new Font(null, Font.BOLD, 18)); // Text size is changed
 		
-		FirstNameLabel.setBounds(15, 140, 250, 25);
-		FirstNameLabel.setText("First name: " + FirstName);
-		FirstNameLabel.setFont(new Font(null, Font.PLAIN, 15));
+		f_BoldInfoLineLabel.setBounds(15, 122, 160, 2); // BoldInfoLineLabel is placed in the window and given dimensions
+		f_BoldInfoLineLabel.setOpaque(true); // line is set to be opaque, which allows for color to be added
+		f_BoldInfoLineLabel.setBackground(Color.black); // line is filled with the color black
 		
-		LastNameLabel.setBounds(15, 165, 250, 25);
-		LastNameLabel.setText("Last Name: " + LastName);
-		LastNameLabel.setFont(new Font(null, Font.PLAIN, 15));
+		f_FirstNameLabel.setBounds(15, 140, 250, 25); // FirstNameLabel is placed in the window and given dimensions
+		f_FirstNameLabel.setText("First name: " + FirstName); // Text is assigned
+		f_FirstNameLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
 		
-		EmailLabel.setBounds(15, 190, 350, 25);
-		EmailLabel.setText("Email: " + Email);
-		EmailLabel.setFont(new Font(null, Font.PLAIN, 15));
+		f_LastNameLabel.setBounds(15, 165, 250, 25); // LastNameLabel is placed in the window and given dimensions
+		f_LastNameLabel.setText("Last Name: " + LastName); // Text is assigned
+		f_LastNameLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
 		
-		PhoneNumberLabel.setBounds(15, 215, 250, 25);
-		PhoneNumberLabel.setText("Phone Number: " + PhoneNumber);
-		PhoneNumberLabel.setFont(new Font(null, Font.PLAIN, 15));
+		f_EmailLabel.setBounds(15, 190, 350, 25); // EmailLabel is placed in the window and given dimensions
+		f_EmailLabel.setText("Email: " + Email); // Text is assigned
+		f_EmailLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
 		
-		MaterialLabel.setBounds(15, 300, 200, 25);
-		MaterialLabel.setText("Materials Borrowed:");
-		MaterialLabel.setFont(new Font(null, Font.BOLD, 18));
+		f_PhoneNumberLabel.setBounds(15, 215, 250, 25); // PhoneNumberLabel is placed in the window and given dimensions
+		f_PhoneNumberLabel.setText("Phone Number: " + PhoneNumber); // Text is assigned
+		f_PhoneNumberLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
 		
-		BoldMatLineLabel.setBounds(15, 322, 173, 2);
-		BoldMatLineLabel.setOpaque(true);
-		BoldMatLineLabel.setBackground(Color.black);
+		f_MaterialLabel.setBounds(15, 300, 200, 25); // MaterialLabel is placed in the window and given dimensions
+		f_MaterialLabel.setText("Materials Borrowed:"); // Text is assigned
+		f_MaterialLabel.setFont(new Font(null, Font.BOLD, 18)); // Text size is changed
 		
-		FirstNameFieldLabel.setBounds(450, 140, 100, 25);
-		FirstNameFieldLabel.setText("First Name:");
-		FirstNameFieldLabel.setFont(new Font(null, Font.PLAIN, 15));
+		f_BoldMatLineLabel.setBounds(15, 322, 173, 2); // BoldMatLineLabel is placed in the window and given dimensions
+		f_BoldMatLineLabel.setOpaque(true); // line is set to be opaque, which allows for color to be added
+		f_BoldMatLineLabel.setBackground(Color.black); // line is filled with the color black
 		
-		LastNameFieldLabel.setBounds(450, 165, 100, 25);
-		LastNameFieldLabel.setText("Last Name:");
-		LastNameFieldLabel.setFont(new Font(null, Font.PLAIN, 15));
+		f_FirstNameFieldLabel.setBounds(450, 140, 200, 25); // FirstNameFieldLabel is placed in the window and given dimensions
+		f_FirstNameFieldLabel.setText("First Name:"); // Text is assigned
+		f_FirstNameFieldLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
 		
-		EmailFieldLabel.setBounds(450, 190, 100, 25);
-		EmailFieldLabel.setText("Email:");
-		EmailFieldLabel.setFont(new Font(null, Font.PLAIN, 15));
+		f_LastNameFieldLabel.setBounds(450, 165, 100, 25); // LastNameFieldLabel is placed in the window and given dimensions
+		f_LastNameFieldLabel.setText("Last Name:"); // Text is assigned
+		f_LastNameFieldLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
 		
-		PhoneNumberFieldLabel.setBounds(450, 215, 125, 25);
-		PhoneNumberFieldLabel.setText("Phone Number:");
-		PhoneNumberFieldLabel.setFont(new Font(null, Font.PLAIN, 15));
+		f_EmailFieldLabel.setBounds(450, 190, 100, 25); // EmailFieldLabel is placed in the window and given dimensions
+		f_EmailFieldLabel.setText("Email:"); // Text is assigned
+		f_EmailFieldLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
 		
-		// +-------------------- Buttons --------------------+
-		BackButton.setBounds(15, 255, 105, 25);
-		BackButton.addActionListener(this);
-		BackButton.setFocusable(false);
+		f_PhoneNumberFieldLabel.setBounds(450, 215, 125, 25); // PhoneNumberFieldLabel is placed in the window and given dimensions
+		f_PhoneNumberFieldLabel.setText("Phone Number:"); // Text is assigned
+		f_PhoneNumberFieldLabel.setFont(new Font(null, Font.PLAIN, 15)); // Text size is changed
 		
-		UpdateInfoButton.setBounds(115, 255, 125, 25);
-		UpdateInfoButton.addActionListener(this);
-		UpdateInfoButton.setFocusable(false);
+		// +-------------------- Button placement and personalization --------------------+
+		f_BackButton.setBounds(15, 255, 105, 25); // Back Button is placed and given dimensions
+		f_BackButton.addActionListener(this); // adds action listener to the Back button to give it functionality
+		f_BackButton.setFocusable(false); // disables box outline around button text
 		
-		CancelUpdatesButton.setBounds(115, 255, 125, 25);
-		CancelUpdatesButton.addActionListener(this);
-		CancelUpdatesButton.setFocusable(false);
-		CancelUpdatesButton.setVisible(false);
+		// If the client's profile is missing vital information, it was previously deleted, this tells users to create a new profile for the client
+		if (!Client_Database.f_ClientFNEmail.containsKey(f_ClientFirstName + f_ClientLastName) ||
+				!Client_Database.f_ClientFNPhone.containsKey(f_ClientFirstName + f_ClientLastName)) {
+			f_UpdateInfoButton.setEnabled(false);
+			System.out.println("Client has been deleted, please create a new profile from search page.");
+			
+		}
 		
-		SaveChangesButton.setBounds(450, 255, 130, 25);
-		SaveChangesButton.addActionListener(this);
-		SaveChangesButton.setFocusable(false);
-		SaveChangesButton.setEnabled(false);
+		f_UpdateInfoButton.setBounds(115, 255, 125, 25); // Button is placed and given dimensions
+		f_UpdateInfoButton.addActionListener(this); // adds action listener to the Back button to give it functionality
+		f_UpdateInfoButton.setFocusable(false); // disables box outline around button text
 		
-		ResetButton.setBounds(575, 255, 90, 25);
-		ResetButton.addActionListener(this);
-		ResetButton.setFocusable(false);
-		ResetButton.setEnabled(false);
+		f_CancelUpdatesButton.setBounds(115, 255, 125, 25); // Cancel Updates Button is placed and given dimensions
+		f_CancelUpdatesButton.addActionListener(this); // adds action listener to the Cancel Updates button to give it functionality
+		f_CancelUpdatesButton.setFocusable(false); // disables box outline around button text
+		f_CancelUpdatesButton.setVisible(false); // Makes the button invisible when the page is initially created
 		
-		DeleteButton.setBounds(660, 255, 110, 25);
-		DeleteButton.addActionListener(this);
-		DeleteButton.setFocusable(false);
-		DeleteButton.setEnabled(false);
+		f_SaveChangesButton.setBounds(450, 255, 130, 25); // Save Changes Button is placed and given dimensions
+		f_SaveChangesButton.addActionListener(this); // adds action listener to the Save Changes button to give it functionality
+		f_SaveChangesButton.setFocusable(false); // disables box outline around button text
+		f_SaveChangesButton.setEnabled(false); // does not allow the button to be accessed
 		
-		// +-------------------- Information Fields --------------------+
-		FirstNameField.setBounds(530, 140, 240, 25);
-		FirstNameField.setText(FirstName);
-		FirstNameField.setEnabled(false);
+		f_ResetButton.setBounds(575, 255, 90, 25); // Reset Button is placed and given dimensions
+		f_ResetButton.addActionListener(this); // adds action listener to the Reset button to give it functionality
+		f_ResetButton.setFocusable(false); // disables box outline around button text
+		f_ResetButton.setEnabled(false); // does not allow the button to be accessed
 		
-		LastNameField.setBounds(530, 165, 240, 25);
-		LastNameField.setText(LastName);
-		LastNameField.setEnabled(false);
+		f_DeleteButton.setBounds(660, 255, 110, 25); // Delete Button is placed and given dimensions
+		f_DeleteButton.addActionListener(this); // adds action listener to the Delete button to give it functionality
+		f_DeleteButton.setFocusable(false); // disables box outline around button text
+		f_DeleteButton.setEnabled(false); // does not allow the button to be accessed
 		
-		EmailField.setBounds(495, 190, 240, 25);
-		EmailField.setText(Email);
-		EmailField.setEnabled(false);
+		// +-------------------- Text Fields placement and dimensions --------------------+
+		f_FirstNameField.setBounds(530, 140, 240, 25); // First Name field is placed and given dimensions
+		f_FirstNameField.setText(FirstName); // Text is assigned
+		f_FirstNameField.setEnabled(false); // does not allow the text field to be accessed
 		
-		PhoneNumberField.setBounds(557, 215, 213, 25);
-		PhoneNumberField.setText(PhoneNumber);
-		PhoneNumberField.setEnabled(false);
+		f_LastNameField.setBounds(530, 165, 240, 25); // Last Name field is placed and given dimensions
+		f_LastNameField.setText(LastName); // Text is assigned
+		f_LastNameField.setEnabled(false); // does not allow the text field to be accessed
+		
+		f_EmailField.setBounds(495, 190, 240, 25); // Email field is placed and given dimensions
+		f_EmailField.setText(Email); // Text is assigned
+		f_EmailField.setEnabled(false); // does not allow the text field to be accessed
+		
+		f_PhoneNumberField.setBounds(557, 215, 213, 25); // Phone Number field is placed and given dimensions
+		f_PhoneNumberField.setText(PhoneNumber); // Text is assigned
+		f_PhoneNumberField.setEnabled(false); // does not allow the text field to be accessed
 		
 		// +-------------------- Frame additions and functionality --------------------+
-		ClientPage.add(InformationLabel);
-		ClientPage.add(BoldInfoLineLabel);
-		ClientPage.add(FirstNameLabel);
-		ClientPage.add(LastNameLabel);
-		ClientPage.add(EmailLabel);
-		ClientPage.add(PhoneNumberLabel);
-		ClientPage.add(ClientPageHeader);
-		ClientPage.add(BlueLineLabel);
-		ClientPage.add(FirstNameField);
-		ClientPage.add(LastNameField);
-		ClientPage.add(EmailField);
-		ClientPage.add(PhoneNumberField);
-		ClientPage.add(MaterialLabel);
-		ClientPage.add(BoldMatLineLabel);
-		ClientPage.add(BackButton);
-		ClientPage.add(UpdateInfoButton);
-		ClientPage.add(CancelUpdatesButton);
-		ClientPage.add(FirstNameFieldLabel);
-		ClientPage.add(LastNameFieldLabel);
-		ClientPage.add(EmailFieldLabel);
-		ClientPage.add(PhoneNumberFieldLabel);
-		ClientPage.add(SaveChangesButton);
-		ClientPage.add(ResetButton);
-		ClientPage.add(DeleteButton);
+		f_ClientPage.add(f_InformationLabel); // InformationLabel is added to the window
+		f_ClientPage.add(f_BoldInfoLineLabel); // BoldInfoLineLabel is added to the window
+		f_ClientPage.add(f_FirstNameLabel); // FirstNameLabel is added to the window
+		f_ClientPage.add(f_LastNameLabel); // LastNameLabel is added to the window
+		f_ClientPage.add(f_EmailLabel); // EmailLabel is added to the window
+		f_ClientPage.add(f_PhoneNumberLabel); // PhoneNumberLabel is added to the window
+		f_ClientPage.add(f_ClientPageHeader); // ClientPageHeader is added to the window
+		f_ClientPage.add(f_BlueLineLabel); // BlueLineLabel is added to the window
+		f_ClientPage.add(f_FirstNameField); // FirstNameField is added to the window
+		f_ClientPage.add(f_LastNameField); // LastNameField is added to the window
+		f_ClientPage.add(f_EmailField); // EmailField is added to the window
+		f_ClientPage.add(f_PhoneNumberField); // PhoneNumberField is added to the window
+		f_ClientPage.add(f_MaterialLabel); // MaterialLabel is added to the window
+		f_ClientPage.add(f_BoldMatLineLabel); // BoldMatLineLabel is added to the window
+		f_ClientPage.add(f_BackButton); // BackButton is added to the window
+		f_ClientPage.add(f_UpdateInfoButton); // UpdateInfoButton is added to the window
+		f_ClientPage.add(f_CancelUpdatesButton); // CancelUpdatesButton is added to the window
+		f_ClientPage.add(f_FirstNameFieldLabel); // FirstNameFieldLabel is added to the window
+		f_ClientPage.add(f_LastNameFieldLabel); // LastNameFieldLabel is added to the window
+		f_ClientPage.add(f_EmailFieldLabel); // EmailFieldLabel is added to the window
+		f_ClientPage.add(f_PhoneNumberFieldLabel); // PhoneNumberFieldLabel is added to the window
+		f_ClientPage.add(f_SaveChangesButton); // SaveChangesButton is added to the window
+		f_ClientPage.add(f_ResetButton); // ResetButton is added to the window
+		f_ClientPage.add(f_DeleteButton); // DeleteButton is added to the window
 		
 		// +-------------------- Frame dimensions and personalization --------------------+
-		ClientPage.setSize(800, 600);
-		ClientPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ClientPage.setLayout(null);
-		ClientPage.setResizable(false);
-		ClientPage.setVisible(true);
+		f_ClientPage.setSize(800, 600); // dimensions are given to the window
+		f_ClientPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // application is halted when window is closed
+		f_ClientPage.setLayout(null); // no layout is specified, everything is placed manually
+		f_ClientPage.setResizable(false); // disables ability to resize windows
+		f_ClientPage.setVisible(true); // window is made visible for users to see
+		f_ClientPage.setIconImage(f_EncryptionLOGO.getImage()); // Image Icon is used to set the window/application image
 		
 	}
 	
+	// +-------------------- Action Listener --------------------+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-				
-		if (e.getSource() == BackButton) {
-			new Client_Search(StaffUser, Client_Database.getClientFirstName(), Client_Database.getClientLastName(),
+		
+		// The back button will send the user back to the Client Search page
+		if (e.getSource() == f_BackButton) { // Client Search Page is created and Client Database is imported
+			new Client_Search(f_StaffUser, Client_Database.getClientFirstName(), Client_Database.getClientLastName(),
 					Client_Database.getClientEmail(), Client_Database.getClientPhone(),
 					Client_Database.getClientFNEmail(), Client_Database.getClientFNPhone());
-			ClientPage.dispose();
+			f_ClientPage.dispose(); // Current page is closed
 			
 		}
 		
-		if (e.getSource() == UpdateInfoButton) {
-			FirstNameField.setEnabled(true);
-			LastNameField.setEnabled(true);
-			EmailField.setEnabled(true);
-			PhoneNumberField.setEnabled(true);
-			SaveChangesButton.setEnabled(true);
-			ResetButton.setEnabled(true);
-			DeleteButton.setEnabled(true);
-			UpdateInfoButton.setVisible(false);
-			CancelUpdatesButton.setVisible(true);
+		// This button will allow library staff to update client information
+		if (e.getSource() == f_UpdateInfoButton) {
+			f_FirstNameField.setEnabled(true);
+			f_LastNameField.setEnabled(true);
+			f_EmailField.setEnabled(true);
+			f_PhoneNumberField.setEnabled(true);
+			f_SaveChangesButton.setEnabled(true);
+			f_ResetButton.setEnabled(true);
+			f_DeleteButton.setEnabled(true);
+			f_UpdateInfoButton.setVisible(false);
+			f_CancelUpdatesButton.setVisible(true);
 			
 		}
 		
-		if (e.getSource() == CancelUpdatesButton) {
-			FirstNameField.setEnabled(false);
-			LastNameField.setEnabled(false);
-			EmailField.setEnabled(false);
-			PhoneNumberField.setEnabled(false);
-			SaveChangesButton.setEnabled(false);
-			ResetButton.setEnabled(false);
-			DeleteButton.setEnabled(false);
-			UpdateInfoButton.setVisible(true);
-			CancelUpdatesButton.setVisible(false);
+		// This button will lock staff users out of editing client information if no changes are needing to be made
+		if (e.getSource() == f_CancelUpdatesButton) {
+			f_FirstNameField.setEnabled(false);
+			f_LastNameField.setEnabled(false);
+			f_EmailField.setEnabled(false);
+			f_PhoneNumberField.setEnabled(false);
+			f_SaveChangesButton.setEnabled(false);
+			f_ResetButton.setEnabled(false);
+			f_DeleteButton.setEnabled(false);
+			f_UpdateInfoButton.setVisible(true);
+			f_CancelUpdatesButton.setVisible(false);
 			
 		}
 		
-		if (e.getSource() == SaveChangesButton) {
-			String NewFirstName = FirstNameField.getText();
-			String NewLastName = LastNameField.getText();
-			String NewEmail = EmailField.getText();
-			String NewPhoneNumber = PhoneNumberField.getText();
+		// This button will update client information within the Client Database based on information specified by staff users in text fields
+		if (e.getSource() == f_SaveChangesButton) {
+			String newFirstName = f_FirstNameField.getText();
+			String newLastName = f_LastNameField.getText();
+			String newEmail = f_EmailField.getText();
+			String newPhoneNumber = f_PhoneNumberField.getText();
 			
-			if (!ClientFirstName.equals(NewFirstName)) {
-				Client_Database.removeClientFirstName(ClientFirstName, ClientEmail, ClientPhoneNumber);
-				Client_Database.updateClientFirstName(NewFirstName, NewEmail, NewPhoneNumber);
+			// If the first name is different than what was previously present, all information is updated to reflect the change
+			if (!f_ClientFirstName.equals(newFirstName)) {
+				Client_Database.removeClientFirstName(f_ClientFirstName, f_ClientEmail, f_ClientPhoneNumber);
+				Client_Database.updateClientFirstName(newFirstName, newEmail, newPhoneNumber);
 				
-				Client_Database.removeClientFNEmail(ClientFirstName);
-				Client_Database.updateClientFNEmail(NewFirstName, NewEmail);
+				Client_Database.removeClientFNEmail(f_ClientFirstName, f_ClientLastName);
+				Client_Database.updateClientFNEmail(newFirstName, newLastName, newEmail);
 				
-				Client_Database.removeClientFNPhone(ClientFirstName);
-				Client_Database.updateClientFNPhone(NewFirstName, NewPhoneNumber);
+				Client_Database.removeClientFNPhone(f_ClientFirstName, f_ClientLastName);
+				Client_Database.updateClientFNPhone(newFirstName, newLastName, newPhoneNumber);
 				
-				Client_Database.removeClientLastName(ClientEmail, ClientPhoneNumber);
-				Client_Database.updateClientLastName(NewLastName, NewEmail, NewPhoneNumber);
+				Client_Database.removeClientLastName(f_ClientEmail, f_ClientPhoneNumber);
+				Client_Database.updateClientLastName(newLastName, newEmail, newPhoneNumber);
 				
-				Client_Database.removeClientEmail(ClientEmail, ClientPhoneNumber);
-				Client_Database.updateClientEmail(NewEmail, NewPhoneNumber);
+				Client_Database.removeClientEmail(f_ClientEmail, f_ClientPhoneNumber);
+				Client_Database.updateClientEmail(newEmail, newPhoneNumber);
 				
-				Client_Database.removeClientPhone(ClientEmail, ClientPhoneNumber);
-				Client_Database.updateClientPhone(NewEmail, NewPhoneNumber);
+				Client_Database.removeClientPhone(f_ClientEmail, f_ClientPhoneNumber);
+				Client_Database.updateClientPhone(newEmail, newPhoneNumber);
 				
 			}
 			
-			if (!ClientLastName.equals(NewLastName)) {
-				Client_Database.removeClientFirstName(ClientFirstName, ClientEmail, ClientPhoneNumber);
-				Client_Database.updateClientFirstName(NewFirstName, NewEmail, NewPhoneNumber);
+			// If the last name is different than what was previously present, all information is updated to reflect the change
+			if (!f_ClientLastName.equals(newLastName)) {
+				Client_Database.removeClientFirstName(f_ClientFirstName, f_ClientEmail, f_ClientPhoneNumber);
+				Client_Database.updateClientFirstName(newFirstName, newEmail, newPhoneNumber);
 				
-				Client_Database.removeClientFNEmail(ClientFirstName);
-				Client_Database.updateClientFNEmail(NewFirstName, NewEmail);
+				Client_Database.removeClientFNEmail(f_ClientFirstName, f_ClientLastName);
+				Client_Database.updateClientFNEmail(newFirstName, newLastName, newEmail);
 				
-				Client_Database.removeClientFNPhone(ClientFirstName);
-				Client_Database.updateClientFNPhone(NewFirstName, NewPhoneNumber);
+				Client_Database.removeClientFNPhone(f_ClientFirstName, f_ClientLastName);
+				Client_Database.updateClientFNPhone(newFirstName, newLastName, newPhoneNumber);
 				
-				Client_Database.removeClientLastName(ClientEmail, ClientPhoneNumber);
-				Client_Database.updateClientLastName(NewLastName, NewEmail, NewPhoneNumber);
+				Client_Database.removeClientLastName(f_ClientEmail, f_ClientPhoneNumber);
+				Client_Database.updateClientLastName(newLastName, newEmail, newPhoneNumber);
 				
-				Client_Database.removeClientEmail(ClientEmail, ClientPhoneNumber);
-				Client_Database.updateClientEmail(NewEmail, NewPhoneNumber);
+				Client_Database.removeClientEmail(f_ClientEmail, f_ClientPhoneNumber);
+				Client_Database.updateClientEmail(newEmail, newPhoneNumber);
 				
-				Client_Database.removeClientPhone(ClientEmail, ClientPhoneNumber);
-				Client_Database.updateClientPhone(NewEmail, NewPhoneNumber);
-				
-			}
-			
-			if (!ClientEmail.equals(NewEmail)) {
-				Client_Database.removeClientFirstName(ClientFirstName, ClientEmail, ClientPhoneNumber);
-				Client_Database.updateClientFirstName(NewFirstName, NewEmail, NewPhoneNumber);
-				
-				Client_Database.removeClientFNEmail(ClientFirstName);
-				Client_Database.updateClientFNEmail(NewFirstName, NewEmail);
-				
-				Client_Database.removeClientFNPhone(ClientFirstName);
-				Client_Database.updateClientFNPhone(NewFirstName, NewPhoneNumber);
-				
-				Client_Database.removeClientLastName(ClientEmail, ClientPhoneNumber);
-				Client_Database.updateClientLastName(NewLastName, NewEmail, NewPhoneNumber);
-				
-				Client_Database.removeClientEmail(ClientEmail, ClientPhoneNumber);
-				Client_Database.updateClientEmail(NewEmail, NewPhoneNumber);
-				
-				Client_Database.removeClientPhone(ClientEmail, ClientPhoneNumber);
-				Client_Database.updateClientPhone(NewEmail, NewPhoneNumber);
+				Client_Database.removeClientPhone(f_ClientEmail, f_ClientPhoneNumber);
+				Client_Database.updateClientPhone(newEmail, newPhoneNumber);
 				
 			}
 			
-			if (!ClientPhoneNumber.equals(NewPhoneNumber)) {
-				Client_Database.removeClientFirstName(ClientFirstName, ClientEmail, ClientPhoneNumber);
-				Client_Database.updateClientFirstName(NewFirstName, NewEmail, NewPhoneNumber);
+			// If the Email address is different than what was previously present, all information is updated to reflect the change
+			if (!f_ClientEmail.equals(newEmail)) {
+				Client_Database.removeClientFirstName(f_ClientFirstName, f_ClientEmail, f_ClientPhoneNumber);
+				Client_Database.updateClientFirstName(newFirstName, newEmail, newPhoneNumber);
 				
-				Client_Database.removeClientFNEmail(ClientFirstName);
-				Client_Database.updateClientFNEmail(NewFirstName, NewEmail);
+				Client_Database.removeClientFNEmail(f_ClientFirstName, f_ClientLastName);
+				Client_Database.updateClientFNEmail(newFirstName, newLastName, newEmail);
 				
-				Client_Database.removeClientFNPhone(ClientFirstName);
-				Client_Database.updateClientFNPhone(NewFirstName, NewPhoneNumber);
+				Client_Database.removeClientFNPhone(f_ClientFirstName, f_ClientLastName);
+				Client_Database.updateClientFNPhone(newFirstName, newLastName, newPhoneNumber);
 				
-				Client_Database.removeClientLastName(ClientEmail, ClientPhoneNumber);
-				Client_Database.updateClientLastName(NewLastName, NewEmail, NewPhoneNumber);
+				Client_Database.removeClientLastName(f_ClientEmail, f_ClientPhoneNumber);
+				Client_Database.updateClientLastName(newLastName, newEmail, newPhoneNumber);
 				
-				Client_Database.removeClientEmail(ClientEmail, ClientPhoneNumber);
-				Client_Database.updateClientEmail(NewEmail, NewPhoneNumber);
+				Client_Database.removeClientEmail(f_ClientEmail, f_ClientPhoneNumber);
+				Client_Database.updateClientEmail(newEmail, newPhoneNumber);
 				
-				Client_Database.removeClientPhone(ClientEmail, ClientPhoneNumber);
-				Client_Database.updateClientPhone(NewEmail, NewPhoneNumber);
+				Client_Database.removeClientPhone(f_ClientEmail, f_ClientPhoneNumber);
+				Client_Database.updateClientPhone(newEmail, newPhoneNumber);
 				
 			}
 			
-			new Client_Search(StaffUser, Client_Database.getClientFirstName(), Client_Database.getClientLastName(),
+			// If the phone number is different than what was previously present, all information is updated to reflect the change
+			if (!f_ClientPhoneNumber.equals(newPhoneNumber)) {
+				Client_Database.removeClientFirstName(f_ClientFirstName, f_ClientEmail, f_ClientPhoneNumber);
+				Client_Database.updateClientFirstName(newFirstName, newEmail, newPhoneNumber);
+				
+				Client_Database.removeClientFNEmail(f_ClientFirstName, f_ClientLastName);
+				Client_Database.updateClientFNEmail(newFirstName, newLastName, newEmail);
+				
+				Client_Database.removeClientFNPhone(f_ClientFirstName, f_ClientLastName);
+				Client_Database.updateClientFNPhone(newFirstName, newLastName, newPhoneNumber);
+				
+				Client_Database.removeClientLastName(f_ClientEmail, f_ClientPhoneNumber);
+				Client_Database.updateClientLastName(newLastName, newEmail, newPhoneNumber);
+				
+				Client_Database.removeClientEmail(f_ClientEmail, f_ClientPhoneNumber);
+				Client_Database.updateClientEmail(newEmail, newPhoneNumber);
+				
+				Client_Database.removeClientPhone(f_ClientEmail, f_ClientPhoneNumber);
+				Client_Database.updateClientPhone(newEmail, newPhoneNumber);
+				
+			}
+			
+			// New Client Search Page is created and updated Client Database is imported
+			new Client_Search(f_StaffUser, Client_Database.getClientFirstName(), Client_Database.getClientLastName(),
 					Client_Database.getClientEmail(), Client_Database.getClientPhone(),
 					Client_Database.getClientFNEmail(), Client_Database.getClientFNPhone());
-			ClientPage.dispose();
+			f_ClientPage.dispose(); // current window is closed
 			
 		}
 		
-		if (e.getSource() == ResetButton) {
-			FirstNameField.setText(ClientFirstName);
-			LastNameField.setText(ClientLastName);
-			EmailField.setText(ClientEmail);
-			PhoneNumberField.setText(ClientPhoneNumber);
+		// This function will revert the Client information update fields to the original information to mitigate any errors
+		if (e.getSource() == f_ResetButton) {
+			f_FirstNameField.setText(f_ClientFirstName);
+			f_LastNameField.setText(f_ClientLastName);
+			f_EmailField.setText(f_ClientEmail);
+			f_PhoneNumberField.setText(f_ClientPhoneNumber);
 			
 		}
 		
-		if (e.getSource() == DeleteButton) {
-			Client_Database.removeClientFirstName(ClientFirstName, ClientEmail, ClientPhoneNumber);
-			Client_Database.removeClientFNEmail(ClientFirstName);
-			Client_Database.removeClientFNPhone(ClientFirstName);
-			Client_Database.removeClientLastName(ClientEmail, ClientPhoneNumber);
-			Client_Database.removeClientEmail(ClientEmail, ClientPhoneNumber);
-			Client_Database.removeClientPhone(ClientEmail, ClientPhoneNumber);
+		// This function will delete key information from a client's profile to make it inactive and not harm other user information
+		if (e.getSource() == f_DeleteButton) {
+			Client_Database.removeClientFirstName(f_ClientFirstName, f_ClientEmail, f_ClientPhoneNumber);
+			Client_Database.removeClientFNEmail(f_ClientFirstName, f_ClientLastName);
+			Client_Database.removeClientFNPhone(f_ClientFirstName, f_ClientLastName);
+			Client_Database.removeClientLastName(f_ClientEmail, f_ClientPhoneNumber);
+			Client_Database.removeClientEmail(f_ClientEmail, f_ClientPhoneNumber);
+			Client_Database.removeClientPhone(f_ClientEmail, f_ClientPhoneNumber);
 			
-			new Client_Search(StaffUser, Client_Database.getClientFirstName(), Client_Database.getClientLastName(),
+			// New Client Search Page is created and updated Client Database is imported
+			new Client_Search(f_StaffUser, Client_Database.getClientFirstName(), Client_Database.getClientLastName(),
 					Client_Database.getClientEmail(), Client_Database.getClientPhone(),
 					Client_Database.getClientFNEmail(), Client_Database.getClientFNPhone());
-			ClientPage.dispose();
+			f_ClientPage.dispose(); // current window is closed
 			
 		}
 		
