@@ -7,8 +7,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,89 +21,94 @@ import javax.swing.JTextField;
 public class Login_Page implements ActionListener{
 	
 	// This String will allow for the UserID entered to be sent beyond this window
-	public static String userID;
+	public static String f_userID;
 	
 	// The main JFrame/window creation
-	JFrame LoginFrame = new JFrame("LIBSYS"); // Displays "LIBSYS" on the top bar of the window
+	JFrame f_LoginFrame = new JFrame("LIBSYS"); // Displays "LIBSYS" on the top bar of the window
+	
+	URL f_LOGOImage = LIBSYS_launch.class.getResource("Encryption Logo.png"); // Creates a reference to the icon within other folder holding the Logo image
+	
+	ImageIcon f_EncryptionLOGO = new ImageIcon(f_LOGOImage); //Image icon instance of the Logo image
 		
 	// Button instances are created and labeled with text
-	JButton loginButton = new JButton("Login"); // login button declaration and assignment, labeled with "Login"
-	JButton resetButton = new JButton("Reset"); // reset button declaration and assignment, labeled with "Reset"
-	JButton BackButton = new JButton("Back"); // back button declaration and assignment, labeled with "Back"
+	JButton f_loginButton = new JButton("Login"); // login button declaration and assignment, labeled with "Login"
+	JButton f_resetButton = new JButton("Reset"); // reset button declaration and assignment, labeled with "Reset"
+	JButton f_BackButton = new JButton("Back"); // back button declaration and assignment, labeled with "Back"
 	
 	// Text field for user name entry by users
-	JTextField userIDfield = new JTextField();
+	JTextField f_userIDfield = new JTextField();
 	
 	// Password field for password entry by users
-	JPasswordField userPassfield = new JPasswordField();
+	JPasswordField f_userPassfield = new JPasswordField();
 	
 	// All of the labels for the Login Page
-	JLabel userIDlabel = new JLabel("Admin ID:"); // User ID label declaration and assignment, says "Admin ID:"
-	JLabel userPasslabel = new JLabel("Password:"); // User Password label declaration and assignment, says "Password:"
-	JLabel messageLabel = new JLabel(); // message label declaration and assignment, will display incorrect login information is input [MAY GET REPLACED BY WARNING LABEL]
-	JLabel libsys_Header = new JLabel("LIBSYS System"); // Login Page header declaration and assignment, says "LIBSYS System"
-	JLabel LineLabel = new JLabel(); // Line label declaration and assignment, will be used to underline header
+	JLabel f_userIDlabel = new JLabel("Admin ID:"); // User ID label declaration and assignment, says "Admin ID:"
+	JLabel f_userPasslabel = new JLabel("Password:"); // User Password label declaration and assignment, says "Password:"
+	JLabel f_messageLabel = new JLabel(); // message label declaration and assignment, will display incorrect login information is input [MAY GET REPLACED BY WARNING LABEL]
+	JLabel f_libsys_Header = new JLabel("LIBSYS System"); // Login Page header declaration and assignment, says "LIBSYS System"
+	JLabel f_LineLabel = new JLabel(); // Line label declaration and assignment, will be used to underline header
 	
 	// Creation and assignments of the HashMap that holds the user-login information
-	HashMap<String, String> logininfo = new HashMap<String, String>();
+	HashMap<String, String> f_logininfo = new HashMap<String, String>();
 	
 	// HashMap is imported into this constructor for utilization in case-sensitive login information
 	Login_Page(HashMap<String, String> logininfoOriginal) {
 		
-		logininfo = logininfoOriginal; // Local HashMap is assigned using the information imported from the Login_Credentials class
+		f_logininfo = logininfoOriginal; // Local HashMap is assigned using the information imported from the Login_Credentials class
 		
 		// +-------------------- Label placement and personalization --------------------+		
-		libsys_Header.setBounds(180, 10, 300, 100); // LIBSYS header is placed in the window and given dimensions
-		libsys_Header.setVisible(true); // allows users to see the header label
-		libsys_Header.setFont(new Font(null, Font.BOLD, 30)); // Text size is changed for the header label
+		f_libsys_Header.setBounds(180, 10, 300, 100); // LIBSYS header is placed in the window and given dimensions
+		f_libsys_Header.setVisible(true); // allows users to see the header label
+		f_libsys_Header.setFont(new Font(null, Font.BOLD, 30)); // Text size is changed for the header label
 		
-		LineLabel.setBounds(0, 75, 600, 3); // Line is placed underneath the header
-		LineLabel.setOpaque(true); // line is set to be opaque, which allows for color to be added
-		LineLabel.setBackground(Color.BLUE); // line is filled with the color blue
+		f_LineLabel.setBounds(0, 75, 600, 3); // Line is placed underneath the header
+		f_LineLabel.setOpaque(true); // line is set to be opaque, which allows for color to be added
+		f_LineLabel.setBackground(Color.BLUE); // line is filled with the color blue
 		
-		userIDlabel.setBounds(125, 150, 75, 25); // label for user name text field is placed and given dimensions
-		userPasslabel.setBounds(125, 200, 75, 25); // label for user password text field is placed and given dimensions
+		f_userIDlabel.setBounds(125, 150, 75, 25); // label for user name text field is placed and given dimensions
+		f_userPasslabel.setBounds(125, 200, 75, 25); // label for user password text field is placed and given dimensions
 		
-		messageLabel.setBounds(200, 220, 250, 35); // message label is placed and given dimensions
-		messageLabel.setFont(new Font(null, Font.ITALIC, 12)); // text style for message is italicized and given a size of 12
+		f_messageLabel.setBounds(200, 220, 250, 35); // message label is placed and given dimensions
+		f_messageLabel.setFont(new Font(null, Font.ITALIC, 12)); // text style for message is italicized and given a size of 12
 		
 		// +-------------------- Text Fields placement and dimensions --------------------+		
-		userIDfield.setBounds(200, 150, 200, 25); // User ID text field is placed and given dimensions
+		f_userIDfield.setBounds(200, 150, 200, 25); // User ID text field is placed and given dimensions
 		
-		userPassfield.setBounds(200, 200, 200, 25); // User password test field is placed and given dimensions
+		f_userPassfield.setBounds(200, 200, 200, 25); // User password test field is placed and given dimensions
 		
 		// +-------------------- Button placement and personalization --------------------+
-		loginButton.setBounds(200, 250, 100, 25); // login button is placed and given dimensions
-		loginButton.addActionListener(this); // adds the action listener to the login button to allow functionality when pressed
-		loginButton.setFocusable(false); // hides the outline around the button's interior text
+		f_loginButton.setBounds(200, 250, 100, 25); // login button is placed and given dimensions
+		f_loginButton.addActionListener(this); // adds the action listener to the login button to allow functionality when pressed
+		f_loginButton.setFocusable(false); // hides the outline around the button's interior text
 		
-		resetButton.setBounds(300, 250, 100, 25); // reset button is placed and given dimensions
-		resetButton.addActionListener(this); // add the action listener to the reset button to allow functionality when pressed
-		resetButton.setFocusable(false); // hides the outline around the button's interior text
+		f_resetButton.setBounds(300, 250, 100, 25); // reset button is placed and given dimensions
+		f_resetButton.addActionListener(this); // add the action listener to the reset button to allow functionality when pressed
+		f_resetButton.setFocusable(false); // hides the outline around the button's interior text
 		
-		BackButton.setBounds(505, 80, 75, 25); // back button is placed and given dimensions
-		BackButton.addActionListener(this); // add the action listener to the back button to allow functionality when pressed
-		BackButton.setFocusable(false); // hides the outline around the button's interior text
+		f_BackButton.setBounds(505, 80, 75, 25); // back button is placed and given dimensions
+		f_BackButton.addActionListener(this); // add the action listener to the back button to allow functionality when pressed
+		f_BackButton.setFocusable(false); // hides the outline around the button's interior text
 		
 		// +-------------------- Frame additions --------------------+
-		LoginFrame.add(loginButton); // Login button is added to the window
-		LoginFrame.add(resetButton); // reset button  is added to the window
-		LoginFrame.add(userIDfield); // user ID text field is added to the window
-		LoginFrame.add(userPassfield); // user Password field is added to the window
-		LoginFrame.add(messageLabel); // message label is added to the window
-		LoginFrame.add(userIDlabel); // user ID label is added to the window
-		LoginFrame.add(userPasslabel); // user Password label is added to the window
-		LoginFrame.add(libsys_Header); // LIBSYS header label is added to the window
-		LoginFrame.add(LineLabel); // the blue underline is added to the window
-		LoginFrame.add(BackButton); // back button is added to the window
+		f_LoginFrame.add(f_loginButton); // Login button is added to the window
+		f_LoginFrame.add(f_resetButton); // reset button  is added to the window
+		f_LoginFrame.add(f_userIDfield); // user ID text field is added to the window
+		f_LoginFrame.add(f_userPassfield); // user Password field is added to the window
+		f_LoginFrame.add(f_messageLabel); // message label is added to the window
+		f_LoginFrame.add(f_userIDlabel); // user ID label is added to the window
+		f_LoginFrame.add(f_userPasslabel); // user Password label is added to the window
+		f_LoginFrame.add(f_libsys_Header); // LIBSYS header label is added to the window
+		f_LoginFrame.add(f_LineLabel); // the blue underline is added to the window
+		f_LoginFrame.add(f_BackButton); // back button is added to the window
 		
 		// +-------------------- Frame dimensions and personalization --------------------+
-		LoginFrame.setSize(600, 400); // dimensions are given to the window
-		LoginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // application is halted when exited
-		LoginFrame.setResizable(false); // The window is unable to be resized by users
-		LoginFrame.setLayout(null); // no specific layout is given to the window, everything is placed manually
-		LoginFrame.setVisible(true); // makes the window visible to users
-		LoginFrame.getRootPane().setDefaultButton(loginButton); // allows users to press ENTER to login instead of clicking the button
+		f_LoginFrame.setSize(600, 400); // dimensions are given to the window
+		f_LoginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // application is halted when exited
+		f_LoginFrame.setResizable(false); // The window is unable to be resized by users
+		f_LoginFrame.setLayout(null); // no specific layout is given to the window, everything is placed manually
+		f_LoginFrame.setVisible(true); // makes the window visible to users
+		f_LoginFrame.getRootPane().setDefaultButton(f_loginButton); // allows users to press ENTER to login instead of clicking the button
+		f_LoginFrame.setIconImage(f_EncryptionLOGO.getImage()); // Image Icon is used to set the window/application image
 		
 	}
 	
@@ -110,32 +117,32 @@ public class Login_Page implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		// Reset button functionality = will clear text fields for user when pressed
-		if (e.getSource() == resetButton) {
-			userIDfield.setText("");
-			userPassfield.setText("");
-			messageLabel.setText("");
+		if (e.getSource() == f_resetButton) {
+			f_userIDfield.setText("");
+			f_userPassfield.setText("");
+			f_messageLabel.setText("");
 		
 		}
 		
 		// Login button functionality
-		if (e.getSource() == loginButton) {
-			userID = userIDfield.getText();// userID and password are taken from user input fields
-			String password = String.valueOf(userPassfield.getPassword()); // reference taken from the password field
+		if (e.getSource() == f_loginButton) {
+			f_userID = f_userIDfield.getText();// userID and password are taken from user input fields
+			String password = String.valueOf(f_userPassfield.getPassword()); // reference taken from the password field
 			
-			if (logininfo.containsKey(userID)) { // If the userID entered by the user matches what is contained in the HashMap
+			if (f_logininfo.containsKey(f_userID)) { // If the userID entered by the user matches what is contained in the HashMap
 				
 				// If the password entered also matches what is contained in the HashMap = LOGIN SUCCESSFUL
-				if (logininfo.get(userID).equals(password)) {
-					messageLabel.setText("");
-					LoginFrame.dispose();
-					new Main_Menu(userID);
+				if (f_logininfo.get(f_userID).equals(password)) {
+					f_messageLabel.setText("");
+					f_LoginFrame.dispose(); // closes current window
+					new Main_Menu(f_userID); // creates new Main Menu window with Username passed into it
 					
-				}
+			}
 				
 				// If the password entered does NOT match the information contained in the HashMap = INVALID CREDENTIALS
 				else {
-					messageLabel.setForeground(Color.red);
-					messageLabel.setText("Invalid Credentials!");
+					f_messageLabel.setForeground(Color.red);
+					f_messageLabel.setText("Invalid Credentials!");
 					
 				}
 				
@@ -143,17 +150,17 @@ public class Login_Page implements ActionListener{
 			
 			// This message is displayed when the User name entered by the user in incorrect from the jump = User name Not Found
 			else {
-				messageLabel.setForeground(Color.red);
-				messageLabel.setText("Username not Found");
+				f_messageLabel.setForeground(Color.red);
+				f_messageLabel.setText("Username not Found");
 				
 			}
 			
 		}
 		
 		// When the back button is clicked, the current window will close and users will return to the Selection Page once again
-		if (e.getSource() == BackButton) {
-			new Selection_Page();
-			LoginFrame.dispose();
+		if (e.getSource() == f_BackButton) {
+			new Selection_Page(); // Creates new Selection Page window
+			f_LoginFrame.dispose(); // Closes current window
 			
 		}
 		
